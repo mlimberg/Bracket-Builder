@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-export class TeamSetup extends Component {
+export class Dashboard extends Component {
   constructor() {
     super();
   }
@@ -9,14 +9,11 @@ export class TeamSetup extends Component {
   render() {
     return (
       <div>
-        Team Setup
+        Dashboard!
 
-        <Link to='/randomize'>
-          <button>Next</button>
-        </Link>
       </div>
     )
   }
 }
 
-export default TeamSetup;
+export default Dashboard;
