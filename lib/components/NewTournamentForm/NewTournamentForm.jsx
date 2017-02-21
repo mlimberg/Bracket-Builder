@@ -15,7 +15,7 @@ export class NewTournamentForm extends Component {
           <button>Back</button>
         </Link>
 
-        <Link to='/set-teams'>
+        <Link to='/set_teams'>
           <button>Next</button>
         </Link>
 

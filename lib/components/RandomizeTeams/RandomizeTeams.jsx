@@ -20,7 +20,6 @@ export class RandomizeTeams extends Component {
           <button>Create Tournament</button>
         </Link>
 
-
       </div>
     )
   }

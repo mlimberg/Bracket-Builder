@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-export class Dashboard extends Component {
+export class Teams extends Component {
   constructor() {
     super();
     this.state={
@@ -12,10 +12,10 @@ export class Dashboard extends Component {
   render() {
     return (
       <div>
-        Dashboard!
+        Teams!
 
-        <Link to={`/teams/${this.state.tournyName}`}>
-          <button>Teams</button>
+        <Link to={`/dashboard/${this.state.tournyName}`}>
+          <button>Dashboard</button>
         </Link>
 
         <Link to={`/bracket/${this.state.tournyName}`}>
@@ -27,4 +27,4 @@ export class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default Teams;
