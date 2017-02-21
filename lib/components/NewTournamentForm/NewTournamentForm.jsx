@@ -10,6 +10,16 @@ export class NewTournamentForm extends Component {
     return (
       <div>
         New Tourny Form!
+
+        <Link to='/'>
+          <button>Back</button>
+        </Link>
+
+        <Link to='/set-teams'>
+          <button>Next</button>
+        </Link>
+
+
       </div>
     )
   }
