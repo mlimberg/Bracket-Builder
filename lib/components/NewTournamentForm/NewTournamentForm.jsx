@@ -1,6 +1,7 @@
+import './new-tournament-styles.scss';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import './new-tournament-styles.scss';
+import TournamentContainer from '../../containers/Tournament/TournamentContainer';
 
 export class NewTournamentForm extends Component {
   constructor() {
@@ -9,7 +10,37 @@ export class NewTournamentForm extends Component {
       name: '',
       qty: 0,
       code: '',
+      teams: []
     }
+  }
+
+  setNewTournament() {
+    this.props.newTournament(this.state)
+  }
+
+  setQty(e) {
+    const quantity = parseInt(e.target.innerHTML)
+    this.setState({ qty: quantity }, () => {
+      this.setTeams()
+    });
+  }
+
+  setTeams() {
+    const temp = [];
+    for(let i = 1; i <= this.state.qty; i++) {
+      temp.push({ name: `Team ${i}`})
+    }
+    this.setState({ teams: temp })
+  }
+
+  setCode(e) {
+    const code = e.target.value
+    this.setState({ code: code })
+  }
+
+  preventSpace(e) {
+    if(e.keyCode === 32)
+    e.preventDefault()
   }
 
   render() {
@@ -19,33 +50,34 @@ export class NewTournamentForm extends Component {
 
         <section>
           <Link to='/'>
-            <button>Back</button>
+            <button className='btn back-btn'>Back</button>
           </Link>
 
           <Link to='/set_teams'>
-            <button>Next</button>
+            <button className='btn next-btn'
+                    onClick={this.setNewTournament.bind(this)}>Next</button>
           </Link>
         </section>
 
         <label>
           Tournament Name:
-          <input />
+          <input onChange={e => this.setState({ name: e.target.value })}/>
         </label>
 
 
         <section className='team-qty-container'>
           # of Teams:
             <div className='qty-options'>
-              <div className='team-qty-option qty-4'>4</div>
-              <div className='team-qty-option qty-8'>8</div>
-              <div className='team-qty-option qty-16'>16</div>
-              <div className='team-qty-option qty-32'>32</div>
+              <div className='team-qty-option qty-4' onClick={this.setQty.bind(this)}>4</div>
+              <div className='team-qty-option qty-8' onClick={this.setQty.bind(this)}>8</div>
+              <div className='team-qty-option qty-16' onClick={this.setQty.bind(this)}>16</div>
+              <div className='team-qty-option qty-32' onClick={this.setQty.bind(this)}>32</div>
             </div>
           </section>
 
         <label>
           Tournament code (no-spaces):
-          <input />
+          <input onKeyDown={this.preventSpace.bind(this)} onChange={this.setCode.bind(this)}/>
         </label>
 
         <section className='division-color-selectors'>
@@ -59,7 +91,6 @@ export class NewTournamentForm extends Component {
 
           <div className='west-container'>
             East
-
           </div>
 
           <div className='east-container'>
@@ -70,4 +101,4 @@ export class NewTournamentForm extends Component {
   }
 }
 
-export default NewTournamentForm;
+export default TournamentContainer(NewTournamentForm);
