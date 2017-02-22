@@ -28,7 +28,7 @@ export class NewTournamentForm extends Component {
   setTeams() {
     const temp = [];
     for(let i = 1; i <= this.state.qty; i++) {
-      temp.push({ name: `Team ${i}`})
+      temp.push({ id: i, name: `Team ${i}`})
     }
     this.setState({ teams: temp })
   }
