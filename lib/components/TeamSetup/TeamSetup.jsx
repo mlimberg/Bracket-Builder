@@ -42,6 +42,15 @@ export class TeamSetup extends Component {
     }
   }
 
+  shuffleTeams() {
+    const copy = this.props.teams.slice()
+    for (let i = copy.length; i > 0; i--) {
+      let j = Math.floor(Math.random() * i);
+      [copy[i - 1], copy[j]] = [copy[j], copy[i - 1]];
+    }
+    this.props.shuffle(copy)
+  }
+
   render() {
 
     return (
@@ -54,7 +63,7 @@ export class TeamSetup extends Component {
           <button>Back</button>
         </Link>
         <Link to='/randomize'>
-          <button>Next</button>
+          <button onClick={this.shuffleTeams.bind(this)}>Next</button>
         </Link>
       </div>
 

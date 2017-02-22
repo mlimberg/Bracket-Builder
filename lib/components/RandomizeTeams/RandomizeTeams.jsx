@@ -1,18 +1,25 @@
+import './randomize-styles';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import TournamentContainer from '../../containers/Tournament/TournamentContainer';
 
 export class RandomizeTeams extends Component {
   constructor() {
     super();
     this.state = {
-      id: 'deleteMe',
+
     }
   }
 
   render() {
+    console.log(this.props.teams);
     return (
       <div>
         Randomize Teams!
+
+        <h3>East</h3>
+
+        <h3>West</h3>
 
         <button>Randomize</button>
 
@@ -25,4 +32,4 @@ export class RandomizeTeams extends Component {
   }
 }
 
-export default RandomizeTeams;
+export default TournamentContainer(RandomizeTeams);
