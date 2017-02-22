@@ -1,0 +1,17 @@
+.qty-options {
+  display: flex;
+  flex-direction: row;
+}
+
+.team-qty-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.team-qty-option {
+  padding: 5px;
+  border: 1px solid;
+  &:hover{
+    cursor: pointer;
+  }
+}
