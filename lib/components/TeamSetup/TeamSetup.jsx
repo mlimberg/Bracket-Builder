@@ -33,8 +33,7 @@ export class TeamSetup extends Component {
                         activeClassName='team-card'
                         paramName={team.name}
                         change={(e)=> this.updateTeams(e)}
-                        text={team.name}
-              />
+                        text={team.name} />
           </div>
         )
       })
