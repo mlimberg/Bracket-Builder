@@ -8,12 +8,20 @@ export class RandomizeTeams extends Component {
   constructor() {
     super();
     this.state = {
-
+      east: [],
+      west: []
     }
   }
 
+  componentDidMount() {
+    this.setState({
+      east: this.props.teams.filter((t, i) => i % 2 === 0),
+      west: this.props.teams.filter((t, i) => i % 2 !== 0)
+    })
+  }
+
   eastDivision() {
-    const east = this.props.teams.filter((t, i) => i % 2 === 0)
+    const { east } = this.state;
     return east.map((team, i) => {
       return (
         <div key={'east' + i}>
@@ -21,10 +29,11 @@ export class RandomizeTeams extends Component {
         </div>
       )
     })
+
   }
 
   westDivision() {
-    const west = this.props.teams.filter((t, i) => i % 2 !== 0)
+    const { west } = this.state;
     return west.map((team, i) => {
       return (
         <div key={'west' + i}>
@@ -32,6 +41,10 @@ export class RandomizeTeams extends Component {
         </div>
       )
     })
+  }
+
+  randomizeDivisions() {
+    console.log('random!');
   }
 
   render() {
@@ -46,7 +59,7 @@ export class RandomizeTeams extends Component {
         <h3>West</h3>
         {this.westDivision()}
 
-        <button>Randomize</button>
+        <button onClick={this.randomizeDivisions.bind(this)}>Randomize</button>
 
         <Link to={`/dashboard/${this.state.id}`}>
           <button>Create Tournament</button>

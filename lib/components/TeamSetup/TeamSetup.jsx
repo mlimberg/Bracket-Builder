@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import InlineEdit from 'react-edit-inline';
 import TeamCard from '../TeamCard/TeamCard';
 import TournamentContainer from '../../containers/Tournament/TournamentContainer';
+import { shuffle } from '../../helpers/helpers';
 
 export class TeamSetup extends Component {
   constructor() {
@@ -43,12 +44,7 @@ export class TeamSetup extends Component {
   }
 
   shuffleTeams() {
-    const copy = this.props.teams.slice()
-    for (let i = copy.length; i > 0; i--) {
-      let j = Math.floor(Math.random() * i);
-      [copy[i - 1], copy[j]] = [copy[j], copy[i - 1]];
-    }
-    this.props.shuffle(copy)
+    this.props.shuffleTeams(shuffle(this.props.teams))
   }
 
   render() {
