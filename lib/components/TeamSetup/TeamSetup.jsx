@@ -28,14 +28,15 @@ export class TeamSetup extends Component {
     if(this.props.teams) {
       return this.props.teams.map((team, i) => {
         return (
-          <div className='teamList-container'>
+          <div className='teamList-container' key={i}>
             <InlineEdit className='team-card'
-              key={i}
               className='team-card'
+              activeClassName='team-card'
               onClick={(e) => console.log(e.target)}
               paramName='team-name'
               change={(e)=> this.updateTeams(e)}
-              text={team.name} />
+              text={team.name}
+              />
           </div>
         )
       })
