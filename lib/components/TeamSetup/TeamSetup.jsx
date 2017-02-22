@@ -21,7 +21,7 @@ export class TeamSetup extends Component {
   }
 
   updateTeams(e) {
-    console.log(e)
+    this.props.addTeam(e)
   }
 
   teamList() {
@@ -30,12 +30,10 @@ export class TeamSetup extends Component {
         return (
           <div className='teamList-container' key={i}>
             <InlineEdit className='team-card'
-              className='team-card'
-              activeClassName='team-card'
-              onClick={(e) => console.log(e.target)}
-              paramName='team-name'
-              change={(e)=> this.updateTeams(e)}
-              text={team.name}
+                        activeClassName='team-card'
+                        paramName={team.name}
+                        change={(e)=> this.updateTeams(e)}
+                        text={team.name}
               />
           </div>
         )
