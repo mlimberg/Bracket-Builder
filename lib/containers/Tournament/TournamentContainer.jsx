@@ -9,7 +9,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    teams: state.newTournament.teams,
+    teams: state.newTournament.teams || [],
   }
 }
 

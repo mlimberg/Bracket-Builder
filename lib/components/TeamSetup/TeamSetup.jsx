@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import InlineEdit from 'react-edit-inline';
 import TeamCard from '../TeamCard/TeamCard';
 import TournamentContainer from '../../containers/Tournament/TournamentContainer';
+import { shuffle } from '../../helpers/helpers';
 
 export class TeamSetup extends Component {
   constructor() {
@@ -42,6 +43,10 @@ export class TeamSetup extends Component {
     }
   }
 
+  shuffleTeams() {
+    this.props.shuffleTeams(shuffle(this.props.teams))
+  }
+
   render() {
 
     return (
@@ -54,7 +59,7 @@ export class TeamSetup extends Component {
           <button>Back</button>
         </Link>
         <Link to='/randomize'>
-          <button>Next</button>
+          <button onClick={this.shuffleTeams.bind(this)}>Next</button>
         </Link>
       </div>
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const TeamCard = () => {
+const TeamCard = (props) => {
   return(
-    <div>
-      Team Card!
+    <div className='team-card'>
+      {props.team}
     </div>
   )
 }
