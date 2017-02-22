@@ -1,0 +1,20 @@
+.setup-nav-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.team-card {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  border: 1px solid;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.teamList-container {
+  display: flex;
+  flex-direction: column;
+}
