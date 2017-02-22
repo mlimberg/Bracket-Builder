@@ -1,6 +1,7 @@
+import './new-tournament-styles.scss';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import './new-tournament-styles.scss';
+import TournamentContainer from '../../containers/Tournament/TournamentContainer';
 
 export class NewTournamentForm extends Component {
   constructor() {
@@ -9,12 +10,27 @@ export class NewTournamentForm extends Component {
       name: '',
       qty: 0,
       code: '',
+      teams: []
     }
+  }
+
+  setNewTournament() {
+    this.props.newTournament(this.state)
   }
 
   setQty(e) {
     const quantity = parseInt(e.target.innerHTML)
-    this.setState({ qty: quantity });
+    this.setState({ qty: quantity }, () => {
+      this.setTeams()
+    });
+  }
+
+  setTeams() {
+    const temp = [];
+    for(let i = 1; i <= this.state.qty; i++) {
+      temp.push({ name: `Team ${i}`})
+    }
+    this.setState({ teams: temp })
   }
 
   setCode(e) {
@@ -38,7 +54,8 @@ export class NewTournamentForm extends Component {
           </Link>
 
           <Link to='/set_teams'>
-            <button className='btn next-btn'>Next</button>
+            <button className='btn next-btn'
+                    onClick={this.setNewTournament.bind(this)}>Next</button>
           </Link>
         </section>
 
@@ -84,4 +101,4 @@ export class NewTournamentForm extends Component {
   }
 }
 
-export default NewTournamentForm;
+export default TournamentContainer(NewTournamentForm);
