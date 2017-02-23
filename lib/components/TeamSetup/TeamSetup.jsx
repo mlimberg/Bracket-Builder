@@ -51,7 +51,9 @@ export class TeamSetup extends Component {
 
     return (
       <div>
-        Team Setup
+        <h1>{this.props.name}</h1>
+        <h3>Team Setup</h3>
+        <p>Click to edit team names</p>
         {this.teamList()}
 
       <div className='setup-nav-buttons'>
