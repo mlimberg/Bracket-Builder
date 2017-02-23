@@ -44,7 +44,29 @@ export class RandomizeTeams extends Component {
   }
 
   saveTournament() {
-    
+    const east = [];
+    const west = [];
+    const eastCopy = this.state.east.slice();
+    const westCopy = this.state.west.slice();
+
+    const length = this.props.qty/2;
+    for(let i = 1; i <= length; i++) {
+      let matchupE = Object.assign({}, {
+        match_id: `east_${i}`,
+        status: 'inProgress',
+        teamA: eastCopy.splice(0, 1)[0],
+        teamB: eastCopy.splice(0, 1)[0]
+      })
+      let matchupW = Object.assign({}, {
+        match_id: `west{i}`,
+        status: 'inProgress',
+        teamA: westCopy.splice(0, 1)[0],
+        teamB: westCopy.splice(0, 1)[0]
+      })
+      east.push(matchupE)
+      west.push(matchupW)
+    }
+    this.props.saveTournament(east, west)
   }
 
   render() {
