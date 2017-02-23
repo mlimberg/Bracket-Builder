@@ -22,24 +22,13 @@ export class RandomizeTeams extends Component {
     })
   }
 
-  eastDivision() {
-    const { east } = this.state;
-    return east.map((team, i) => {
-      return (
-        <div key={'east' + i}>
-          <TeamCard team={team.name} />
-        </div>
-      )
-    })
-
-  }
-
-  westDivision() {
-    const { west } = this.state;
-    return west.map((team, i) => {
+  division(div) {
+    const evenTeam = (i) => {return i % 2 === 0 ? true : false }
+    return div.map((team, i) => {
       return (
         <div key={'west' + i}>
-          <TeamCard team={team.name} />
+          <TeamCard team={team.name} addClass={evenTeam(i) ? '' : 'odd-team-card'}/>
+          {evenTeam(i) ? 'vs.' : ''}
         </div>
       )
     })
@@ -55,25 +44,26 @@ export class RandomizeTeams extends Component {
   }
 
   render() {
+    const { east, west, count } = this.state;
 
     return (
       <div>
         Randomize Teams!
 
         <h3>East</h3>
-        {this.eastDivision()}
+        {this.division(east)}
 
         <h3>West</h3>
-        {this.westDivision()}
+        {this.division(west)}
 
         <button onClick={this.randomizeDivisions.bind(this)}
-                disabled={!this.state.count}>
+                disabled={!count}>
           Randomize
         </button>
 
-        <p>Randomizers Left: {this.state.count}</p>
+        <p>Randomizers Left: {count}</p>
 
-        <Link to={`/dashboard/${this.state.id}`}>
+        <Link to={`/dashboard/${this.state.tbd}`}>
           <button>Create Tournament</button>
         </Link>
 
