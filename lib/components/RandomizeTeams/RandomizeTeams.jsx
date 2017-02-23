@@ -28,7 +28,7 @@ export class RandomizeTeams extends Component {
       return (
         <div key={'west' + i}>
           <TeamCard team={team.name} addClass={evenTeam(i) ? '' : 'odd-team-card'}/>
-          {evenTeam(i) ? 'vs.' : ''}
+          <span className='vs-text'>{evenTeam(i) ? 'vs.' : ''}</span>
         </div>
       )
     })
@@ -41,6 +41,10 @@ export class RandomizeTeams extends Component {
       west: shuffle(west),
       count: count - 1
     })
+  }
+
+  saveTournament() {
+    
   }
 
   render() {
@@ -63,9 +67,9 @@ export class RandomizeTeams extends Component {
 
         <p>Randomizers Left: {count}</p>
 
-        <Link to={`/dashboard/${this.state.tbd}`}>
-          <button>Create Tournament</button>
-        </Link>
+        {/* <Link to={`/dashboard/${this.state.tbd}`}> */}
+          <button onClick={this.saveTournament.bind(this)}>Create Tournament</button>
+        {/* </Link> */}
 
       </div>
     )
