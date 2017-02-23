@@ -44,8 +44,12 @@ export class NewTournamentForm extends Component {
   }
 
   render() {
+    const toggleActive = (qty) => {
+      return this.state.qty === qty ? 'team-qty-option active-qty' : 'team-qty-option'
+    }
+
     return (
-      <div>
+      <div className='new-tournament-form-container'>
         <h3>New Tourny Form!</h3>
 
         <section>
@@ -59,23 +63,25 @@ export class NewTournamentForm extends Component {
           </Link>
         </section>
 
-        <label>
+        <label className='tournament-name'>
           Tournament Name:
           <input onChange={e => this.setState({ name: e.target.value })}/>
         </label>
 
-
         <section className='team-qty-container'>
           # of Teams:
             <div className='qty-options'>
-              <div className='team-qty-option qty-4' onClick={this.setQty.bind(this)}>4</div>
-              <div className='team-qty-option qty-8' onClick={this.setQty.bind(this)}>8</div>
-              <div className='team-qty-option qty-16' onClick={this.setQty.bind(this)}>16</div>
-              <div className='team-qty-option qty-32' onClick={this.setQty.bind(this)}>32</div>
+              <div className={toggleActive(4)} onClick={this.setQty.bind(this)}>4</div>
+
+              <div className={toggleActive(8)} onClick={this.setQty.bind(this)}>8</div>
+
+              <div className={toggleActive(16)} onClick={this.setQty.bind(this)}>16</div>
+
+              <div className={toggleActive(32)} onClick={this.setQty.bind(this)}>32</div>
             </div>
           </section>
 
-        <label>
+        <label className='tournament-code'>
           Tournament code (no-spaces):
           <input onKeyDown={this.preventSpace.bind(this)} onChange={this.setCode.bind(this)}/>
         </label>

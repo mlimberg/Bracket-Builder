@@ -3,15 +3,20 @@
   flex-direction: row;
 }
 
-.team-qty-container {
-  display: flex;
-  flex-direction: column;
-}
-
 .team-qty-option {
   padding: 5px;
   border: 1px solid;
   &:hover{
     cursor: pointer;
   }
+}
+
+.tournament-name, .tournament-code, .team-qty-container, .new-tournament-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.active-qty {
+  background-color: yellow;
 }
