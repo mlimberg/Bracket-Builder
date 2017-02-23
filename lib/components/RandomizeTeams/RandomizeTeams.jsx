@@ -3,13 +3,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import TournamentContainer from '../../containers/Tournament/TournamentContainer';
 import TeamCard from '../TeamCard/TeamCard';
+import { shuffle } from '../../helpers/helpers';
 
 export class RandomizeTeams extends Component {
   constructor() {
     super();
     this.state = {
       east: [],
-      west: []
+      west: [],
+      count: 3
     }
   }
 
@@ -20,50 +22,54 @@ export class RandomizeTeams extends Component {
     })
   }
 
-  eastDivision() {
-    const { east } = this.state;
-    return east.map((team, i) => {
-      return (
-        <div key={'east' + i}>
-          <TeamCard team={team.name} />
-        </div>
-      )
-    })
-
-  }
-
-  westDivision() {
-    const { west } = this.state;
-    return west.map((team, i) => {
+  division(div) {
+    const evenTeam = (i) => {return i % 2 === 0 ? true : false }
+    return div.map((team, i) => {
       return (
         <div key={'west' + i}>
-          <TeamCard team={team.name} />
+          <TeamCard team={team.name} addClass={evenTeam(i) ? '' : 'odd-team-card'}/>
+          <span className='vs-text'>{evenTeam(i) ? 'vs.' : ''}</span>
         </div>
       )
     })
   }
 
   randomizeDivisions() {
-    console.log('random!');
+    const { count, east, west } = this.state
+    this.setState({
+      east: shuffle(east),
+      west: shuffle(west),
+      count: count - 1
+    })
+  }
+
+  saveTournament() {
+    
   }
 
   render() {
+    const { east, west, count } = this.state;
 
     return (
       <div>
         Randomize Teams!
 
         <h3>East</h3>
-        {this.eastDivision()}
+        {this.division(east)}
 
         <h3>West</h3>
-        {this.westDivision()}
+        {this.division(west)}
 
-        <button onClick={this.randomizeDivisions.bind(this)}>Randomize</button>
+        <button onClick={this.randomizeDivisions.bind(this)}
+                disabled={!count}>
+          Randomize
+        </button>
 
-        <Link to={`/dashboard/${this.state.id}`}>
-          <button>Create Tournament</button>
-        </Link>
+        <p>Randomizers Left: {count}</p>
+
+        {/* <Link to={`/dashboard/${this.state.tbd}`}> */}
+          <button onClick={this.saveTournament.bind(this)}>Create Tournament</button>
+        {/* </Link> */}
 
       </div>
     )

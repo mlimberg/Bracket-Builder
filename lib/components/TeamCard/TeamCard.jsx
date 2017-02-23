@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 const TeamCard = (props) => {
   return(
-    <div className='team-card'>
+    <div className={`team-card ${props.addClass}`}>
       {props.team}
     </div>
   )
