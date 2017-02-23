@@ -3,13 +3,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import TournamentContainer from '../../containers/Tournament/TournamentContainer';
 import TeamCard from '../TeamCard/TeamCard';
+import { shuffle } from '../../helpers/helpers';
 
 export class RandomizeTeams extends Component {
   constructor() {
     super();
     this.state = {
       east: [],
-      west: []
+      west: [],
+      count: 3
     }
   }
 
@@ -44,7 +46,12 @@ export class RandomizeTeams extends Component {
   }
 
   randomizeDivisions() {
-    console.log('random!');
+    const { count, east, west } = this.state
+    this.setState({
+      east: shuffle(east),
+      west: shuffle(west),
+      count: count - 1
+    })
   }
 
   render() {
@@ -59,7 +66,12 @@ export class RandomizeTeams extends Component {
         <h3>West</h3>
         {this.westDivision()}
 
-        <button onClick={this.randomizeDivisions.bind(this)}>Randomize</button>
+        <button onClick={this.randomizeDivisions.bind(this)}
+                disabled={!this.state.count}>
+          Randomize
+        </button>
+
+        <p>Randomizers Left: {this.state.count}</p>
 
         <Link to={`/dashboard/${this.state.id}`}>
           <button>Create Tournament</button>
