@@ -7,9 +7,9 @@ export class NewTournamentForm extends Component {
   constructor() {
     super();
     this.state = {
-      name: '',
+      name: 'Delete Me!!!',
       qty: 0,
-      code: '',
+      code: 'bimby',
       teams: []
     }
   }
@@ -59,7 +59,9 @@ export class NewTournamentForm extends Component {
 
           <Link to='/set_teams'>
             <button className='btn next-btn'
-                    onClick={this.setNewTournament.bind(this)}>Next</button>
+                    onClick={this.setNewTournament.bind(this)}>
+              Next
+            </button>
           </Link>
         </section>
 
