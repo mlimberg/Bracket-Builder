@@ -2,6 +2,7 @@ import './new-tournament-styles.scss';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import TournamentContainer from '../../containers/Tournament/TournamentContainer';
+import { GithubPicker } from 'react-color';
 
 export class NewTournamentForm extends Component {
   constructor() {
@@ -50,23 +51,28 @@ export class NewTournamentForm extends Component {
     e.preventDefault()
   }
 
-  showColorOptions(division) {
-    const colors = ['#f45c42', '#f78a31', '#f4ef5f',
-                    '#a9ff5e', '#44b4ff', '#ff59f3',
-                    '#9c33f7', '#87ffff', '#0b7220']
-    return colors.map((color, i) => {
-      return(
-        <div className='color-block'
-             style={{ backgroundColor: color }}
-             key={i}
-             onClick={()=> this.setState({ [division]: color })}></div>
-      )
-    })
-  }
+  // showColorOptions(division) {
+  //   const colors = ['#f45c42', '#f78a31', '#f4ef5f',
+  //                   '#a9ff5e', '#44b4ff', '#ff59f3',
+  //                   '#9c33f7', '#87ffff', '#0b7220']
+  //   return colors.map((color, i) => {
+  //     return(
+  //       <div className='color-block'
+  //            style={{ backgroundColor: color }}
+  //            key={i}
+  //            onClick={()=> this.setState({ [division]: color })}></div>
+  //     )
+  //   })
+  // }
 
   colorError() {
     if(!!this.state.eastColor && this.state.eastColor == this.state.westColor)
     return(<p>Division colors cannot match, please change your selections</p>)
+  }
+
+  setColor(div, color) {
+    const division = div === 'west' ? 'westColor' : 'eastColor';
+    this.setState({ [division]: color.hex })
   }
 
 
@@ -125,7 +131,7 @@ export class NewTournamentForm extends Component {
             <div className='color-block-main'
                  onClick={() => this.setState({ showWest: !showWest })}>
             </div>
-            {showWest ? <div className='color-options'> {this.showColorOptions('westColor')}</div> : null}
+            {showWest ? <GithubPicker onChangeComplete={this.setColor.bind(this, 'west')}/> : null}
           </label>
 
           <label>
@@ -133,7 +139,7 @@ export class NewTournamentForm extends Component {
             <div className='color-block-main'
                  onClick={() => this.setState({ showEast: !showEast })}>
             </div>
-            {showEast ? <div className='color-options'> {this.showColorOptions('eastColor')}</div> : null}
+            {showEast ? <GithubPicker onChangeComplete={this.setColor.bind(this, 'east')}/> : null}
           </label>
 
           {this.colorError()}
