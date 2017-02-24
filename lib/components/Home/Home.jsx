@@ -8,8 +8,9 @@ export class Home extends Component {
   constructor() {
     super();
     this.state = {
-      join: false,
+      showJoin: false,
       joinCode: '',
+      joinError: false
     }
   }
 
@@ -23,10 +24,11 @@ export class Home extends Component {
   }
 
   joinExistingForm() {
-    if(this.state.join)
+    if(this.state.showJoin)
     return (
       <div className='join-existing-container'>
         <input placeholder='Enter Code'
+               value={this.state.joinCode}
                onChange={(e) => this.setState({ joinCode: e.target.value })}/>
         <button disabled={!this.state.joinCode}
                 onClick={this.joinExisting.bind(this)}>Join</button>
@@ -35,11 +37,26 @@ export class Home extends Component {
   }
 
   joinExisting() {
-    console.log('join!');
+    const { tournaments } = this.props;
+    let tournament;
+    tournaments.forEach(obj => {
+      if(obj.code === this.state.joinCode) {
+        tournament = obj;
+        this.setState({ joinError: false, joinCode: '' })
+      }
+    })
+    return tournament ? tournament : this.setState({ joinError: true });
+  }
+
+  joinError() {
+    if(this.state.joinError)
+    return (
+      <div className='join-error-msg'>There are no matching tournmanets, please enter another code or create a new tournament</div>
+    )
   }
 
   render() {
-    
+
     return(
       <div>
 
@@ -51,12 +68,13 @@ export class Home extends Component {
           </Link>
 
           <button className='btn join-existing-btn'
-                  onClick={() => this.setState({ join: !this.state.join })}>
+                  onClick={() => this.setState({ showJoin: !this.state.showJoin })}>
             Join Existing
           </button>
         </div>
 
         {this.joinExistingForm()}
+        {this.joinError()}
       </div>
     )
   }
