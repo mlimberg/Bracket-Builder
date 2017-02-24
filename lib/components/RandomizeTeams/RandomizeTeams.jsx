@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import TournamentContainer from '../../containers/Tournament/TournamentContainer';
 import TeamCard from '../TeamCard/TeamCard';
 import { shuffle } from '../../helpers/helpers';
+import firebase from '../../firebase';
 
 export class RandomizeTeams extends Component {
   constructor() {
@@ -48,8 +49,8 @@ export class RandomizeTeams extends Component {
     const west = [];
     const eastCopy = this.state.east.slice();
     const westCopy = this.state.west.slice();
+    const length = this.props.qty/4;
 
-    const length = this.props.qty/2;
     for(let i = 1; i <= length; i++) {
       let matchupE = Object.assign({}, {
         match_id: `east_${i}`,
@@ -67,6 +68,12 @@ export class RandomizeTeams extends Component {
       west.push(matchupW)
     }
     this.props.saveTournament(east, west)
+    this.saveToFirebase();
+  }
+
+  saveToFirebase() {
+    const { code, tournament } = this.props
+    firebase.database().ref(code).set(tournament)
   }
 
   render() {

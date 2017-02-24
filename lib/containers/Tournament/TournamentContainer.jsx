@@ -13,7 +13,9 @@ const mapStateToProps = (state) => {
   return {
     teams: state.tournament.teams || [],
     name: state.tournament.name,
-    qty: state.tournament.qty
+    qty: state.tournament.qty,
+    code: state.tournament.code,
+    tournament: state.tournament
     // shuffleTeams: result of business logic
   }
 }
