@@ -7,15 +7,22 @@ export class NewTournamentForm extends Component {
   constructor() {
     super();
     this.state = {
-      name: 'Delete Me!!!',
+      name: '',
       qty: 0,
-      code: 'bimby',
-      teams: []
+      code: '',
+      teams: [],
+      showEast: false,
+      showWest: false,
+      eastColor: '',
+      westColor: '',
+      error: ''
     }
   }
 
   setNewTournament() {
-    this.props.setTournament(this.state)
+    // const { eastColor, westColor } = this.state;
+    // eastColor === westColor ? this.setState({ error: 'color' }) :
+      this.props.setTournament(this.state)
   }
 
   setQty(e) {
@@ -43,9 +50,31 @@ export class NewTournamentForm extends Component {
     e.preventDefault()
   }
 
+  showColorOptions(division) {
+    const colors = ['#f45c42', '#f78a31', '#f4ef5f',
+                    '#a9ff5e', '#44b4ff', '#ff59f3',
+                    '#9c33f7', '#87ffff', '#0b7220']
+    return colors.map((color, i) => {
+      return(
+        <div className='color-block'
+             style={{ backgroundColor: color }}
+             key={i}
+             onClick={()=> this.setState({ [division]: color })}></div>
+      )
+    })
+  }
+
+  colorError() {
+    if(!!this.state.eastColor && this.state.eastColor == this.state.westColor)
+    return(<p>Division colors cannot match, please change your selections</p>)
+  }
+
+
   render() {
-    const toggleActive = (qty) => {
-      return this.state.qty === qty ? 'team-qty-option active-qty' : 'team-qty-option'
+    const { qty, showEast, showWest, eastColor, westColor } = this.state;
+
+    const toggleActive = (selected) => {
+      return qty === selected ? 'team-qty-option active-qty' : 'team-qty-option'
     }
 
     return (
@@ -85,24 +114,30 @@ export class NewTournamentForm extends Component {
 
         <label className='tournament-code'>
           Tournament code (no-spaces):
-          <input onKeyDown={this.preventSpace.bind(this)} onChange={this.setCode.bind(this)}/>
+          <input onKeyDown={this.preventSpace.bind(this)}
+                 onChange={this.setCode.bind(this)}/>
         </label>
 
         <section className='division-color-selectors'>
-          <div className='west-container'>
+
+          <label>
             West
-            {/* <map>
-              <area shape="rect" coords="7,7,31,30" href="#003300" />
-              <area shape="rect" coords="35,7,59,30" href="#003366" />
-            </map> */}
-          </div>
+            <div className='color-block-main'
+                 onClick={() => this.setState({ showWest: !showWest })}>
+            </div>
+            {showWest ? <div className='color-options'> {this.showColorOptions('westColor')}</div> : null}
+          </label>
 
-          <div className='west-container'>
+          <label>
             East
-          </div>
+            <div className='color-block-main'
+                 onClick={() => this.setState({ showEast: !showEast })}>
+            </div>
+            {showEast ? <div className='color-options'> {this.showColorOptions('eastColor')}</div> : null}
+          </label>
 
-          <div className='east-container'>
-          </div>
+          {this.colorError()}
+
         </section>
       </div>
     )
