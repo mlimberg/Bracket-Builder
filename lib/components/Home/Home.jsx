@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import firebase from '../../firebase';
 import AllTournamentsContainer from '../../containers/AllTournaments/AllTournamentsContainer';
-import { Router } from 'react-router';
+import { Router, browserHistory } from 'react-router';
+
 
 export class Home extends Component {
   constructor() {
@@ -15,12 +16,12 @@ export class Home extends Component {
     }
   }
 
-//probably a better way to do this...but it works!
-  static get contextTypes() {
-    return {
-      router: React.PropTypes.object.isRequired
-    }
-  }
+// probably a better way to do this...but it works!
+//   static get contextTypes() {
+//     return {
+//       router: React.PropTypes.object.isRequired
+//     }
+//   }
 
   componentWillMount() {
     firebase.database().ref().on('value', (snapshot) => {
@@ -51,10 +52,15 @@ export class Home extends Component {
       if(obj.code === this.state.joinCode) {
         tournament = obj;
         this.setState({ joinError: false, joinCode: '' })
-        this.context.router.push(`/dashboard/${tournament.code}`)
+        browserHistory.push(`/dashboard/${tournament.code}`)
+        // this.context.router.push(`/dashboard/${tournament.code}`)
       }
     })
-    return tournament ? tournament : this.setState({ joinError: true });
+    return tournament ? this.setCurrent(tournament) : this.setState({ joinError: true });
+  }
+
+  setCurrent(tournament) {
+    this.props.setTournament(tournament)
   }
 
   joinError() {

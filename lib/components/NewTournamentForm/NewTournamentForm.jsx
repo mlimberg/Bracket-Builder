@@ -15,7 +15,7 @@ export class NewTournamentForm extends Component {
   }
 
   setNewTournament() {
-    this.props.newTournament(this.state)
+    this.props.setTournament(this.state)
   }
 
   setQty(e) {

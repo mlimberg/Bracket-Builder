@@ -11,11 +11,11 @@ const mapStateToProps = (state) => {
   //put business logic HERE
 
   return {
-    teams: state.tournament.teams || [],
-    name: state.tournament.name,
-    qty: state.tournament.qty,
-    code: state.tournament.code,
-    tournament: state.tournament
+    teams: state.currentTournament.teams || [],
+    name: state.currentTournament.name,
+    qty: state.currentTournament.qty,
+    code: state.currentTournament.code,
+    tournament: state.currentTournament
     // shuffleTeams: result of business logic
   }
 }
