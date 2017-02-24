@@ -8,15 +8,8 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-  //put business logic HERE
-
   return {
-    teams: state.currentTournament.teams || [],
-    name: state.currentTournament.name,
-    qty: state.currentTournament.qty,
-    code: state.currentTournament.code,
-    tournament: state.currentTournament
-    // shuffleTeams: result of business logic
+    tournaments: state.allTournaments,
   }
 }
 
