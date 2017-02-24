@@ -78,7 +78,8 @@ export class RandomizeTeams extends Component {
 
   render() {
     const { east, west, count } = this.state;
-
+    const { code } = this.props;
+    
     return (
       <div>
         Randomize Teams!
@@ -96,9 +97,9 @@ export class RandomizeTeams extends Component {
 
         <p>Randomizers Left: {count}</p>
 
-        {/* <Link to={`/dashboard/${this.state.tbd}`}> */}
+        <Link to={`/dashboard/${code}`}>
           <button onClick={this.saveTournament.bind(this)}>Create Tournament</button>
-        {/* </Link> */}
+        </Link>
 
       </div>
     )
