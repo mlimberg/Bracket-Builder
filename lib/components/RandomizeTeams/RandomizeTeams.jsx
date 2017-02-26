@@ -24,12 +24,15 @@ export class RandomizeTeams extends Component {
     })
   }
 
-  division(div) {
+  division(div, divString) {
+    const { tournament } = this.props;
+    const color = tournament[divString]
+    console.log(color);
     const evenTeam = (i) => {return i % 2 === 0 ? true : false }
     return div.map((team, i) => {
       return (
-        <div key={'west' + i}>
-          <TeamCard team={team.name} addClass={evenTeam(i) ? '' : 'odd-team-card'}/>
+        <div key={div + i}>
+          <TeamCard team={team.name} addClass={evenTeam(i) ? '' : 'odd-team-card'} style={{backgroundColor: color }}/>
           <span className='vs-text'>{evenTeam(i) ? 'vs.' : ''}</span>
         </div>
       )
@@ -85,10 +88,10 @@ export class RandomizeTeams extends Component {
         Randomize Teams!
 
         <h3>East</h3>
-        {this.division(east)}
+        {this.division(east, 'eastColor')}
 
         <h3>West</h3>
-        {this.division(west)}
+        {this.division(west, 'westColor')}
 
         <button onClick={this.randomizeDivisions.bind(this)}
                 disabled={!count}>
