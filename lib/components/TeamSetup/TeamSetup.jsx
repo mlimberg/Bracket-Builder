@@ -26,8 +26,9 @@ export class TeamSetup extends Component {
   }
 
   teamList() {
-    if(this.props.teams) {
-      return this.props.teams.map((team, i) => {
+    const { teams } = this.props.tournament
+    if(teams) {
+      return teams.map((team, i) => {
         return (
           <div className='teamList-container' key={i}>
             <InlineEdit className='team-card'
@@ -44,14 +45,14 @@ export class TeamSetup extends Component {
   }
 
   shuffleTeams() {
-    this.props.shuffleTeams(shuffle(this.props.teams))
+    this.props.shuffleTeams(shuffle(this.props.tournament.teams))
   }
 
   render() {
 
     return (
       <div>
-        <h1>{this.props.name}</h1>
+        <h1>{this.props.tournament.name}</h1>
         <h3>Team Setup</h3>
         <p>Click to edit team names</p>
         {this.teamList()}

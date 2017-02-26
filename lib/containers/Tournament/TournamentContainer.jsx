@@ -7,16 +7,9 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(actions, dispatch);
 }
 
-const mapStateToProps = (state) => {
-  //put business logic HERE
-
+const mapStateToProps = ({ currentTournament }) => {
   return {
-    teams: state.currentTournament.teams || [],
-    name: state.currentTournament.name,
-    qty: state.currentTournament.qty,
-    code: state.currentTournament.code,
-    tournament: state.currentTournament
-    // shuffleTeams: result of business logic
+    tournament: currentTournament
   }
 }
 

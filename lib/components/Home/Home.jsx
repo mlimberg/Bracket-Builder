@@ -16,13 +16,6 @@ export class Home extends Component {
     }
   }
 
-// probably a better way to do this...but it works!
-//   static get contextTypes() {
-//     return {
-//       router: React.PropTypes.object.isRequired
-//     }
-//   }
-
   componentWillMount() {
     firebase.database().ref().on('value', (snapshot) => {
       const obj = snapshot.val();
@@ -53,14 +46,13 @@ export class Home extends Component {
         tournament = obj;
         this.setState({ joinError: false, joinCode: '' })
         browserHistory.push(`/dashboard/${tournament.code}`)
-        // this.context.router.push(`/dashboard/${tournament.code}`)
       }
     })
     return tournament ? this.setCurrent(tournament) : this.setState({ joinError: true });
   }
 
   setCurrent(tournament) {
-    this.props.setTournament(tournament)
+    this.props.setTournament(tournament);
   }
 
   joinError() {

@@ -17,9 +17,10 @@ export class RandomizeTeams extends Component {
   }
 
   componentDidMount() {
+    const { teams } = this.props.tournament
     this.setState({
-      east: this.props.teams.filter((t, i) => i % 2 === 0),
-      west: this.props.teams.filter((t, i) => i % 2 !== 0)
+      east: teams.filter((t, i) => i % 2 === 0),
+      west: teams.filter((t, i) => i % 2 !== 0)
     })
   }
 
@@ -49,7 +50,7 @@ export class RandomizeTeams extends Component {
     const west = [];
     const eastCopy = this.state.east.slice();
     const westCopy = this.state.west.slice();
-    const length = this.props.qty/4;
+    const length = this.props.tournament.qty/4;
 
     for(let i = 1; i <= length; i++) {
       let matchupE = Object.assign({}, {
@@ -72,14 +73,14 @@ export class RandomizeTeams extends Component {
   }
 
   saveToFirebase() {
-    const { code, tournament } = this.props
+    const { code, tournament } = this.props.tournament
     firebase.database().ref(code).set(tournament)
   }
 
   render() {
     const { east, west, count } = this.state;
-    const { code } = this.props;
-    
+    const { code } = this.props.tournament;
+
     return (
       <div>
         Randomize Teams!

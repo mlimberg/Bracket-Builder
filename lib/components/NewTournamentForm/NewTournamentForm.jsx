@@ -2,20 +2,38 @@ import './new-tournament-styles.scss';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import TournamentContainer from '../../containers/Tournament/TournamentContainer';
+import AllTournamentsContainer from '../../containers/AllTournaments/AllTournamentsContainer';
+import { GithubPicker } from 'react-color';
+import firebase from '../../firebase';
 
 export class NewTournamentForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      name: 'Delete Me!!!',
+      name: '',
       qty: 0,
-      code: 'bimby',
-      teams: []
+      code: '',
+      teams: [],
+      showEast: false,
+      showWest: false,
+      eastColor: '#FFF',
+      westColor: '#FFF',
+      codeError: false
     }
   }
 
+  componentDidMount() {
+    firebase.database().ref().on('value', (snapshot) => {
+      const obj = snapshot.val();
+      const keys = Object.keys(obj)
+      const allTournaments = keys.map(key => obj[key])
+      this.props.loadFromFirebase(allTournaments)
+    })
+  }
+
   setNewTournament() {
-    this.props.setTournament(this.state)
+    const { name, qty, code, teams, eastColor, westColor } = this.state;
+      this.props.setTournament({ name, qty, code, teams, eastColor, westColor})
   }
 
   setQty(e) {
@@ -43,9 +61,35 @@ export class NewTournamentForm extends Component {
     e.preventDefault()
   }
 
+  colorError() {
+    const { eastColor, westColor } = this.state;
+    if(eastColor == westColor && westColor !== '#FFF')
+      return(<p>Division colors cannot match, please change your selections</p>)
+  }
+
+  setColor(div, color) {
+    const division = div === 'West' ? 'westColor' : 'eastColor';
+    const show = 'show' + div
+    this.setState({ [division]: color.hex, [show]: false })
+  }
+
+  codeCheck() {
+    const { tournaments } = this.props;
+    let status = false;
+    for(let i = 0; i < tournaments.length; i++) {
+      if(tournaments[i].code === this.state.code) {
+        status = true
+      }
+    }
+    this.setState({ codeError: status })
+  }
+
+
   render() {
-    const toggleActive = (qty) => {
-      return this.state.qty === qty ? 'team-qty-option active-qty' : 'team-qty-option'
+    const { qty, showEast, showWest, eastColor, westColor, codeError } = this.state;
+
+    const toggleActive = (selected) => {
+      return qty === selected ? 'team-qty-option active-qty' : 'team-qty-option'
     }
 
     return (
@@ -85,28 +129,38 @@ export class NewTournamentForm extends Component {
 
         <label className='tournament-code'>
           Tournament code (no-spaces):
-          <input onKeyDown={this.preventSpace.bind(this)} onChange={this.setCode.bind(this)}/>
+          <input onKeyDown={this.preventSpace.bind(this)}
+                 onChange={this.setCode.bind(this)}
+                 onKeyUp={this.codeCheck.bind(this)} />
+          <span className={codeError ? 'code-red' : 'code-green'}>✓</span>
         </label>
 
         <section className='division-color-selectors'>
-          <div className='west-container'>
+
+          <label>
             West
-            {/* <map>
-              <area shape="rect" coords="7,7,31,30" href="#003300" />
-              <area shape="rect" coords="35,7,59,30" href="#003366" />
-            </map> */}
-          </div>
+            <div className='color-block-main'
+                 style={{backgroundColor: this.state.westColor}}
+                 onClick={() => this.setState({ showWest: !showWest })}>
+            </div>
+            {showWest ? <GithubPicker onChangeComplete={this.setColor.bind(this, 'West')}/> : null}
+          </label>
 
-          <div className='west-container'>
+          <label>
             East
-          </div>
+            <div className='color-block-main'
+                 style={{backgroundColor: this.state.eastColor}}
+                 onClick={() => this.setState({ showEast: !showEast })}>
+            </div>
+            {showEast ? <GithubPicker onChangeComplete={this.setColor.bind(this, 'East')}/> : null}
+          </label>
 
-          <div className='east-container'>
-          </div>
+          {this.colorError()}
+
         </section>
       </div>
     )
   }
 }
 
-export default TournamentContainer(NewTournamentForm);
+export default AllTournamentsContainer(TournamentContainer(NewTournamentForm));
