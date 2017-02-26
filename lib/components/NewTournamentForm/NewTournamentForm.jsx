@@ -133,11 +133,13 @@ export class NewTournamentForm extends Component {
 
         <label className='tournament-code'>
           Tournament code (no-spaces):
-          <input value={code}
-                 onKeyDown={this.preventSpace.bind(this)}
-                 onChange={this.setCode.bind(this)}
-                 onKeyUp={this.codeCheck.bind(this)} />
-          <span className={codeError ? 'code-red' : 'code-green'}>✓</span>
+          <div className='input-and-check'>
+            <input value={code}
+              onKeyDown={this.preventSpace.bind(this)}
+              onChange={this.setCode.bind(this)}
+              onKeyUp={this.codeCheck.bind(this)} />
+              <span className={codeError ? 'code-red' : 'code-green'}>✓</span>
+          </div>
         </label>
 
         <section className='division-color-selectors'>
@@ -148,7 +150,8 @@ export class NewTournamentForm extends Component {
                  style={{backgroundColor: this.state.westColor}}
                  onClick={() => this.setState({ showWest: !showWest })}>
             </div>
-            {showWest ? <GithubPicker onChangeComplete={this.setColor.bind(this, 'West')}/> : null}
+            {showWest ? <div className='color-picker'><GithubPicker onChangeComplete={this.setColor.bind(this, 'West')}/>
+            </div> : null}
           </label>
 
           <label>
@@ -157,7 +160,8 @@ export class NewTournamentForm extends Component {
                  style={{backgroundColor: this.state.eastColor}}
                  onClick={() => this.setState({ showEast: !showEast })}>
             </div>
-            {showEast ? <GithubPicker onChangeComplete={this.setColor.bind(this, 'East')}/> : null}
+            {showEast ? <div className='color-picker'><GithubPicker onChangeComplete={this.setColor.bind(this, 'East')}/>
+            </div> : null}
           </label>
 
           {this.colorError()}
