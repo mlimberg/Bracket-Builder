@@ -105,7 +105,7 @@ export class NewTournamentForm extends Component {
             <button className='btn back-btn'>Back</button>
           </Link>
 
-          <Link to='/set_teams'>
+          <Link to='/set-teams'>
             <button className='btn next-btn'
                     onClick={this.setNewTournament.bind(this)}>
               Next

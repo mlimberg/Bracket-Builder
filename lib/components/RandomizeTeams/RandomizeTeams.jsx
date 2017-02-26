@@ -27,7 +27,6 @@ export class RandomizeTeams extends Component {
   division(div, divString) {
     const { tournament } = this.props;
     const color = tournament[divString]
-    console.log(color);
     const evenTeam = (i) => {return i % 2 === 0 ? true : false }
     return div.map((team, i) => {
       return (
@@ -51,20 +50,23 @@ export class RandomizeTeams extends Component {
   saveTournament() {
     const east = [];
     const west = [];
+    const { tournament } = this.props;
     const eastCopy = this.state.east.slice();
     const westCopy = this.state.west.slice();
-    const length = this.props.tournament.qty/4;
+    const length = tournament.qty/4;
 
     for(let i = 1; i <= length; i++) {
       let matchupE = Object.assign({}, {
         match_id: `east_${i}`,
         status: 'inProgress',
+        color: tournament.eastColor,
         teamA: eastCopy.splice(0, 1)[0],
         teamB: eastCopy.splice(0, 1)[0]
       })
       let matchupW = Object.assign({}, {
         match_id: `west{i}`,
         status: 'inProgress',
+        color: tournament.westColor,
         teamA: westCopy.splice(0, 1)[0],
         teamB: westCopy.splice(0, 1)[0]
       })
@@ -81,8 +83,7 @@ export class RandomizeTeams extends Component {
 
   render() {
     const { east, west, count } = this.state;
-    const { code } = this.props.tournament;
-
+    const { code, name } = this.props.tournament;
     return (
       <div>
         Randomize Teams!
@@ -100,7 +101,7 @@ export class RandomizeTeams extends Component {
 
         <p>Randomizers Left: {count}</p>
 
-        <Link to={`/dashboard/${code}`}>
+        <Link to={`/dashboard/${name}`}>
           <button onClick={this.saveTournament.bind(this)}>Create Tournament</button>
         </Link>
 

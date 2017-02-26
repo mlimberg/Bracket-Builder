@@ -27,14 +27,21 @@ export class Home extends Component {
     })
   }
 
+  preventSpaces(e) {
+    if(e.keyCode === 32)
+    e.preventDefault()
+  }
+
   joinExistingForm() {
-    if(this.state.showJoin)
+    const { showJoin, joinCode } = this.state;
+    if(showJoin)
     return (
       <div className='join-existing-container'>
         <input placeholder='Enter Code'
-               value={this.state.joinCode}
-               onChange={(e) => this.setState({ joinCode: e.target.value })}/>
-        <button disabled={!this.state.joinCode}
+               value={joinCode}
+               onChange={(e) => this.setState({ joinCode: e.target.value.toUpperCase() })}
+               onKeyDown={this.preventSpaces.bind(this)}/>
+        <button disabled={!joinCode}
                 onClick={this.joinExisting.bind(this)}>Join</button>
       </div>
     )
@@ -45,9 +52,9 @@ export class Home extends Component {
     let tournament;
     tournaments.forEach(obj => {
       if(obj.code === this.state.joinCode) {
-        tournament = obj;
+        tournament = Object.assign({}, obj);
         this.setState({ joinError: false, joinCode: '' })
-        browserHistory.push(`/dashboard/${tournament.code}`)
+        browserHistory.push(`/dashboard/${tournament.name}`)
       }
     })
     return tournament ? this.setCurrent(tournament) : this.setState({ joinError: true });

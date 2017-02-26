@@ -11,7 +11,7 @@ export class Dashboard extends Component {
   }
 
   leaveTournament() {
-    console.log('leaving!');
+    this.props.setTournament({})
   }
 
   render() {
@@ -26,11 +26,11 @@ export class Dashboard extends Component {
         <h3>{`Teams Remaining: ${teamsLeft}`}</h3>
         <h3>{`Tournament Code: ${tournament.code}`}</h3>
 
-        <Link to={`/teams/${this.state.tournyName}`}>
+        <Link to={`/teams/${tournament.name}`}>
           <button>Teams</button>
         </Link>
 
-        <Link to={`/bracket/${this.state.tournyName}`}>
+        <Link to={`/bracket/${tournament.name}`}>
           <button>Bracket</button>
         </Link>
 

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import TeamCard from '../TeamCard/TeamCard';
+import TournamentContainer from '../../containers/Tournament/TournamentContainer';
 
 export class Teams extends Component {
   constructor() {
@@ -10,15 +12,17 @@ export class Teams extends Component {
   }
 
   render() {
+    const { tournament } = this.props
+
     return (
       <div>
-        Teams!
+        {tournament.name}
 
-        <Link to={`/dashboard/${this.state.tournyName}`}>
+        <Link to={`/dashboard/${tournament.name}`}>
           <button>Dashboard</button>
         </Link>
 
-        <Link to={`/bracket/${this.state.tournyName}`}>
+        <Link to={`/bracket/${tournament.name}`}>
           <button>Bracket</button>
         </Link>
 
@@ -27,4 +31,4 @@ export class Teams extends Component {
   }
 }
 
-export default Teams;
+export default TournamentContainer(Teams);
