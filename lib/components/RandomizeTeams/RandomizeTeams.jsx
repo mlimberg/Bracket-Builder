@@ -31,7 +31,8 @@ export class RandomizeTeams extends Component {
     return div.map((team, i) => {
       return (
         <div key={div + i}>
-          <TeamCard team={team.name} addClass={evenTeam(i) ? '' : 'odd-team-card'} style={{backgroundColor: color }}/>
+          <TeamCard team={team.name}
+                    addClass={evenTeam(i) ? '' : 'odd-team-card'} style={{backgroundColor: color }} />
           <span className='vs-text'>{evenTeam(i) ? 'vs.' : ''}</span>
         </div>
       )

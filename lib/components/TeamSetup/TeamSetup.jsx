@@ -45,7 +45,7 @@ export class TeamSetup extends Component {
   }
 
   shuffleTeams() {
-    this.props.shuffleTeams(shuffle(this.props.tournament.teams))
+    this.props.updateTeams(shuffle(this.props.tournament.teams))
   }
 
   render() {

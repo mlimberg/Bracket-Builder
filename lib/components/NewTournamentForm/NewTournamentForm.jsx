@@ -35,7 +35,7 @@ export class NewTournamentForm extends Component {
 
   setNewTournament() {
     const { name, qty, code, teams, eastColor, westColor } = this.state;
-      this.props.setTournament({ name, qty, code, teams, eastColor, westColor})
+      this.props.setTournament({ name, qty, code, teams, eastColor, westColor })
   }
 
   setQty(e) {
@@ -48,7 +48,7 @@ export class NewTournamentForm extends Component {
   setTeams() {
     const temp = [];
     for(let i = 1; i <= this.state.qty; i++) {
-      temp.push({ team_id: i, name: `Team ${i}`})
+      temp.push({ team_id: i, name: `Team ${i}`, eliminated: false })
     }
     this.setState({ teams: temp })
   }
