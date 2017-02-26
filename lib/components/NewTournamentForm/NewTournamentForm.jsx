@@ -2,11 +2,13 @@ import './new-tournament-styles.scss';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import TournamentContainer from '../../containers/Tournament/TournamentContainer';
+import AllTournamentsContainer from '../../containers/AllTournaments/AllTournamentsContainer';
 import { GithubPicker } from 'react-color';
+import firebase from '../../firebase';
 
 export class NewTournamentForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       name: '',
       qty: 0,
@@ -16,8 +18,17 @@ export class NewTournamentForm extends Component {
       showWest: false,
       eastColor: '#FFF',
       westColor: '#FFF',
-      error: ''
+      codeError: false
     }
+  }
+
+  componentDidMount() {
+    firebase.database().ref().on('value', (snapshot) => {
+      const obj = snapshot.val();
+      const keys = Object.keys(obj)
+      const allTournaments = keys.map(key => obj[key])
+      this.props.loadFromFirebase(allTournaments)
+    })
   }
 
   setNewTournament() {
@@ -51,8 +62,9 @@ export class NewTournamentForm extends Component {
   }
 
   colorError() {
-    if(!!this.state.eastColor && this.state.eastColor == this.state.westColor)
-    return(<p>Division colors cannot match, please change your selections</p>)
+    const { eastColor, westColor } = this.state;
+    if(eastColor == westColor && westColor !== '#FFF')
+      return(<p>Division colors cannot match, please change your selections</p>)
   }
 
   setColor(div, color) {
@@ -61,9 +73,20 @@ export class NewTournamentForm extends Component {
     this.setState({ [division]: color.hex, [show]: false })
   }
 
+  codeCheck() {
+    const { tournaments } = this.props;
+    let status = false;
+    for(let i = 0; i < tournaments.length; i++) {
+      if(tournaments[i].code === this.state.code) {
+        status = true
+      }
+    }
+    this.setState({ codeError: status })
+  }
+
 
   render() {
-    const { qty, showEast, showWest, eastColor, westColor } = this.state;
+    const { qty, showEast, showWest, eastColor, westColor, codeError } = this.state;
 
     const toggleActive = (selected) => {
       return qty === selected ? 'team-qty-option active-qty' : 'team-qty-option'
@@ -107,7 +130,9 @@ export class NewTournamentForm extends Component {
         <label className='tournament-code'>
           Tournament code (no-spaces):
           <input onKeyDown={this.preventSpace.bind(this)}
-                 onChange={this.setCode.bind(this)}/>
+                 onChange={this.setCode.bind(this)}
+                 onKeyUp={this.codeCheck.bind(this)} />
+          <span className={codeError ? 'code-red' : 'code-green'}>✓</span>
         </label>
 
         <section className='division-color-selectors'>
@@ -138,4 +163,4 @@ export class NewTournamentForm extends Component {
   }
 }
 
-export default TournamentContainer(NewTournamentForm);
+export default AllTournamentsContainer(TournamentContainer(NewTournamentForm));
