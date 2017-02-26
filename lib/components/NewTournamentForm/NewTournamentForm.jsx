@@ -22,12 +22,14 @@ export class NewTournamentForm extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     firebase.database().ref().on('value', (snapshot) => {
       const obj = snapshot.val();
-      const keys = Object.keys(obj)
-      const allTournaments = keys.map(key => obj[key])
-      this.props.loadFromFirebase(allTournaments)
+      if(snapshot.val()) {
+        const keys = Object.keys(obj)
+        const allTournaments = keys.map(key => obj[key])
+        this.props.loadFromFirebase(allTournaments)
+      }
     })
   }
 
@@ -52,7 +54,7 @@ export class NewTournamentForm extends Component {
   }
 
   setCode(e) {
-    const code = e.target.value
+    const code = e.target.value.toUpperCase()
     this.setState({ code: code })
   }
 
@@ -76,9 +78,11 @@ export class NewTournamentForm extends Component {
   codeCheck() {
     const { tournaments } = this.props;
     let status = false;
-    for(let i = 0; i < tournaments.length; i++) {
-      if(tournaments[i].code === this.state.code) {
-        status = true
+    if(tournaments) {
+      for(let i = 0; i < tournaments.length; i++) {
+        if(tournaments[i].code === this.state.code) {
+          status = true
+        }
       }
     }
     this.setState({ codeError: status })
@@ -86,7 +90,7 @@ export class NewTournamentForm extends Component {
 
 
   render() {
-    const { qty, showEast, showWest, eastColor, westColor, codeError } = this.state;
+    const { qty, showEast, showWest, eastColor, westColor, codeError, code } = this.state;
 
     const toggleActive = (selected) => {
       return qty === selected ? 'team-qty-option active-qty' : 'team-qty-option'
@@ -129,7 +133,8 @@ export class NewTournamentForm extends Component {
 
         <label className='tournament-code'>
           Tournament code (no-spaces):
-          <input onKeyDown={this.preventSpace.bind(this)}
+          <input value={code}
+                 onKeyDown={this.preventSpace.bind(this)}
                  onChange={this.setCode.bind(this)}
                  onKeyUp={this.codeCheck.bind(this)} />
           <span className={codeError ? 'code-red' : 'code-green'}>✓</span>

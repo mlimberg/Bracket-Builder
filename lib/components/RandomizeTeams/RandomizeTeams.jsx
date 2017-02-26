@@ -73,8 +73,7 @@ export class RandomizeTeams extends Component {
   }
 
   saveToFirebase() {
-    const { code, tournament } = this.props.tournament
-    firebase.database().ref(code).set(tournament)
+    firebase.database().ref().push(this.props.tournament)
   }
 
   render() {

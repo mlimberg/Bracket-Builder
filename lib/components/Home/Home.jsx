@@ -19,9 +19,11 @@ export class Home extends Component {
   componentWillMount() {
     firebase.database().ref().on('value', (snapshot) => {
       const obj = snapshot.val();
-      const keys = Object.keys(obj)
-      const allTournaments = keys.map(key => obj[key])
-      this.props.loadFromFirebase(allTournaments)
+      if(snapshot.val()) {
+        const keys = Object.keys(obj)
+        const allTournaments = keys.map(key => obj[key])
+        this.props.loadFromFirebase(allTournaments)
+      }
     })
   }
 
