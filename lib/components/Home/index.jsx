@@ -2,7 +2,7 @@ import './home-styles';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import firebase from '../../firebase';
-import AllTournamentsContainer from '../../containers/AllTournaments/AllTournamentsContainer';
+import AllTournamentsContainer from '../../containers/AllTournaments';
 import { Router, browserHistory } from 'react-router';
 
 

@@ -1,9 +1,9 @@
 import './randomize-styles';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import TournamentContainer from '../../containers/Tournament/TournamentContainer';
-import TeamCard from '../TeamCard/TeamCard';
-import { shuffle } from '../../helpers/helpers';
+import TournamentContainer from '../../containers/Tournament';
+import TeamCard from '../TeamCard';
+import { shuffle } from '../../helpers';
 import firebase from '../../firebase';
 
 export class RandomizeTeams extends Component {

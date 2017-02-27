@@ -1,9 +1,9 @@
 import './teams-styles.scss';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import TeamCard from '../TeamCard/TeamCard';
-import TournamentContainer from '../../containers/Tournament/TournamentContainer';
-import { sortByAlpha } from '../../helpers/helpers';
+import TeamCard from '../TeamCard';
+import TournamentContainer from '../../containers/Tournament';
+import { sortByAlpha } from '../../helpers';
 
 export class Teams extends Component {
   constructor() {
