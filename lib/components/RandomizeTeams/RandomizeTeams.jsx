@@ -75,6 +75,25 @@ export class RandomizeTeams extends Component {
       west.push(matchupW)
     }
     this.props.saveTournament(east, west)
+    this.updateTeams(east, west)
+  }
+
+  updateTeams(east, west) {
+    const { tournament } = this.props
+    const updated = tournament.teams.map(team => {
+      for(let j=0; j<east.length; j++) {
+        if(team.team_id === east[j].teamA.team_id || team.team_id === east[j].teamB.team_id) {
+          team.color = east[j].color
+          team.division = 'east'
+          return team
+        } else if (team.team_id === west[j].teamA.team_id || team.team_id === west[j].teamB.team_id) {
+          team.color = west[j].color
+          team.division = 'west'
+          return team
+        }
+      }
+    })
+    this.props.updateTeams(updated)
     this.saveToFirebase();
   }
 
