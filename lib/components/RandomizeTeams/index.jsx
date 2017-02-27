@@ -61,13 +61,15 @@ export class RandomizeTeams extends Component {
         match_id: `east_${i}`,
         status: 'inProgress',
         color: tournament.eastColor,
+        winner: '',
         teamA: eastCopy.splice(0, 1)[0],
         teamB: eastCopy.splice(0, 1)[0]
       })
       let matchupW = Object.assign({}, {
-        match_id: `west{i}`,
+        match_id: `west_${i}`,
         status: 'inProgress',
         color: tournament.westColor,
+        winner: '',
         teamA: westCopy.splice(0, 1)[0],
         teamB: westCopy.splice(0, 1)[0]
       })
