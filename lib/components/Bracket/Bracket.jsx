@@ -1,6 +1,7 @@
 import './bracket-styles';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import TournamentContainer from '../../containers/Tournament/TournamentContainer';
 
 export class Bracket extends Component {
   constructor() {
@@ -13,8 +14,7 @@ export class Bracket extends Component {
   render() {
     return (
       <div>
-        Bracket!
-
+        <h1>{tournament}</h1>
         <Link to={`/dashboard/${this.state.tournyName}`}>
           <button>Dashboard</button>
         </Link>
