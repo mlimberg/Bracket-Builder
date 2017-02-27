@@ -22,18 +22,20 @@ export class NewTournamentForm extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     firebase.database().ref().on('value', (snapshot) => {
       const obj = snapshot.val();
-      const keys = Object.keys(obj)
-      const allTournaments = keys.map(key => obj[key])
-      this.props.loadFromFirebase(allTournaments)
+      if(snapshot.val()) {
+        const keys = Object.keys(obj)
+        const allTournaments = keys.map(key => obj[key])
+        this.props.loadFromFirebase(allTournaments)
+      }
     })
   }
 
   setNewTournament() {
     const { name, qty, code, teams, eastColor, westColor } = this.state;
-      this.props.setTournament({ name, qty, code, teams, eastColor, westColor})
+      this.props.setTournament({ name, qty, code, teams, eastColor, westColor })
   }
 
   setQty(e) {
@@ -46,13 +48,13 @@ export class NewTournamentForm extends Component {
   setTeams() {
     const temp = [];
     for(let i = 1; i <= this.state.qty; i++) {
-      temp.push({ team_id: i, name: `Team ${i}`})
+      temp.push({ team_id: i, name: `Team ${i}`, eliminated: false })
     }
     this.setState({ teams: temp })
   }
 
   setCode(e) {
-    const code = e.target.value
+    const code = e.target.value.toUpperCase()
     this.setState({ code: code })
   }
 
@@ -76,9 +78,11 @@ export class NewTournamentForm extends Component {
   codeCheck() {
     const { tournaments } = this.props;
     let status = false;
-    for(let i = 0; i < tournaments.length; i++) {
-      if(tournaments[i].code === this.state.code) {
-        status = true
+    if(tournaments) {
+      for(let i = 0; i < tournaments.length; i++) {
+        if(tournaments[i].code === this.state.code) {
+          status = true
+        }
       }
     }
     this.setState({ codeError: status })
@@ -86,7 +90,7 @@ export class NewTournamentForm extends Component {
 
 
   render() {
-    const { qty, showEast, showWest, eastColor, westColor, codeError } = this.state;
+    const { qty, showEast, showWest, eastColor, westColor, codeError, code } = this.state;
 
     const toggleActive = (selected) => {
       return qty === selected ? 'team-qty-option active-qty' : 'team-qty-option'
@@ -101,7 +105,7 @@ export class NewTournamentForm extends Component {
             <button className='btn back-btn'>Back</button>
           </Link>
 
-          <Link to='/set_teams'>
+          <Link to='/set-teams'>
             <button className='btn next-btn'
                     onClick={this.setNewTournament.bind(this)}>
               Next
@@ -129,10 +133,13 @@ export class NewTournamentForm extends Component {
 
         <label className='tournament-code'>
           Tournament code (no-spaces):
-          <input onKeyDown={this.preventSpace.bind(this)}
-                 onChange={this.setCode.bind(this)}
-                 onKeyUp={this.codeCheck.bind(this)} />
-          <span className={codeError ? 'code-red' : 'code-green'}>✓</span>
+          <div className='input-and-check'>
+            <input value={code}
+              onKeyDown={this.preventSpace.bind(this)}
+              onChange={this.setCode.bind(this)}
+              onKeyUp={this.codeCheck.bind(this)} />
+              <span className={codeError ? 'code-red' : 'code-green'}>✓</span>
+          </div>
         </label>
 
         <section className='division-color-selectors'>
@@ -143,7 +150,8 @@ export class NewTournamentForm extends Component {
                  style={{backgroundColor: this.state.westColor}}
                  onClick={() => this.setState({ showWest: !showWest })}>
             </div>
-            {showWest ? <GithubPicker onChangeComplete={this.setColor.bind(this, 'West')}/> : null}
+            {showWest ? <div className='color-picker'><GithubPicker onChangeComplete={this.setColor.bind(this, 'West')}/>
+            </div> : null}
           </label>
 
           <label>
@@ -152,7 +160,8 @@ export class NewTournamentForm extends Component {
                  style={{backgroundColor: this.state.eastColor}}
                  onClick={() => this.setState({ showEast: !showEast })}>
             </div>
-            {showEast ? <GithubPicker onChangeComplete={this.setColor.bind(this, 'East')}/> : null}
+            {showEast ? <div className='color-picker'><GithubPicker onChangeComplete={this.setColor.bind(this, 'East')}/>
+            </div> : null}
           </label>
 
           {this.colorError()}

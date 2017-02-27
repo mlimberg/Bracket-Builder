@@ -55,8 +55,27 @@ input {
 
 .code-red {
   color: red;
+  margin-left: 3px;
 }
 
 .code-green {
   color: green;
+  margin-left: 3px;
+}
+
+.division-color-selectors {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.color-picker {
+  position: absolute;
+  z-index: 2;
+}
+
+.input-and-check {
+  display: flex;
+  flex-direction: row;
 }

@@ -24,12 +24,15 @@ export class RandomizeTeams extends Component {
     })
   }
 
-  division(div) {
+  division(div, divString) {
+    const { tournament } = this.props;
+    const color = tournament[divString]
     const evenTeam = (i) => {return i % 2 === 0 ? true : false }
     return div.map((team, i) => {
       return (
-        <div key={'west' + i}>
-          <TeamCard team={team.name} addClass={evenTeam(i) ? '' : 'odd-team-card'}/>
+        <div key={div + i}>
+          <TeamCard team={team.name}
+                    addClass={evenTeam(i) ? '' : 'odd-team-card'} style={{backgroundColor: color }} />
           <span className='vs-text'>{evenTeam(i) ? 'vs.' : ''}</span>
         </div>
       )
@@ -48,20 +51,23 @@ export class RandomizeTeams extends Component {
   saveTournament() {
     const east = [];
     const west = [];
+    const { tournament } = this.props;
     const eastCopy = this.state.east.slice();
     const westCopy = this.state.west.slice();
-    const length = this.props.tournament.qty/4;
+    const length = tournament.qty/4;
 
     for(let i = 1; i <= length; i++) {
       let matchupE = Object.assign({}, {
         match_id: `east_${i}`,
         status: 'inProgress',
+        color: tournament.eastColor,
         teamA: eastCopy.splice(0, 1)[0],
         teamB: eastCopy.splice(0, 1)[0]
       })
       let matchupW = Object.assign({}, {
         match_id: `west{i}`,
         status: 'inProgress',
+        color: tournament.westColor,
         teamA: westCopy.splice(0, 1)[0],
         teamB: westCopy.splice(0, 1)[0]
       })
@@ -69,27 +75,46 @@ export class RandomizeTeams extends Component {
       west.push(matchupW)
     }
     this.props.saveTournament(east, west)
+    this.updateTeams(east, west)
+  }
+
+  updateTeams(east, west) {
+    const { tournament } = this.props
+    const updated = tournament.teams.map(team => {
+      for(let j=0; j<east.length; j++) {
+        if(team.team_id === east[j].teamA.team_id ||
+           team.team_id === east[j].teamB.team_id) {
+          team.color = east[j].color
+          team.division = 'east'
+          return team
+        } else if (team.team_id === west[j].teamA.team_id ||
+                   team.team_id === west[j].teamB.team_id) {
+          team.color = west[j].color
+          team.division = 'west'
+          return team
+        }
+      }
+    })
+    this.props.updateTeams(updated)
     this.saveToFirebase();
   }
 
   saveToFirebase() {
-    const { code, tournament } = this.props.tournament
-    firebase.database().ref(code).set(tournament)
+    firebase.database().ref().push(this.props.tournament)
   }
 
   render() {
     const { east, west, count } = this.state;
-    const { code } = this.props.tournament;
-
+    const { code, name } = this.props.tournament;
     return (
       <div>
         Randomize Teams!
 
         <h3>East</h3>
-        {this.division(east)}
+        {this.division(east, 'eastColor')}
 
         <h3>West</h3>
-        {this.division(west)}
+        {this.division(west, 'westColor')}
 
         <button onClick={this.randomizeDivisions.bind(this)}
                 disabled={!count}>
@@ -98,7 +123,7 @@ export class RandomizeTeams extends Component {
 
         <p>Randomizers Left: {count}</p>
 
-        <Link to={`/dashboard/${code}`}>
+        <Link to={`/dashboard/${name}`}>
           <button onClick={this.saveTournament.bind(this)}>Create Tournament</button>
         </Link>
 
