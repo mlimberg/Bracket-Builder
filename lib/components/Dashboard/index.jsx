@@ -1,7 +1,7 @@
 import './dashboard-styles';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import TournamentContainer from '../../containers/Tournament/TournamentContainer';
+import TournamentContainer from '../../containers/Tournament';
 
 export class Dashboard extends Component {
   constructor() {

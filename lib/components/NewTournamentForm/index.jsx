@@ -1,8 +1,8 @@
 import './new-tournament-styles.scss';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import TournamentContainer from '../../containers/Tournament/TournamentContainer';
-import AllTournamentsContainer from '../../containers/AllTournaments/AllTournamentsContainer';
+import TournamentContainer from '../../containers/Tournament';
+import AllTournamentsContainer from '../../containers/AllTournaments';
 import { GithubPicker } from 'react-color';
 import firebase from '../../firebase';
 

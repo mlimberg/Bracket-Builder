@@ -2,9 +2,9 @@ import './team-setup-styles.scss';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import InlineEdit from 'react-edit-inline';
-import TeamCard from '../TeamCard/TeamCard';
-import TournamentContainer from '../../containers/Tournament/TournamentContainer';
-import { shuffle } from '../../helpers/helpers';
+import TeamCard from '../TeamCard';
+import TournamentContainer from '../../containers/Tournament';
+import { shuffle } from '../../helpers';
 
 export class TeamSetup extends Component {
   constructor() {

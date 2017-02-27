@@ -1,8 +1,9 @@
 import './teams-styles.scss';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import TeamCard from '../TeamCard/TeamCard';
-import TournamentContainer from '../../containers/Tournament/TournamentContainer';
+import TeamCard from '../TeamCard';
+import TournamentContainer from '../../containers/Tournament';
+import { sortByAlpha } from '../../helpers';
 
 export class Teams extends Component {
   constructor() {
@@ -15,13 +16,7 @@ export class Teams extends Component {
   render() {
     const { tournament } = this.props
 
-    const sortedTeams = tournament.teams.sort((a, b) => {
-      const teamA = a.name.toLowerCase()
-      const teamB = b.name.toLowerCase();
-      if(teamA < teamB) return -1
-      if(teamA > teamB) return 1
-      return 0
-    })
+    const sortedTeams = sortByAlpha(tournament.teams)
 
     const teams = sortedTeams.map(team => {
       return (
