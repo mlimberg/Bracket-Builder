@@ -10,7 +10,7 @@ export class NewTournamentForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      name: 'Your Awesome Tournament',
       qty: 0,
       code: '',
       teams: [],
@@ -90,7 +90,7 @@ export class NewTournamentForm extends Component {
 
 
   render() {
-    const { qty, showEast, showWest, eastColor, westColor, codeError, code } = this.state;
+    const { name, qty, showEast, showWest, eastColor, westColor, codeError, code } = this.state;
 
     const toggleActive = (selected) => {
       return qty === selected ? 'team-qty-option active-qty' : 'team-qty-option'
@@ -98,7 +98,7 @@ export class NewTournamentForm extends Component {
 
     return (
       <div className='new-tournament-form-container'>
-        <h3>New Tourny Form!</h3>
+        <h1 className='page-header'>{name}</h1>
 
         <section>
           <Link to='/'>

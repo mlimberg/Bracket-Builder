@@ -30,7 +30,7 @@ export class Teams extends Component {
 
     return (
       <div>
-        <h1>{tournament.name}</h1>
+        <h1 className='page-header'>{tournament.name}</h1>
 
         <Link to={`/dashboard/${tournament.name}`}>
           <button>Dashboard</button>

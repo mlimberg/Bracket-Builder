@@ -88,11 +88,13 @@ export class RandomizeTeams extends Component {
            team.team_id === east[j].teamB.team_id) {
           team.color = east[j].color
           team.division = 'east'
+          team.score = 0;
           return team
         } else if (team.team_id === west[j].teamA.team_id ||
                    team.team_id === west[j].teamB.team_id) {
           team.color = west[j].color
           team.division = 'west'
+          team.score = 0;
           return team
         }
       }
@@ -110,7 +112,7 @@ export class RandomizeTeams extends Component {
     const { code, name } = this.props.tournament;
     return (
       <div>
-        Randomize Teams!
+        <h1 className='page-header'>{name}</h1>
 
         <h3>East</h3>
         {this.division(east, 'eastColor')}

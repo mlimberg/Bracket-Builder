@@ -76,7 +76,6 @@ export class Home extends Component {
   render() {
 
     return(
-      <div className='overlay'>
         <div className='homepage'>
 
           <img src={require('../../images/bracket_builder_logo.png')}
@@ -97,7 +96,6 @@ export class Home extends Component {
 
         {this.joinExistingForm()}
         {this.joinError()}
-      </div>
       </div>
     )
   }

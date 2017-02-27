@@ -11,18 +11,26 @@ export class Bracket extends Component {
     }
   }
 
+  setCurrentMatchup(match) {
+    this.props.setMatchup(match)
+  }
+
   render() {
     const { tournament } = this.props
 
     const roundOne = (div) => {
       return div.map(match => {
         return(
-          <div key={match.match_id} className='backet-matchup'>
-            <li className='spacer'>&nbsp;</li>
-            <li className='game game-top'>{match.teamA.name}</li>
-            <li className='game game-spacer'>&nbsp;</li>
-            <li className='game game-bottom'>{match.teamB.name}</li>
-            <li className='spacer'>&nbsp;</li>
+          <div key={match.match_id}
+               className='bracket-matchup'
+               onClick={() => this.setCurrentMatchup(match)}>
+            <Link to={`/matchup/${match.match_id}`}>
+              <li className='spacer'>&nbsp;</li>
+              <li className='game game-top'>{match.teamA.name}</li>
+              <li className='game game-spacer'>&nbsp;</li>
+              <li className='game game-bottom'>{match.teamB.name}</li>
+              <li className='spacer'>&nbsp;</li>
+            </Link>
           </div>
         )
       })
@@ -30,7 +38,7 @@ export class Bracket extends Component {
 
     return (
       <div>
-        <h1>{tournament.name}</h1>
+        <h1 className='page-header'>{tournament.name}</h1>
         <Link to={`/dashboard/${tournament.name}`}>
           <button>Dashboard</button>
         </Link>
@@ -50,7 +58,7 @@ export class Bracket extends Component {
             {roundOne(tournament.west)}
           </ul>
 
-          <ul className='round round-2'>
+          {/* <ul className='round round-2'>
             <li className='spacer'>&nbsp;</li>
             <li className='game game-top'>Test Name</li>
             <li className='game game-spacer'>&nbsp;</li>
@@ -60,7 +68,7 @@ export class Bracket extends Component {
             <li className='game game-spacer'>&nbsp;</li>
             <li className='game game-bottom'>Test Name</li>
             <li className='spacer'>&nbsp;</li>
-          </ul>
+          </ul> */}
         </main>
 
       </div>

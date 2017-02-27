@@ -52,7 +52,7 @@ export class TeamSetup extends Component {
 
     return (
       <div>
-        <h1>{this.props.tournament.name}</h1>
+        <h1 className='page-header'>{this.props.tournament.name}</h1>
         <h3>Team Setup</h3>
         <p>Click to edit team names</p>
         {this.teamList()}
