@@ -13,6 +13,16 @@
 .join-existing-input {
   height: 30px;
   font-size: 16px;
+  outline: none;
+  background-color: rgba(250, 250, 250, 0.5);
+  border: none;
+  color: yellow;
+  padding-left: 5px;
+}
+
+::-webkit-input-placeholder {
+  color: yellow;
+  padding-left: 3px;
 }
 
 .join-error-msg {
