@@ -1,3 +1,4 @@
+import './bracket-styles';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
@@ -5,7 +6,7 @@ export class Bracket extends Component {
   constructor() {
     super();
     this.state={
-      tournyName: 'fuckit'
+
     }
   }
 
