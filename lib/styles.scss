@@ -4,7 +4,11 @@
 $marker-font: 'Permanent Marker', cursive;
 $chalky-font: 'Margarine', cursive;
 
-.btn {
+body {
+  font-family: sans-serif;
+}
+
+@mixin button-styles {
   border: none;
   border-radius: 10px;
   outline: none;
@@ -14,6 +18,10 @@ $chalky-font: 'Margarine', cursive;
   &:disabled, &:disabled:hover {
     cursor: default;
   }
+}
+
+.btn {
+  @include button-styles;
 }
 
 .page-header {
@@ -27,4 +35,5 @@ $chalky-font: 'Margarine', cursive;
   font-size: 1.6em;
   padding: 5px;
   flex-wrap: wrap;
+  box-shadow: .5px .5px 8px #a5a5a5;
 }

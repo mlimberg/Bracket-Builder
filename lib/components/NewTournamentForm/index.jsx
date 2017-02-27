@@ -100,22 +100,10 @@ export class NewTournamentForm extends Component {
       <div className='new-tournament-form-container'>
         <h1 className='page-header'>{name}</h1>
 
-        <section>
-          <Link to='/'>
-            <button className='btn back-btn'>Back</button>
-          </Link>
-
-          <Link to='/set-teams'>
-            <button className='btn next-btn'
-                    onClick={this.setNewTournament.bind(this)}>
-              Next
-            </button>
-          </Link>
-        </section>
-
         <label className='tournament-name'>
           Tournament Name:
-          <input onChange={e => this.setState({ name: e.target.value })}/>
+          <input className='name-input'
+                 onChange={e => this.setState({ name: e.target.value })}/>
         </label>
 
         <section className='team-qty-container'>
@@ -164,9 +152,22 @@ export class NewTournamentForm extends Component {
             </div> : null}
           </label>
 
-          {this.colorError()}
-
         </section>
+          <p>{this.colorError()}</p>
+
+          <section className='bottom-nav-buttons'>
+            <Link to='/'>
+              <button className='btn back-btn'>Back</button>
+            </Link>
+
+            <Link to='/set-teams'>
+              <button className='btn next-btn'
+                      onClick={this.setNewTournament.bind(this)}>
+                Next
+              </button>
+            </Link>
+          </section>
+
       </div>
     )
   }

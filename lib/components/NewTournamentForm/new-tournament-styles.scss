@@ -1,3 +1,5 @@
+@import '../../styles.scss';
+
 .qty-options {
   display: flex;
   flex-direction: row;
@@ -15,6 +17,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.tournament-name {
+  margin-top: 20px;
+  font-size: 18px;
 }
 
 .active-qty {
@@ -82,4 +89,18 @@ input {
 .input-and-check {
   display: flex;
   flex-direction: row;
+}
+
+.bottom-nav-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  width: 100%;
+  justify-content: space-around;
+  margin: 40px auto;
+}
+
+.back-btn, .next-btn {
+  @include button-styles;
 }
