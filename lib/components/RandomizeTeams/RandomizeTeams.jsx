@@ -82,11 +82,13 @@ export class RandomizeTeams extends Component {
     const { tournament } = this.props
     const updated = tournament.teams.map(team => {
       for(let j=0; j<east.length; j++) {
-        if(team.team_id === east[j].teamA.team_id || team.team_id === east[j].teamB.team_id) {
+        if(team.team_id === east[j].teamA.team_id ||
+           team.team_id === east[j].teamB.team_id) {
           team.color = east[j].color
           team.division = 'east'
           return team
-        } else if (team.team_id === west[j].teamA.team_id || team.team_id === west[j].teamB.team_id) {
+        } else if (team.team_id === west[j].teamA.team_id ||
+                   team.team_id === west[j].teamB.team_id) {
           team.color = west[j].color
           team.division = 'west'
           return team
