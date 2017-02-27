@@ -7,6 +7,12 @@
 .join-existing-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.join-existing-input {
+  height: 30px;
+  font-size: 16px;
 }
 
 .join-error-msg {
@@ -28,4 +34,13 @@
   &:after {
     background-color: rgba(14, 14, 14, .75);
   }
+}
+
+.home-btn {
+  border-radius: 10px;
+  background-color: yellow;
+  height: 35px;
+  margin: 10px;
+  padding: 5px 8px;
+  font-size: 16px;
 }

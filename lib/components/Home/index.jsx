@@ -38,10 +38,12 @@ export class Home extends Component {
     return (
       <div className='join-existing-container'>
         <input placeholder='Enter Code'
+               className='join-existing-input'
                value={joinCode}
                onChange={(e) => this.setState({ joinCode: e.target.value.toUpperCase() })}
                onKeyDown={this.preventSpaces.bind(this)}/>
-        <button disabled={!joinCode}
+        <button className='btn home-btn'
+                disabled={!joinCode}
                 onClick={this.joinExisting.bind(this)}>Join</button>
       </div>
     )
@@ -82,12 +84,12 @@ export class Home extends Component {
 
           <div className='home-btn-container'>
             <Link to='/new'>
-            <button className='btn new-tournament-btn'>
+            <button className='home-btn new-tournament-btn btn'>
               New Tournament
             </button>
           </Link>
 
-          <button className='btn join-existing-btn'
+          <button className='home-btn join-existing-btn btn'
             onClick={() => this.setState({ showJoin: !this.state.showJoin })}>
             Join Existing
           </button>
