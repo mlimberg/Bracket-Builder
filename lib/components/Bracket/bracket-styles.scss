@@ -1,0 +1,45 @@
+$border: 1px solid #aaa;
+
+.bracket-container {
+  margin: 20px 5px;
+}
+
+.round {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 140px;
+  list-style: none;
+  padding: 0;
+}
+
+.round .spacer {
+  flex-grow: 1;
+}
+
+.round .game-spacer {
+  flex-grow: 1;
+}
+
+li.game {
+  padding-left: 20px;
+}
+
+li.game-top {
+  border-bottom: $border;
+}
+
+li.game-spacer {
+  border-right: $border;
+  min-height: 30px;
+}
+
+li.game-bottom {
+  border-top: $border;
+}
+
+.bracket-matchup {
+  &:hover {
+    cursor: pointer;
+  }
+}

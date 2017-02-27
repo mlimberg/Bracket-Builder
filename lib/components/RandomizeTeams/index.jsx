@@ -65,7 +65,7 @@ export class RandomizeTeams extends Component {
         teamB: eastCopy.splice(0, 1)[0]
       })
       let matchupW = Object.assign({}, {
-        match_id: `west{i}`,
+        match_id: `west_${i}`,
         status: 'inProgress',
         color: tournament.westColor,
         teamA: westCopy.splice(0, 1)[0],
