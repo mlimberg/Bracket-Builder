@@ -17,7 +17,7 @@ module.exports = {
   },
   devServer: {
     contentBase: './build',
-    // inline: true
+    inline: true
   },
   resolve: {
     extensions: ['', '.js', '.json', '.jsx', '.css', '.scss']
