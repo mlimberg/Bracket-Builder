@@ -35,7 +35,7 @@
   margin-left: 5px;
 }
 
-.homepage {
+body {
   background-image: url('../../images/denver_background_2.png');
   background-position: center;
   background-repeat: no-repeat;
@@ -53,4 +53,12 @@
   margin: 10px;
   padding: 5px 8px;
   font-size: 16px;
+}
+
+@media screen and (min-width: 400px ) {
+  .logo {
+    width: 600px;
+    display: flex;
+    margin: 40px auto;
+  }
 }

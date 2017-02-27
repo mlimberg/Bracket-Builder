@@ -160,7 +160,7 @@ export class NewTournamentForm extends Component {
                  style={{backgroundColor: this.state.eastColor}}
                  onClick={() => this.setState({ showEast: !showEast })}>
             </div>
-            {showEast ? <div className='color-picker'><GithubPicker onChangeComplete={this.setColor.bind(this, 'East')}/>
+            {showEast ? <div className='color-picker color-east'><GithubPicker onChangeComplete={this.setColor.bind(this, 'East')} triangle='top-right'/>
             </div> : null}
           </label>
 
