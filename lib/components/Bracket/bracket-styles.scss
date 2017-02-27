@@ -1,5 +1,10 @@
 $border: 1px solid #aaa;
 
+main {
+  display: flex;
+  flex-direction: row;
+}
+
 .bracket-container {
   margin: 20px 5px;
 }
@@ -19,6 +24,11 @@ $border: 1px solid #aaa;
 
 .round .game-spacer {
   flex-grow: 1;
+}
+
+.round .spacer:first-child,
+.round .spacer:last-child{
+  flex-grow:.5;
 }
 
 li.game {

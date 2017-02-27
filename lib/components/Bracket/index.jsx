@@ -18,6 +18,7 @@ export class Bracket extends Component {
       return div.map(match => {
         return(
           <div key={match.match_id} className='backet-matchup'>
+            <li className='spacer'>&nbsp;</li>
             <li className='game game-top'>{match.teamA.name}</li>
             <li className='game game-spacer'>&nbsp;</li>
             <li className='game game-bottom'>{match.teamB.name}</li>
@@ -42,15 +43,25 @@ export class Bracket extends Component {
           <button>Matchup</button>
         </Link>
 
-        <div className='bracket-container'>
+        <main className='bracket-container'>
           <ul className='round round-1'>
             {roundOne(tournament.east)}
-          </ul>
 
-          <ul className='round round-1'>
             {roundOne(tournament.west)}
           </ul>
-        </div>
+
+          <ul className='round round-2'>
+            <li className='spacer'>&nbsp;</li>
+            <li className='game game-top'>Test Name</li>
+            <li className='game game-spacer'>&nbsp;</li>
+            <li className='game game-bottom'>Test Name</li>
+            <li className='spacer'>&nbsp;</li>
+            <li className='game game-top'>Test Name</li>
+            <li className='game game-spacer'>&nbsp;</li>
+            <li className='game game-bottom'>Test Name</li>
+            <li className='spacer'>&nbsp;</li>
+          </ul>
+        </main>
 
       </div>
     )
