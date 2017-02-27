@@ -74,23 +74,28 @@ export class Home extends Component {
   render() {
 
     return(
-      <div>
+      <div className='overlay'>
+        <div className='homepage'>
 
-        <div className='home-btn-container'>
-          <Link to='/new'>
+          <img src={require('../../images/bracket_builder_logo.png')}
+          className='logo'/>
+
+          <div className='home-btn-container'>
+            <Link to='/new'>
             <button className='btn new-tournament-btn'>
               New Tournament
             </button>
           </Link>
 
           <button className='btn join-existing-btn'
-                  onClick={() => this.setState({ showJoin: !this.state.showJoin })}>
+            onClick={() => this.setState({ showJoin: !this.state.showJoin })}>
             Join Existing
           </button>
         </div>
 
         {this.joinExistingForm()}
         {this.joinError()}
+      </div>
       </div>
     )
   }

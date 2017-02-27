@@ -12,3 +12,20 @@
 .join-error-msg {
   color: red;
 }
+
+.logo {
+  width: 100%;
+  margin-top: 60px;
+  margin-left: 5px;
+}
+
+.homepage {
+  background-image: url('../../images/denver_background_2.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  &:after {
+    background-color: rgba(14, 14, 14, .75);
+  }
+}
