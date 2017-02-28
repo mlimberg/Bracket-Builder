@@ -30,20 +30,28 @@
 }
 
 .logo {
-  width: 100%;
-  margin-top: 60px;
-  margin-left: 5px;
+  width: 95%;
+  margin-top: 80px;
+  margin-left: 3px;
+  height: 24vh;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
 }
 
 .homepage {
-  background-image: url('../../images/denver_background_2.png');
+  background-image: url('../../images/denver_background_desktop.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-  &:after {
-    background-color: rgba(14, 14, 14, .75);
-  }
+  background-size: auto;
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
 }
 
 .home-btn {
@@ -58,7 +66,14 @@
 @media screen and (min-width: 400px ) {
   .logo {
     width: 600px;
-    display: flex;
     margin: 40px auto;
+    height: 30vh;
   }
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
+  }
+
+
 }

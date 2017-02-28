@@ -74,12 +74,16 @@ export class Home extends Component {
   }
 
   render() {
+    const joinExisting = this.joinExistingForm();
+    const joinError = this.joinError();
 
     return(
         <div className='homepage'>
 
-          <img src={require('../../images/bracket_builder_logo.png')}
-          className='logo'/>
+          <div className='logo-container'>
+            <img src={require('../../images/bracket_builder_logo.png')}
+            className='logo'/>
+          </div>
 
           <div className='home-btn-container'>
             <Link to='/new'>
@@ -94,8 +98,8 @@ export class Home extends Component {
           </button>
         </div>
 
-        {this.joinExistingForm()}
-        {this.joinError()}
+        {joinExisting}
+        {joinError}
       </div>
     )
   }
