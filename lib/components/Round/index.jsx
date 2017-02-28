@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import TournamentContainer from '../../containers/Tournament';
 
-export class Round2 extends Component {
+export class Round extends Component {
   constructor() {
     super();
   }
@@ -15,20 +15,19 @@ export class Round2 extends Component {
   render() {
     const { tournament } = this.props
 
-    const roundTwo = tournament.round1.map(match => {
+    const roundTwo = tournament.round2.map(match => {
         return (
-          <h1>ROUND 2 BITCHES!</h1>
-          // <div key={match.matchId}
-          //      className='bracket-matchup'
-          //      onClick={() => this.setCurrentMatchup(match)}>
-          //   <Link to={`/matchup/${match.matchId}`}>
-          //     <li className='spacer'>&nbsp;</li>
-          //     <li className='game game-top'>{match.team1.name}</li>
-          //     <li className='game game-spacer'>&nbsp;</li>
-          //     <li className='game game-bottom'>{match.team2.name}</li>
-          //     <li className='spacer'>&nbsp;</li>
-          //   </Link>
-          // </div>
+          <div key={match.matchId}
+               className='bracket-matchup'
+               onClick={() => this.setCurrentMatchup(match)}>
+            <Link to={`/matchup/${match.matchId}`}>
+              <li className='spacer'>&nbsp;</li>
+              <li className='game game-top'>{match.team1.name}</li>
+              <li className='game game-spacer'>&nbsp;</li>
+              <li className='game game-bottom'>{match.team2.name}</li>
+              <li className='spacer'>&nbsp;</li>
+            </Link>
+          </div>
         )
       })
 
@@ -62,4 +61,4 @@ export class Round2 extends Component {
   }
 }
 
-export default TournamentContainer(Round2);
+export default TournamentContainer(Round);
