@@ -24,16 +24,19 @@ export class RandomizeTeams extends Component {
     })
   }
 
-  division(div, divString) {
-    const { tournament } = this.props;
-    const color = tournament[divString]
+  division(div, divColor) {
+    const color = this.props.tournament[divColor]
     const evenTeam = (i) => {return i % 2 === 0 ? true : false }
     return div.map((team, i) => {
       return (
         <div key={div + i}>
+
           <TeamCard team={team.name}
-                    addClass={evenTeam(i) ? '' : 'odd-team-card'} style={{backgroundColor: color }} />
+                    addClass={evenTeam(i) ? '' : 'odd-team-card'}
+                    style={{backgroundColor: color }} />
+
           <span className='vs-text'>{evenTeam(i) ? 'vs.' : ''}</span>
+
         </div>
       )
     })
@@ -48,37 +51,67 @@ export class RandomizeTeams extends Component {
     })
   }
 
-  saveTournament() {
-    const east = [];
-    const west = [];
-    const { tournament } = this.props;
-    const eastCopy = this.state.east.slice();
-    const westCopy = this.state.west.slice();
-    const length = tournament.qty/4;
-
-    for(let i = 1; i <= length; i++) {
-      let matchupE = Object.assign({}, {
-        match_id: `east_${i}`,
-        status: 'inProgress',
-        color: tournament.eastColor,
-        winner: '',
-        teamA: eastCopy.splice(0, 1)[0],
-        teamB: eastCopy.splice(0, 1)[0]
-      })
-      let matchupW = Object.assign({}, {
-        match_id: `west_${i}`,
-        status: 'inProgress',
-        color: tournament.westColor,
-        winner: '',
-        teamA: westCopy.splice(0, 1)[0],
-        teamB: westCopy.splice(0, 1)[0]
-      })
-      east.push(matchupE)
-      west.push(matchupW)
-    }
-    this.props.saveTournament(east, west)
-    this.updateTeams(east, west)
+  setDivisions() {
+    const { east, west } = this.state
+    const { tournament } = this.props
+    const eastUpdate = east.slice().map(team => {
+      team.division = 'east'
+      team.color = tournament.eastColor
+      return team
+    })
+    const westUpdate = west.slice().map(team => {
+      team.division = 'west'
+      team.color = tournament.westColor
+      return team
+    })
+    const updatedTeams = [...eastUpdate, ...westUpdate]
+    this.props.updateTeams(updatedTeams)
+    this.createMatchups(updatedTeams)
   }
+
+  createMatchups(updatedTeams) {
+    const { tournament } = this.props;
+    const length = tournament.qty/2;
+    const round1 = [];
+    for(let i=1; i<=length; i++) {
+      const matchup = Object.assign({}, {
+        matchId: i,
+        winner: '',
+        team1: updatedTeams.splice(0, 1)[0],
+        team2: updatedTeams.splice(0, 1)[0]
+      })
+      round1.push(matchup);
+    }
+    console.log(round1);
+  }
+
+  // setDivisions() {
+  //   const east = [];
+  //   const west = [];
+  //   const { tournament } = this.props;
+  //   const eastCopy = this.state.east.slice();
+  //   const westCopy = this.state.west.slice();
+  //
+  //   for(let i = 1; i <= length; i++) {
+  //     let matchupE = Object.assign({}, {
+  //       match_id: `east_${i}`,
+  //       color: tournament.eastColor,
+  //       winner: '',
+  //       teamA: eastCopy.splice(0, 1)[0],
+  //       teamB: eastCopy.splice(0, 1)[0]
+  //     })
+  //     let matchupW = Object.assign({}, {
+  //       match_id: `west_${i}`,
+  //       color: tournament.westColor,
+  //       winner: '',
+  //       teamA: westCopy.splice(0, 1)[0],
+  //       teamB: westCopy.splice(0, 1)[0]
+  //     })
+  //     east.push(matchupE)
+  //     west.push(matchupW)
+  //   }
+  //   this.updateTeams(east, west)
+  // }
 
   updateTeams(east, west) {
     const { tournament } = this.props
@@ -110,8 +143,10 @@ export class RandomizeTeams extends Component {
   render() {
     const { east, west, count } = this.state;
     const { code, name } = this.props.tournament;
+
     return (
       <div>
+
         <h1 className='page-header'>{name}</h1>
 
         <h3>East</h3>
@@ -128,7 +163,7 @@ export class RandomizeTeams extends Component {
         <p>Randomizers Left: {count}</p>
 
         <Link to={`/dashboard/${name}`}>
-          <button onClick={this.saveTournament.bind(this)}>Create Tournament</button>
+          <button onClick={this.setDivisions.bind(this)}>Create Tournament</button>
         </Link>
 
       </div>
