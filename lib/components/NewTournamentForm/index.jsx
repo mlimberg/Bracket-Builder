@@ -143,15 +143,17 @@ export class NewTournamentForm extends Component {
               </div> : null}
             </label>
 
-            <label>
-              East
-              <div className='color-block-main'
-                   style={{backgroundColor: this.state.eastColor}}
-                   onClick={() => this.setState({ showEast: !showEast })}>
-              </div>
-              {showEast ? <div className='color-picker color-east'><GithubPicker onChangeComplete={this.setColor.bind(this, 'East')} triangle='top-right'/>
-              </div> : null}
-            </label>
+            <div className='color-container'>
+              <label>
+                East
+                <div className='color-block-main'
+                  style={{backgroundColor: this.state.eastColor}}
+                  onClick={() => this.setState({ showEast: !showEast })}>
+                </div>
+                {showEast ? <div className='color-picker color-east'><GithubPicker onChangeComplete={this.setColor.bind(this, 'East')} triangle='top-right'/>
+                </div> : null}
+              </label>
+            </div>
 
           </section>
             <p>{this.colorError()}</p>

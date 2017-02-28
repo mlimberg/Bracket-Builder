@@ -83,8 +83,12 @@ input {
   z-index: 2;
 }
 
+.color-container {
+  position: relative;
+}
+
 .color-east {
-  right: 65px;
+  right: 10px;
 }
 
 .input-and-check {
