@@ -100,74 +100,76 @@ export class NewTournamentForm extends Component {
       <div className='new-tournament-form-container'>
         <h1 className='page-header'>{name}</h1>
 
-        <label className='tournament-name'>
-          Tournament Name:
-          <input className='name-input'
-                 onChange={e => this.setState({ name: e.target.value })}/>
-        </label>
-
-        <section className='team-qty-container'>
-          # of Teams:
-            <div className='qty-options'>
-              <div className={toggleActive(4)} onClick={this.setQty.bind(this)}>4</div>
-
-              <div className={toggleActive(8)} onClick={this.setQty.bind(this)}>8</div>
-
-              <div className={toggleActive(16)} onClick={this.setQty.bind(this)}>16</div>
-
-              <div className={toggleActive(32)} onClick={this.setQty.bind(this)}>32</div>
-            </div>
-          </section>
-
-        <label className='tournament-code'>
-          Tournament code (no-spaces):
-          <div className='input-and-check'>
-            <input value={code}
-              onKeyDown={this.preventSpace.bind(this)}
-              onChange={this.setCode.bind(this)}
-              onKeyUp={this.codeCheck.bind(this)} />
-              <span className={codeError ? 'code-red' : 'code-green'}>✓</span>
-          </div>
-        </label>
-
-        <section className='division-color-selectors'>
-
-          <label>
-            West
-            <div className='color-block-main'
-                 style={{backgroundColor: this.state.westColor}}
-                 onClick={() => this.setState({ showWest: !showWest })}>
-            </div>
-            {showWest ? <div className='color-picker'><GithubPicker onChangeComplete={this.setColor.bind(this, 'West')}/>
-            </div> : null}
+        <section className='sub-header-section'>
+          <label className='tournament-name'>
+            Tournament Name:
+            <input className='name-input'
+                   onChange={e => this.setState({ name: e.target.value })}/>
           </label>
 
-          <label>
-            East
-            <div className='color-block-main'
-                 style={{backgroundColor: this.state.eastColor}}
-                 onClick={() => this.setState({ showEast: !showEast })}>
+          <section className='team-qty-container'>
+            <label className='num-of-teams'># of Teams:</label>
+              <div className='qty-options'>
+                <div className={toggleActive(4)} onClick={this.setQty.bind(this)}>4</div>
+
+                <div className={toggleActive(8)} onClick={this.setQty.bind(this)}>8</div>
+
+                <div className={toggleActive(16)} onClick={this.setQty.bind(this)}>16</div>
+
+                <div className={toggleActive(32)} onClick={this.setQty.bind(this)}>32</div>
+              </div>
+            </section>
+
+          <label className='tournament-code'>
+            Tournament code (no-spaces):
+            <div className='input-and-check'>
+              <input value={code}
+                     className='code-input'
+                     onKeyDown={this.preventSpace.bind(this)}
+                     onChange={this.setCode.bind(this)}
+                     onKeyUp={this.codeCheck.bind(this)} />
+                <span className={codeError ? 'code-red check' : 'code-green check'}>
+                  {codeError ? '✘' : '✓'}
+                </span>
             </div>
-            {showEast ? <div className='color-picker color-east'><GithubPicker onChangeComplete={this.setColor.bind(this, 'East')} triangle='top-right'/>
-            </div> : null}
           </label>
 
-        </section>
-          <p>{this.colorError()}</p>
+          <section className='division-color-selectors'>
+            <div className='color-container'>
+              <h4 className='division-label'>West</h4>
+              <div className='color-block-main'
+                   style={{backgroundColor: this.state.westColor}}
+                   onClick={() => this.setState({ showWest: !showWest })}>
+              </div>
+              {showWest ? <div className='color-picker'><GithubPicker onChangeComplete={this.setColor.bind(this, 'West')}/>
+              </div> : null}
+            </div>
+            <div className='color-container'>
+                <h4 className='division-label'>East</h4>
+                <div className='color-block-main'
+                  style={{backgroundColor: this.state.eastColor}}
+                  onClick={() => this.setState({ showEast: !showEast })}>
+                </div>
+                {showEast ? <div className='color-picker color-east'><GithubPicker onChangeComplete={this.setColor.bind(this, 'East')} triangle='top-right'/>
+                </div> : null}
+            </div>
 
-          <section className='bottom-nav-buttons'>
-            <Link to='/'>
-              <button className='btn back-btn'>Back</button>
-            </Link>
-
-            <Link to='/set-teams'>
-              <button className='btn next-btn'
-                      onClick={this.setNewTournament.bind(this)}>
-                Next
-              </button>
-            </Link>
           </section>
+            <p>{this.colorError()}</p>
 
+            <section className='bottom-nav-buttons'>
+              <Link to='/'>
+                <button className='btn back-btn'>Back</button>
+              </Link>
+
+              <Link to='/set-teams'>
+                <button className='btn next-btn'
+                        onClick={this.setNewTournament.bind(this)}>
+                  Next
+                </button>
+              </Link>
+            </section>
+          </section>
       </div>
     )
   }

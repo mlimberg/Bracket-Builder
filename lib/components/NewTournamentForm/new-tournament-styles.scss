@@ -1,19 +1,6 @@
 @import '../../styles.scss';
 
-.qty-options {
-  display: flex;
-  flex-direction: row;
-}
-
-.team-qty-option {
-  padding: 5px;
-  border: 1px solid;
-  &:hover{
-    cursor: pointer;
-  }
-}
-
-.tournament-name, .tournament-code, .team-qty-container, .new-tournament-form-container {
+.tournament-name, .tournament-code, .team-qty-container, .new-tournament-form-container, .num-of-teams {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,12 +8,60 @@
   margin: 10px auto;
 }
 
-.tournament-name {
-  margin-top: 20px;
+.tournament-name, .tournament-code, .team-qty-container {
+  margin: 30px auto;
+}
+
+.name-input {
+  width: 250px;
+  border: 1px dashed;
+  margin: 5px;
 }
 
 .active-qty {
   background-color: yellow;
+}
+
+.qty-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.team-qty-option {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  border-radius: 30%;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.code-input {
+  width: 200px;
+  border: 1px dashed;
+  margin: 5px;
+}
+
+.code-red {
+  color: red;
+}
+
+.code-green {
+  color: green;
+}
+
+.code-red, .code-green {
+  margin-left: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
 }
 
 .color-block {
@@ -35,6 +70,7 @@
   width: 40px;
   height: 40px;
   min-width: 40px;
+  border-radius: 30%;
   &:hover{
     cursor: pointer;
   }
@@ -44,9 +80,14 @@
   border: 1px solid;
   width: 40px;
   height: 40px;
+  border-radius: 30%;
   &:hover {
     cursor: pointer;
   }
+}
+
+.division-label {
+  margin-bottom: 10px;
 }
 
 .color-options {
@@ -55,20 +96,6 @@
   width: 120px;
   height: 120px;
   border: 1px solid black;
-}
-
-input {
-  outline: none;
-}
-
-.code-red {
-  color: red;
-  margin-left: 3px;
-}
-
-.code-green {
-  color: green;
-  margin-left: 3px;
 }
 
 .division-color-selectors {
@@ -83,8 +110,12 @@ input {
   z-index: 2;
 }
 
+.color-container {
+  position: relative;
+}
+
 .color-east {
-  right: 65px;
+  right: 10px;
 }
 
 .input-and-check {
@@ -98,8 +129,8 @@ input {
   align-items: center;
   align-self: center;
   width: 100%;
-  justify-content: space-around;
-  margin: 40px auto;
+  justify-content: space-between;
+  margin: 90px 0px 20px 0px;
 }
 
 .btn {
@@ -110,4 +141,8 @@ input {
   margin: 10px;
   padding: 5px 8px;
   font-size: 16px;
+}
+
+.next-btn, .back-btn {
+  border: 1px solid;
 }

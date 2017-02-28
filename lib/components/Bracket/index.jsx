@@ -34,22 +34,23 @@ export class Bracket extends Component {
     return (
       <div>
         <h1 className='page-header'>{tournament.name}</h1>
-        <Link to={`/dashboard/${tournament.name}`}>
-          <button>Dashboard</button>
-        </Link>
+        <section className='sub-header-section'>
+          <Link to={`/dashboard/${tournament.name}`}>
+            <button>Dashboard</button>
+          </Link>
 
-        <Link to={`/teams/${tournament}`}>
-          <button>Teams</button>
-        </Link>
+          <Link to={`/teams/${tournament}`}>
+            <button>Teams</button>
+          </Link>
 
-        <main className='bracket-container'>
+          <main className='bracket-container'>
 
-          <ul className='round round-1'>
-            {roundOne}
-          </ul>
+            <ul className='round round-1'>
+              {roundOne}
+            </ul>
 
-        </main>
-
+          </main>
+        </section>
       </div>
     )
   }

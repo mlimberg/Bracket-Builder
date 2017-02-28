@@ -9,10 +9,6 @@ export class Dashboard extends Component {
     super();
   }
 
-  componentDidMount() {
-    firebase.database().ref().push(this.props.tournament)
-  }
-
   leaveTournament() {
     this.props.setTournament({})
   }
@@ -25,21 +21,23 @@ export class Dashboard extends Component {
       <div>
         <h1 className='page-header'>{tournament.name}</h1>
 
-        <h3>{`Total Teams: ${tournament.qty}`}</h3>
-        <h3>{`Teams Remaining: ${teamsLeft}`}</h3>
-        <h3>{`Tournament Code: ${tournament.code}`}</h3>
+        <section className='sub-header-section'>
+          <h3>{`Total Teams: ${tournament.qty}`}</h3>
+          <h3>{`Teams Remaining: ${teamsLeft}`}</h3>
+          <h3>{`Tournament Code: ${tournament.code}`}</h3>
 
-        <Link to={`/teams/${tournament.name}`}>
-          <button>Teams</button>
-        </Link>
+          <Link to={`/teams/${tournament.name}`}>
+            <button>Teams</button>
+          </Link>
 
-        <Link to={`/bracket/${tournament.name}`}>
-          <button>Bracket</button>
-        </Link>
+          <Link to={`/bracket/${tournament.name}`}>
+            <button>Bracket</button>
+          </Link>
 
-        <Link to='/'>
-          <button onClick={this.leaveTournament.bind(this)}>Leave Tournament</button>
-        </Link>
+          <Link to='/'>
+            <button onClick={this.leaveTournament.bind(this)}>Leave Tournament</button>
+          </Link>
+        </section>
       </div>
     )
   }
