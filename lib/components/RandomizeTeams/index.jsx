@@ -83,14 +83,13 @@ export class RandomizeTeams extends Component {
       round1.push(matchup);
     }
     this.props.setFirstRound(round1)
-    //how to issue a promise???
-    // firebase.database().ref().push(Object.assign(this.props.tournament, {round1: round1} ))
-    // this.saveToFirebase();
+    firebase.database().ref().push(Object.assign({}, this.props.tournament, { round1: round1 }))
+
   }
 
-  saveToFirebase() {
-    firebase.database().ref().push(this.props.tournament)
-  }
+  // saveToFirebase() {
+  //   firebase.database().ref().push(this.props.tournament)
+  // }
 
   render() {
     const { east, west, count } = this.state;
@@ -100,24 +99,24 @@ export class RandomizeTeams extends Component {
       <div>
 
         <h1 className='page-header'>{name}</h1>
+        <section className='sub-header-section'>
+          <h3>East</h3>
+          {this.division(east, 'eastColor')}
 
-        <h3>East</h3>
-        {this.division(east, 'eastColor')}
+          <h3>West</h3>
+          {this.division(west, 'westColor')}
 
-        <h3>West</h3>
-        {this.division(west, 'westColor')}
+          <button onClick={this.randomizeDivisions.bind(this)}
+                  disabled={!count}>
+            Randomize
+          </button>
 
-        <button onClick={this.randomizeDivisions.bind(this)}
-                disabled={!count}>
-          Randomize
-        </button>
+          <p>Randomizers Left: {count}</p>
 
-        <p>Randomizers Left: {count}</p>
-
-        <Link to={`/dashboard/${name}`}>
-          <button onClick={this.setDivisions.bind(this)}>Create Tournament</button>
-        </Link>
-
+          <Link to={`/dashboard/${name}`}>
+            <button onClick={this.setDivisions.bind(this)}>Create Tournament</button>
+          </Link>
+        </section>
       </div>
     )
   }

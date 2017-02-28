@@ -42,44 +42,46 @@ export class Matchup extends Component {
       <div>
         <h1>{tournament.name}</h1>
 
-        <Link to={`/dashboard/${tournament.name}`}>
-          <button>Dashboard</button>
-        </Link>
+        <section className='sub-header-section'>
+          <Link to={`/dashboard/${tournament.name}`}>
+            <button>Dashboard</button>
+          </Link>
 
-        <Link to={`/bracket/${tournament.name}`}>
-          <button>Bracket</button>
-        </Link>
+          <Link to={`/bracket/${tournament.name}`}>
+            <button>Bracket</button>
+          </Link>
 
-        <div className='match-details'>
-          <div className='teamA-details'>
-            <h3>{matchup.team1.name}</h3>
-            {/* <InlineEdit text={matchup.team1.score}
-                        paramName='teamA-score'
-                        change={this.updateScore.bind(this)} /> */}
-            <p>{matchup.team1.score}</p>
+          <div className='match-details'>
+            <div className='teamA-details'>
+              <h3>{matchup.team1.name}</h3>
+              {/* <InlineEdit text={matchup.team1.score}
+                          paramName='teamA-score'
+                          change={this.updateScore.bind(this)} /> */}
+              <p>{matchup.team1.score}</p>
 
+            </div>
+
+            <div className='teamB-details'>
+              <h3>{matchup.team2.name}</h3>
+              {/* <InlineEdit text={matchup.team2.score}
+                          paramName='teamB-score'
+                          change={this.updateScore.bind(this)} /> */}
+              <p>{matchup.team2.score}</p>
+
+            </div>
           </div>
 
-          <div className='teamB-details'>
-            <h3>{matchup.team2.name}</h3>
-            {/* <InlineEdit text={matchup.team2.score}
-                        paramName='teamB-score'
-                        change={this.updateScore.bind(this)} /> */}
-            <p>{matchup.team2.score}</p>
-
+          <div className='dropdown-container'>
+            <select onChange={this.setWinner.bind(this)}>
+              <option value='default'>Select Winner</option>
+              <option value={matchup.team1.team_id}>{matchup.team1.name}</option>
+              <option value={matchup.team2.team_id}>{matchup.team2.name}</option>
+            </select>
           </div>
-        </div>
 
-        <div className='dropdown-container'>
-          <select onChange={this.setWinner.bind(this)}>
-            <option value='default'>Select Winner</option>
-            <option value={matchup.team1.team_id}>{matchup.team1.name}</option>
-            <option value={matchup.team2.team_id}>{matchup.team2.name}</option>
-          </select>
-        </div>
-
-        <button disabled={!this.state.winnerId}
-                onClick={this.submitWinner.bind(this)}>Submit</button>
+          <button disabled={!this.state.winnerId}
+                  onClick={this.submitWinner.bind(this)}>Submit</button>
+        </section>
       </div>
     )
   }
