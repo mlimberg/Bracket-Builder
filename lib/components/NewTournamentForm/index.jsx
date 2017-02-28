@@ -108,7 +108,7 @@ export class NewTournamentForm extends Component {
           </label>
 
           <section className='team-qty-container'>
-            # of Teams:
+            <label className='num-of-teams'># of Teams:</label>
               <div className='qty-options'>
                 <div className={toggleActive(4)} onClick={this.setQty.bind(this)}>4</div>
 
@@ -124,35 +124,34 @@ export class NewTournamentForm extends Component {
             Tournament code (no-spaces):
             <div className='input-and-check'>
               <input value={code}
-                onKeyDown={this.preventSpace.bind(this)}
-                onChange={this.setCode.bind(this)}
-                onKeyUp={this.codeCheck.bind(this)} />
-                <span className={codeError ? 'code-red' : 'code-green'}>✓</span>
+                     className='code-input'
+                     onKeyDown={this.preventSpace.bind(this)}
+                     onChange={this.setCode.bind(this)}
+                     onKeyUp={this.codeCheck.bind(this)} />
+                <span className={codeError ? 'code-red check' : 'code-green check'}>
+                  {codeError ? '✘' : '✓'}
+                </span>
             </div>
           </label>
 
           <section className='division-color-selectors'>
-
-            <label>
-              West
+            <div className='color-container'>
+              <h4 className='division-label'>West</h4>
               <div className='color-block-main'
                    style={{backgroundColor: this.state.westColor}}
                    onClick={() => this.setState({ showWest: !showWest })}>
               </div>
               {showWest ? <div className='color-picker'><GithubPicker onChangeComplete={this.setColor.bind(this, 'West')}/>
               </div> : null}
-            </label>
-
+            </div>
             <div className='color-container'>
-              <label>
-                East
+                <h4 className='division-label'>East</h4>
                 <div className='color-block-main'
                   style={{backgroundColor: this.state.eastColor}}
                   onClick={() => this.setState({ showEast: !showEast })}>
                 </div>
                 {showEast ? <div className='color-picker color-east'><GithubPicker onChangeComplete={this.setColor.bind(this, 'East')} triangle='top-right'/>
                 </div> : null}
-              </label>
             </div>
 
           </section>

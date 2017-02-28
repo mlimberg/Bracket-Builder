@@ -27,6 +27,15 @@ body {
   @include button-styles;
 }
 
+input {
+  height: 30px;
+  font-size: 18px;
+  outline: none;
+  &:focus {
+    outline: none;
+  }
+}
+
 .page-header {
   width: 100%;
   min-height: 50px;
