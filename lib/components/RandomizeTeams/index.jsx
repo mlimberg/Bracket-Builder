@@ -70,70 +70,22 @@ export class RandomizeTeams extends Component {
   }
 
   createMatchups(updatedTeams) {
-    const { tournament } = this.props;
-    const length = tournament.qty/2;
+    const teamsCopy = updatedTeams.slice();
+    const length = this.props.tournament.qty/2;
     const round1 = [];
     for(let i=1; i<=length; i++) {
       const matchup = Object.assign({}, {
         matchId: i,
         winner: '',
-        team1: updatedTeams.splice(0, 1)[0],
-        team2: updatedTeams.splice(0, 1)[0]
+        team1: teamsCopy.splice(0, 1)[0],
+        team2: teamsCopy.splice(0, 1)[0]
       })
       round1.push(matchup);
     }
-    console.log(round1);
-  }
-
-  // setDivisions() {
-  //   const east = [];
-  //   const west = [];
-  //   const { tournament } = this.props;
-  //   const eastCopy = this.state.east.slice();
-  //   const westCopy = this.state.west.slice();
-  //
-  //   for(let i = 1; i <= length; i++) {
-  //     let matchupE = Object.assign({}, {
-  //       match_id: `east_${i}`,
-  //       color: tournament.eastColor,
-  //       winner: '',
-  //       teamA: eastCopy.splice(0, 1)[0],
-  //       teamB: eastCopy.splice(0, 1)[0]
-  //     })
-  //     let matchupW = Object.assign({}, {
-  //       match_id: `west_${i}`,
-  //       color: tournament.westColor,
-  //       winner: '',
-  //       teamA: westCopy.splice(0, 1)[0],
-  //       teamB: westCopy.splice(0, 1)[0]
-  //     })
-  //     east.push(matchupE)
-  //     west.push(matchupW)
-  //   }
-  //   this.updateTeams(east, west)
-  // }
-
-  updateTeams(east, west) {
-    const { tournament } = this.props
-    const updated = tournament.teams.map(team => {
-      for(let j=0; j<east.length; j++) {
-        if(team.team_id === east[j].teamA.team_id ||
-           team.team_id === east[j].teamB.team_id) {
-          team.color = east[j].color
-          team.division = 'east'
-          team.score = 0;
-          return team
-        } else if (team.team_id === west[j].teamA.team_id ||
-                   team.team_id === west[j].teamB.team_id) {
-          team.color = west[j].color
-          team.division = 'west'
-          team.score = 0;
-          return team
-        }
-      }
-    })
-    this.props.updateTeams(updated)
-    this.saveToFirebase();
+    this.props.setFirstRound(round1)
+    //how to issue a promise???
+    // firebase.database().ref().push(Object.assign(this.props.tournament, {round1: round1} ))
+    // this.saveToFirebase();
   }
 
   saveToFirebase() {

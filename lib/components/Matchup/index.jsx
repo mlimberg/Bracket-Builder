@@ -2,13 +2,38 @@ import './match-styles';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import TournamentContainer from '../../containers/Tournament';
+import InlineEdit from 'react-edit-inline';
+import Dropdown from 'react-dropdown';
 
 export class Matchup extends Component {
   constructor() {
     super();
     this.state={
+      winnerId: ''
     }
   }
+
+  updateScore(e) {
+    console.log(e);
+  }
+
+  setWinner(e) {
+    this.setState({ winnerId: parseInt(e.target.value)})
+  }
+
+  submitWinner() {
+    const { matchup } = this.props
+    const keys = Object.keys(matchup)
+    const winner = keys.reduce((obj, key) => {
+      if(matchup[key].team_id === this.state.winnerId) {
+        obj = matchup[key]
+      }
+      return obj
+    }, {})
+    const updatedMatchup = Object.assign({}, matchup, { winner: winner })
+    this.props.submitWinner(updatedMatchup)
+  }
+
 
   render() {
     const { tournament, matchup } = this.props;
@@ -27,17 +52,34 @@ export class Matchup extends Component {
 
         <div className='match-details'>
           <div className='teamA-details'>
-            <h3>{matchup.teamA.name}</h3>
-            <div>{matchup.teamA.score}</div>
+            <h3>{matchup.team1.name}</h3>
+            {/* <InlineEdit text={matchup.team1.score}
+                        paramName='teamA-score'
+                        change={this.updateScore.bind(this)} /> */}
+            <p>{matchup.team1.score}</p>
+
           </div>
 
           <div className='teamB-details'>
-            <h3>{matchup.teamB.name}</h3>
-            <div>{matchup.teamB.score}</div>
+            <h3>{matchup.team2.name}</h3>
+            {/* <InlineEdit text={matchup.team2.score}
+                        paramName='teamB-score'
+                        change={this.updateScore.bind(this)} /> */}
+            <p>{matchup.team2.score}</p>
+
           </div>
         </div>
 
+        <div className='dropdown-container'>
+          <select onChange={this.setWinner.bind(this)}>
+            <option value='default'>Select Winner</option>
+            <option value={matchup.team1.team_id}>{matchup.team1.name}</option>
+            <option value={matchup.team2.team_id}>{matchup.team2.name}</option>
+          </select>
+        </div>
 
+        <button disabled={!this.state.winnerId}
+                onClick={this.submitWinner.bind(this)}>Submit</button>
       </div>
     )
   }

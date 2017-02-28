@@ -2,12 +2,15 @@ import './dashboard-styles';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import TournamentContainer from '../../containers/Tournament';
+import firebase from '../../firebase';
 
 export class Dashboard extends Component {
   constructor() {
     super();
-    this.state={
-    }
+  }
+
+  componentDidMount() {
+    firebase.database().ref().push(this.props.tournament)
   }
 
   leaveTournament() {

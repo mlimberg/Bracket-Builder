@@ -10,7 +10,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = ({ currentTournament, matchup }) => {
   return {
     tournament: currentTournament,
-    matchup: currentTournament.matchup
+    matchup: currentTournament.matchup || {}
   }
 }
 

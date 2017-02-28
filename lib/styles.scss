@@ -3,6 +3,7 @@
 
 $marker-font: 'Permanent Marker', cursive;
 $chalky-font: 'Margarine', cursive;
+$test: pink;
 
 body {
   font-family: sans-serif;
@@ -36,4 +37,8 @@ body {
   padding: 5px;
   flex-wrap: wrap;
   box-shadow: .5px .5px 8px #a5a5a5;
+}
+
+a, a:visited, a:link, a:active, a:hover {
+  text-decoration: none;
 }
