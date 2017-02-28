@@ -43,6 +43,10 @@ export class Bracket extends Component {
             <button>Teams</button>
           </Link>
 
+          <Link to={`/bracket/round2`}>
+            <button>Next Round</button>
+          </Link>
+
           <main className='bracket-container'>
 
             <ul className='round round-1'>

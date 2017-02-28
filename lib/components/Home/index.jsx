@@ -34,19 +34,35 @@ export class Home extends Component {
 
   joinExistingForm() {
     const { showJoin, joinCode } = this.state;
-    if(showJoin)
-    return (
-      <div className='join-existing-container'>
-        <input placeholder='Enter Code'
-               className='join-existing-input'
-               value={joinCode}
-               onChange={(e) => this.setState({ joinCode: e.target.value.toUpperCase() })}
-               onKeyDown={this.preventSpaces.bind(this)}/>
-        <button className='btn home-btn'
-                disabled={!joinCode}
-                onClick={this.joinExisting.bind(this)}>Join</button>
-      </div>
-    )
+    if(showJoin) {
+      return (
+        <div className='join-existing-container'>
+          <input placeholder='Enter Code'
+                 className='join-existing-input'
+                 id='join'
+                 value={joinCode}
+                 onChange={(e) => this.setState({ joinCode: e.target.value.toUpperCase() })}
+                 onKeyDown={this.preventSpaces.bind(this)}/>
+          <button className='btn home-btn'
+                  disabled={!joinCode}
+                  onClick={this.joinExisting.bind(this)}>
+              Join
+          </button>
+        </div>
+      )
+    }
+  }
+
+  toggleJoin() {
+    this.setState({ showJoin: !this.state.showJoin }, () => {
+      this.focusInput()
+    })
+  }
+
+  focusInput() {
+    console.log('hit!');
+    if(this.state.showJoin)
+      document.getElementById('join').focus()
   }
 
   joinExisting() {
@@ -93,7 +109,7 @@ export class Home extends Component {
           </Link>
 
           <button className='home-btn join-existing-btn btn'
-            onClick={() => this.setState({ showJoin: !this.state.showJoin })}>
+            onClick={this.toggleJoin.bind(this)}>
             Join Existing
           </button>
         </div>
