@@ -44,7 +44,7 @@ input {
   background-color: yellow;
   align-items: center;
   font-family: $marker-font;
-  font-size: 1.1em;
+  font-size: 26px;
   padding: 5px;
   flex-wrap: wrap;
   box-shadow: .5px .5px 8px #a5a5a5;
@@ -52,6 +52,7 @@ input {
   top: 0px;
   left: 0px;
   right: 0px;
+  text-align: center;
 }
 
 .sub-header-section {
