@@ -32,8 +32,24 @@ export class Matchup extends Component {
     }, {})
     const updatedMatchup = Object.assign({}, matchup, { winner: winner })
     this.props.submitWinner(updatedMatchup)
+    this.updateNextRound(winner)
   }
 
+  updateNextRound(winner) {
+    const { tournament, matchup, setSecondRound } = this.props;
+    const id = Math.ceil(matchup.matchId/2);
+    const team1Id = matchup.team1.team_id;
+    const team2Id = matchup.team2.team_id;
+    const updated = tournament.round2.map(match => {
+      if(match.matchId === id && match.matchId !== (matchup.matchId/2)) {
+        match.team1 = winner
+      } else if(match.matchId === id && match.matchId === (matchup.matchId/2)) {
+        match.team2 = winner
+      }
+    return match
+    })
+    setSecondRound(updated)
+  }
 
   render() {
     const { tournament, matchup } = this.props;

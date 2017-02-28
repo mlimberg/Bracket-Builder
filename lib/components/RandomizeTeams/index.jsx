@@ -84,7 +84,6 @@ export class RandomizeTeams extends Component {
     }
     this.props.setFirstRound(round1)
     this.setNextRound(round1)
-    firebase.database().ref().push(Object.assign({}, this.props.tournament, { round1: round1 }))
   }
 
   setNextRound(round1) {
@@ -94,12 +93,13 @@ export class RandomizeTeams extends Component {
         {
           matchId: i,
           winner: '',
-          team1: {},
-          team2: {}
+          team1: '',
+          team2: '',
         }
       )
     this.props.setSecondRound(round2);
     }
+    firebase.database().ref().push(Object.assign({}, this.props.tournament, { round1, round2 }))
   }
 
 
