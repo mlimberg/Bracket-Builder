@@ -30,9 +30,15 @@
 }
 
 .logo {
-  width: 100%;
-  margin-top: 60px;
-  margin-left: 5px;
+  width: 95%;
+  margin-top: 80px;
+  margin-left: 3px;
+  height: 24vh;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
 }
 
 .homepage {
@@ -60,8 +66,13 @@
 @media screen and (min-width: 400px ) {
   .logo {
     width: 600px;
-    display: flex;
     margin: 40px auto;
+    height: 30vh;
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
   }
 
 
