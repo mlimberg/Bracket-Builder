@@ -78,8 +78,10 @@ export class Home extends Component {
     return(
         <div className='homepage'>
 
-          <img src={require('../../images/bracket_builder_logo.png')}
-          className='logo'/>
+          <div>
+            <img src={require('../../images/bracket_builder_logo.png')}
+            className='logo'/>
+          </div>
 
           <div className='home-btn-container'>
             <Link to='/new'>

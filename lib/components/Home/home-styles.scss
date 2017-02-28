@@ -36,14 +36,16 @@
 }
 
 .homepage {
-  background-image: url('../../images/denver_background_2.png');
+  background-image: url('../../images/denver_background_desktop.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-  &:after {
-    background-color: rgba(14, 14, 14, .75);
-  }
+  background-size: auto;
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
 }
 
 .home-btn {
@@ -61,4 +63,6 @@
     display: flex;
     margin: 40px auto;
   }
+
+
 }
