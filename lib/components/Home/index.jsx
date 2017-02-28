@@ -55,14 +55,9 @@ export class Home extends Component {
 
   toggleJoin() {
     this.setState({ showJoin: !this.state.showJoin }, () => {
-      this.focusInput()
+      if(this.state.showJoin)
+        document.getElementById('join').focus()
     })
-  }
-
-  focusInput() {
-    console.log('hit!');
-    if(this.state.showJoin)
-      document.getElementById('join').focus()
   }
 
   joinExisting() {
