@@ -28,8 +28,11 @@ export class Home extends Component {
   }
 
   preventSpaces(e) {
-    if(e.keyCode === 32)
-    e.preventDefault()
+    if(e.keyCode === 32) {
+      e.preventDefault()
+    } else if (e.keyCode === 13) {
+      this.joinExisting()
+    }
   }
 
   joinExistingForm() {

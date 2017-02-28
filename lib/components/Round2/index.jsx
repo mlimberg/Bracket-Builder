@@ -17,38 +17,45 @@ export class Round2 extends Component {
 
     const roundTwo = tournament.round1.map(match => {
         return (
-          <div key={match.matchId}
-               className='bracket-matchup'
-               onClick={() => this.setCurrentMatchup(match)}>
-            <Link to={`/matchup/${match.matchId}`}>
-              <li className='spacer'>&nbsp;</li>
-              <li className='game game-top'>{match.team1.name}</li>
-              <li className='game game-spacer'>&nbsp;</li>
-              <li className='game game-bottom'>{match.team2.name}</li>
-              <li className='spacer'>&nbsp;</li>
-            </Link>
-          </div>
+          <h1>ROUND 2 BITCHES!</h1>
+          // <div key={match.matchId}
+          //      className='bracket-matchup'
+          //      onClick={() => this.setCurrentMatchup(match)}>
+          //   <Link to={`/matchup/${match.matchId}`}>
+          //     <li className='spacer'>&nbsp;</li>
+          //     <li className='game game-top'>{match.team1.name}</li>
+          //     <li className='game game-spacer'>&nbsp;</li>
+          //     <li className='game game-bottom'>{match.team2.name}</li>
+          //     <li className='spacer'>&nbsp;</li>
+          //   </Link>
+          // </div>
         )
       })
 
     return (
       <div>
         <h1 className='page-header'>{tournament.name}</h1>
-        <Link to={`/dashboard/${tournament.name}`}>
-          <button>Dashboard</button>
-        </Link>
 
-        <Link to={`/teams/${tournament}`}>
-          <button>Teams</button>
-        </Link>
+        <section className='sub-header-section'>
+          <Link to={`/dashboard/${tournament.name}`}>
+            <button>Dashboard</button>
+          </Link>
 
-        <main className='bracket-container'>
+          <Link to={`/teams/${tournament}`}>
+            <button>Teams</button>
+          </Link>
 
-          <ul className='round round-1'>
-            {roundTwo}
-          </ul>
+          <h2>Round 2</h2>
 
-        </main>
+          <main className='bracket-container'>
+
+            <ul className='round round-1'>
+              {roundTwo}
+            </ul>
+
+          </main>
+
+        </section>
 
       </div>
     )

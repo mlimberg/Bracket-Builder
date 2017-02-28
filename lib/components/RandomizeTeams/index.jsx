@@ -83,13 +83,26 @@ export class RandomizeTeams extends Component {
       round1.push(matchup);
     }
     this.props.setFirstRound(round1)
+    this.setNextRound(round1)
     firebase.database().ref().push(Object.assign({}, this.props.tournament, { round1: round1 }))
-
   }
 
-  // saveToFirebase() {
-  //   firebase.database().ref().push(this.props.tournament)
-  // }
+  setNextRound(round1) {
+    const round2 = [];
+    for(let i = 1; i <= (round1.length/2); i++) {
+      round2.push(
+        {
+          matchId: i,
+          winner: '',
+          team1: {},
+          team2: {}
+        }
+      )
+    this.props.setSecondRound(round2);
+    }
+  }
+
+
 
   render() {
     const { east, west, count } = this.state;
