@@ -10,7 +10,7 @@ export class NewTournamentForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      name: 'Your Awesome Tournament',
       qty: 0,
       code: '',
       teams: [],
@@ -48,7 +48,7 @@ export class NewTournamentForm extends Component {
   setTeams() {
     const temp = [];
     for(let i = 1; i <= this.state.qty; i++) {
-      temp.push({ team_id: i, name: `Team ${i}`, eliminated: false })
+      temp.push({ team_id: i, name: `Team ${i}`, eliminated: false, score: 0 })
     }
     this.setState({ teams: temp })
   }
@@ -90,7 +90,7 @@ export class NewTournamentForm extends Component {
 
 
   render() {
-    const { qty, showEast, showWest, eastColor, westColor, codeError, code } = this.state;
+    const { name, qty, showEast, showWest, eastColor, westColor, codeError, code } = this.state;
 
     const toggleActive = (selected) => {
       return qty === selected ? 'team-qty-option active-qty' : 'team-qty-option'
@@ -98,24 +98,12 @@ export class NewTournamentForm extends Component {
 
     return (
       <div className='new-tournament-form-container'>
-        <h3>New Tourny Form!</h3>
-
-        <section>
-          <Link to='/'>
-            <button className='btn back-btn'>Back</button>
-          </Link>
-
-          <Link to='/set-teams'>
-            <button className='btn next-btn'
-                    onClick={this.setNewTournament.bind(this)}>
-              Next
-            </button>
-          </Link>
-        </section>
+        <h1 className='page-header'>{name}</h1>
 
         <label className='tournament-name'>
           Tournament Name:
-          <input onChange={e => this.setState({ name: e.target.value })}/>
+          <input className='name-input'
+                 onChange={e => this.setState({ name: e.target.value })}/>
         </label>
 
         <section className='team-qty-container'>
@@ -160,13 +148,26 @@ export class NewTournamentForm extends Component {
                  style={{backgroundColor: this.state.eastColor}}
                  onClick={() => this.setState({ showEast: !showEast })}>
             </div>
-            {showEast ? <div className='color-picker'><GithubPicker onChangeComplete={this.setColor.bind(this, 'East')}/>
+            {showEast ? <div className='color-picker color-east'><GithubPicker onChangeComplete={this.setColor.bind(this, 'East')} triangle='top-right'/>
             </div> : null}
           </label>
 
-          {this.colorError()}
-
         </section>
+          <p>{this.colorError()}</p>
+
+          <section className='bottom-nav-buttons'>
+            <Link to='/'>
+              <button className='btn back-btn'>Back</button>
+            </Link>
+
+            <Link to='/set-teams'>
+              <button className='btn next-btn'
+                      onClick={this.setNewTournament.bind(this)}>
+                Next
+              </button>
+            </Link>
+          </section>
+
       </div>
     )
   }

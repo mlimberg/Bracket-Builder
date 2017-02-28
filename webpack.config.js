@@ -13,11 +13,12 @@ module.exports = {
       },
       { test: /\.css$/, loader: 'style!css' },
       { test: /\.scss$/, loader: 'style!css!sass' },
+      { test: /\.(png|jpg)$/, loader: 'url?limit=25000' },
     ]
   },
   devServer: {
     contentBase: './build',
-    // inline: true
+    inline: true
   },
   resolve: {
     extensions: ['', '.js', '.json', '.jsx', '.css', '.scss']

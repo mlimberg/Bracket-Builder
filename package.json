@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --content-base --history-api-fallback",
+    "start": "webpack-dev-server --inline --content-base --history-api-fallback",
     "test": "mocha -w --compilers js:babel-core/register --require helpers/test-setup.js app/**/*.test.js"
   },
   "repository": {
@@ -30,7 +30,9 @@
     "css-loader": "^0.26.1",
     "css-modules-require-hook": "^4.0.5",
     "enzyme": "^2.7.1",
+    "file-loader": "^0.10.1",
     "firebase": "^3.6.9",
+    "image-loader": "0.0.1",
     "jsdom": "^9.9.1",
     "mocha": "^3.2.0",
     "node-sass": "^4.3.0",
@@ -42,12 +44,14 @@
     "sass-loader": "^4.1.1",
     "sinon": "^1.17.7",
     "style-loader": "^0.13.1",
+    "url-loader": "^0.5.8",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
     "react": "^15.4.2",
     "react-color": "^2.11.1",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-dropdown": "^1.2.1"
   }
 }

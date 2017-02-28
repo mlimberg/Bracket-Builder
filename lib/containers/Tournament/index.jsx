@@ -7,9 +7,10 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(actions, dispatch);
 }
 
-const mapStateToProps = ({ currentTournament }) => {
+const mapStateToProps = ({ currentTournament, matchup }) => {
   return {
-    tournament: currentTournament
+    tournament: currentTournament,
+    matchup: currentTournament.matchup || {}
   }
 }
 

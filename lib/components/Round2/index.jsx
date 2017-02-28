@@ -1,9 +1,9 @@
-import './bracket-styles';
+import '../Bracket/bracket-styles';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import TournamentContainer from '../../containers/Tournament';
 
-export class Bracket extends Component {
+export class Round2 extends Component {
   constructor() {
     super();
   }
@@ -15,7 +15,7 @@ export class Bracket extends Component {
   render() {
     const { tournament } = this.props
 
-    const roundOne = tournament.round1.map(match => {
+    const roundTwo = tournament.round1.map(match => {
         return (
           <div key={match.matchId}
                className='bracket-matchup'
@@ -45,7 +45,7 @@ export class Bracket extends Component {
         <main className='bracket-container'>
 
           <ul className='round round-1'>
-            {roundOne}
+            {roundTwo}
           </ul>
 
         </main>
@@ -55,4 +55,4 @@ export class Bracket extends Component {
   }
 }
 
-export default TournamentContainer(Bracket);
+export default TournamentContainer(Round2);

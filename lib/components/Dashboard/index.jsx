@@ -2,12 +2,15 @@ import './dashboard-styles';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import TournamentContainer from '../../containers/Tournament';
+import firebase from '../../firebase';
 
 export class Dashboard extends Component {
   constructor() {
     super();
-    this.state={
-    }
+  }
+
+  componentDidMount() {
+    firebase.database().ref().push(this.props.tournament)
   }
 
   leaveTournament() {
@@ -20,7 +23,7 @@ export class Dashboard extends Component {
 
     return (
       <div>
-        <h1>{tournament.name}</h1>
+        <h1 className='page-header'>{tournament.name}</h1>
 
         <h3>{`Total Teams: ${tournament.qty}`}</h3>
         <h3>{`Teams Remaining: ${teamsLeft}`}</h3>

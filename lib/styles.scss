@@ -1,1 +1,44 @@
 @import 'reset';
+@import url('https://fonts.googleapis.com/css?family=Margarine|Permanent+Marker');
+
+$marker-font: 'Permanent Marker', cursive;
+$chalky-font: 'Margarine', cursive;
+$test: pink;
+
+body {
+  font-family: sans-serif;
+}
+
+@mixin button-styles {
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+  }
+  &:disabled, &:disabled:hover {
+    cursor: default;
+  }
+}
+
+.btn {
+  @include button-styles;
+}
+
+.page-header {
+  width: 100%;
+  min-height: 50px;
+  justify-content: center;
+  display: flex;
+  background-color: yellow;
+  align-items: center;
+  font-family: $marker-font;
+  font-size: 1.6em;
+  padding: 5px;
+  flex-wrap: wrap;
+  box-shadow: .5px .5px 8px #a5a5a5;
+}
+
+a, a:visited, a:link, a:active, a:hover {
+  text-decoration: none;
+}

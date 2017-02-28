@@ -1,0 +1,19 @@
+.match-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.dropdown-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.winner-dropdown {
+  border: 1px solid;
+}
