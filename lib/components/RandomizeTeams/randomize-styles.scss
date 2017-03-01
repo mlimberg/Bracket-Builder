@@ -1,5 +1,13 @@
 // .team-card {
-//   background-color: #bada55;
+//   padding: 5px;
+//   display: flex;
+//   margin: 5px;
+//   border: 1px solid;
+//   font-size: 16px;
+//   width: 30%;
+//   &:hover {
+//     cursor: pointer;
+//   }
 // }
 
 .odd-team-card {
@@ -12,4 +20,52 @@
   width: 20px;
   font-size: 18px;
   color: red;
+}
+
+.matchups-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+}
+
+.rando-division-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rando-division-container h3 {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 15px 5px;
+  padding: 10px;
+  border-radius: 5px
+}
+
+.randomizer-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.randomize-btn {
+  &:disabled, &:disabled:hover {
+    background: gray;
+    color: white;
+  }
+}
+
+.create-tournament-btn {
+  display: flex;
+  width: 400px;
+  margin: 30px auto;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #AAFF3B;
+  border: none;
+  justify-content: center;
+  font-size: 25px;
+  border: 1px solid
 }
