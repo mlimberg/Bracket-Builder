@@ -1,5 +1,9 @@
 @import '../../styles.scss';
 
+.sub-header-section-form {
+  width: 80%;
+}
+
 .tournament-name, .tournament-code, .team-qty-container, .new-tournament-form-container, .num-of-teams {
   display: flex;
   flex-direction: column;
@@ -121,28 +125,4 @@
 .input-and-check {
   display: flex;
   flex-direction: row;
-}
-
-.bottom-nav-buttons {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  align-self: center;
-  width: 100%;
-  justify-content: space-between;
-  margin: 90px 0px 20px 0px;
-}
-
-.btn {
-  @include button-styles;
-  border-radius: 10px;
-  background-color: yellow;
-  height: 35px;
-  margin: 10px;
-  padding: 5px 8px;
-  font-size: 16px;
-}
-
-.next-btn, .back-btn {
-  border: 1px solid;
 }

@@ -3,13 +3,14 @@
   flex-direction: row;
 }
 
-.team-card {
+.edit-team-card {
   padding: 5px;
   display: flex;
   flex-direction: column;
   margin: 5px;
   border: 1px solid;
   font-size: 16px;
+  width: 60%;
   &:hover {
     cursor: pointer;
   }
@@ -18,4 +19,12 @@
 .teamList-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+
+.page-title {
+  display: flex;
+  justify-content: center;
+  font-size: 1.4em;
+  padding: 5px;
 }

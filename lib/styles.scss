@@ -57,10 +57,35 @@ input {
 
 .sub-header-section {
   margin-top: 70px;
+  width: 100%;
 }
 
 a, a:visited, a:link, a:active, a:hover {
   text-decoration: none;
+}
+
+.setup-nav-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+  width: 100%;
+  justify-content: space-around;
+  margin: 90px 0px 20px 0px;
+}
+
+.btn {
+  @include button-styles;
+  border-radius: 10px;
+  background-color: yellow;
+  height: 35px;
+  margin: 10px;
+  padding: 5px 8px;
+  font-size: 16px;
+}
+
+.next-btn, .back-btn {
+  border: 1px solid;
 }
 
 @media screen and (min-width: 400px ) {

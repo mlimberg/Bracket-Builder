@@ -5,6 +5,7 @@ import InlineEdit from 'react-edit-inline';
 import TeamCard from '../TeamCard';
 import TournamentContainer from '../../containers/Tournament';
 import { shuffle } from '../../helpers';
+import SetupNavButtons from '../SetupNavButtons';
 
 export class TeamSetup extends Component {
   constructor() {
@@ -31,8 +32,8 @@ export class TeamSetup extends Component {
       return teams.map((team, i) => {
         return (
           <div className='teamList-container' key={i}>
-            <InlineEdit className='team-card'
-                        activeClassName='team-card'
+            <InlineEdit className='edit-team-card'
+                        activeClassName='edit-team-card'
                         paramName={team.name}
                         change={(e)=> this.updateTeams(e)}
                         text={team.name} />
@@ -49,25 +50,33 @@ export class TeamSetup extends Component {
   }
 
   render() {
+    const teamList = this.teamList();
 
     return (
       <div>
         <h1 className='page-header'>{this.props.tournament.name}</h1>
 
         <section className='sub-header-section'>
-          <h3>Team Setup</h3>
-          <p>Click to edit team names</p>
-          {this.teamList()}
 
-          <div className='setup-nav-buttons'>
+          <h3 className='page-title'>Click to edit team names</h3>
+
+          {teamList}
+
+          <SetupNavButtons back='/new'
+                           backText='Back'
+                           next='/randomize'
+                           nextText='Next'
+                           handleNextClick={this.shuffleTeams.bind(this)}/>
+
+          {/* <div className='setup-nav-buttons'>
             <Link to='/new'>
               <button>Back</button>
             </Link>
             <Link to='/randomize'>
               <button onClick={this.shuffleTeams.bind(this)}>Next</button>
             </Link>
-          </div>
-          
+          </div> */}
+
         </section>
 
       </div>

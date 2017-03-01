@@ -49,10 +49,8 @@ export class Matchup extends Component {
     const team2Id = matchup.team2.team_id;
     const updated = tournament.rounds[round].map(match => {
       if(match.matchId === id && match.matchId !== (matchup.matchId/2)) {
-        console.log('t1 winna!');
         match.team1 = winner
       } else if(match.matchId === id && match.matchId === (matchup.matchId/2)) {
-        console.log('t2 winna!');
         match.team2 = winner
       }
     return match
