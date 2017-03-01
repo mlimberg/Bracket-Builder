@@ -1,0 +1,58 @@
+@import '../../styles';
+
+.winner-h1 {
+  font-family: "Permanent Marker", cursive;
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.winner-h3 {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+  font-size: 18px;
+}
+
+.champ-name {
+  display: flex;
+  justify-content: center;
+  margin: 40px auto;
+  padding: 10px;
+  border: 1px dashed;
+  font-size: 30px;
+  width: 110px;
+  border-radius: 5px;
+}
+
+.social-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.social-container h3 {
+  margin: 10px;
+  font-size: 18px;
+}
+
+
+
+.social-icons {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 200px;
+  justify-content: space-around;
+  margin: auto;
+}
+
+.chicken-dinner {
+  width: 400px;
+  height: 340px;
+  // position: absolute;
+  // right: 0px;
+  // left:0px;
+  // top: 0px;
+  // bottom: 0px;
+}
