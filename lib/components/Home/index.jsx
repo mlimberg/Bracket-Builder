@@ -83,7 +83,7 @@ export class Home extends Component {
   joinError() {
     if(this.state.joinError)
     return (
-      <div className='join-error-msg'>There are no matching tournmanets, please enter another code or create a new tournament</div>
+      <div className='join-error-msg'>No matching tournmanets, please enter another code or create a new tournament</div>
     )
   }
 

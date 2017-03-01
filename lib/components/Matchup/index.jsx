@@ -9,12 +9,8 @@ export class Matchup extends Component {
   constructor() {
     super();
     this.state={
-      winnerId: ''
+      winnerId: '',
     }
-  }
-
-  updateScore(e) {
-
   }
 
   setWinner(e) {
@@ -63,9 +59,28 @@ export class Matchup extends Component {
     const { matchup, tournament } = this.props;
     if(matchup.round !== tournament.rounds.length) {
       this.submitWinner()
+      this.updateTeams()
     } else {
       this.props.setChampion(winner)
     }
+  }
+
+  updateTeams() {
+    const { tournament, matchup, updateTeams } = this.props;
+    const keys = Object.keys(matchup);
+    const loserId = keys.reduce((team, key) => {
+      if(matchup[key].team_id && matchup[key].team_id !== this.state.winnerId) {
+        team = matchup[key].team_id
+      }
+      return team
+    }, 0)
+    const updatedTeams = tournament.teams.map(teamObj => {
+      if(teamObj.team_id === loserId) {
+        teamObj.eliminated = true
+      }
+      return teamObj
+    })
+    updateTeams(updatedTeams);
   }
 
   finalRoundCheck() {

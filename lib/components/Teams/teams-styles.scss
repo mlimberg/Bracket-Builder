@@ -1,3 +1,13 @@
 .eliminated {
   text-decoration: line-through;
+  opacity: .5;
+}
+
+.team-card {
+  width: 80%;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px auto;
+  border: 1px solid;
+  text-align: center;
 }

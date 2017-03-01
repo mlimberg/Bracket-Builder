@@ -1,17 +1,16 @@
-// .team-card {
-//   padding: 5px;
-//   display: flex;
-//   margin: 5px;
-//   border: 1px solid;
-//   font-size: 16px;
-//   width: 30%;
-//   &:hover {
-//     cursor: pointer;
-//   }
-// }
+.team-card {
+  padding: 5px;
+  font-size: 18px;
+}
+
+@mixin button-hover {
+  background-color: black;
+  color: yellow;
+  cursor: pointer;
+}
 
 .odd-team-card {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .vs-text {
@@ -41,7 +40,9 @@
   font-weight: 500;
   margin: 15px 5px;
   padding: 10px;
-  border-radius: 5px
+  border-radius: 5px;
+  border: 1px solid;
+  text-align: center;
 }
 
 .randomizer-options {
@@ -51,6 +52,9 @@
 }
 
 .randomize-btn {
+  &:hover {
+    @include button-hover;
+  }
   &:disabled, &:disabled:hover {
     background: gray;
     color: white;
@@ -58,14 +62,37 @@
 }
 
 .create-tournament-btn {
-  display: flex;
-  width: 400px;
-  margin: 30px auto;
+  width: 80%;
+  margin: 10px auto;
   height: 40px;
   border-radius: 5px;
-  background-color: #AAFF3B;
-  border: none;
-  justify-content: center;
+  background-color: yellow;
   font-size: 25px;
-  border: 1px solid
+  border: 1px solid;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  &:hover {
+    @include button-hover;
+  }
+}
+
+@media screen and (min-width: 400px) {
+
+
+.create-tournament-btn {
+  width: 400px;
+}
+
+.rando-division-container h3 {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 15px 5px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid;
+  text-align: center;
+  width: 200px;
+}
+
 }
