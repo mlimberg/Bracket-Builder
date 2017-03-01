@@ -15,7 +15,7 @@ export class Bracket extends Component {
 
   render() {
     const roundNum = parseInt(this.props.params.round_num);
-    const { tournament } = this.props
+    const { tournament } = this.props;
 
     const bracket = tournament.rounds.map((round, i) => {
       return (
