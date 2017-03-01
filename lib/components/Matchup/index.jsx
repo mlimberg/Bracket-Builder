@@ -63,11 +63,6 @@ export class Matchup extends Component {
     updateNextRound(round, updated)
   }
 
-
-
-
-
-
   render() {
     const { tournament, matchup } = this.props;
 
