@@ -33,13 +33,15 @@ export class Teams extends Component {
         <h1 className='page-header'>{tournament.name}</h1>
 
         <section className='sub-header-section'>
-          <Link to={`/dashboard/${tournament.code}`}>
-            <button>Dashboard</button>
-          </Link>
+          <div className='setup-nav-buttons'>
+            <Link to={`/dashboard/${tournament.code}`}>
+              <button className='btn'>Dashboard</button>
+            </Link>
 
-          <Link to={`/bracket/${tournament.code}`}>
-            <button>Bracket</button>
-          </Link>
+            <Link to={`/bracket/${tournament.code}`}>
+              <button className='btn'>Bracket</button>
+            </Link>
+          </div>
 
           {teams}
 
