@@ -17,22 +17,22 @@ main {
   list-style: none;
   padding: 0;
 }
-  .round .spacer{
-    flex-grow: 1;
-  }
 
-  .round .spacer:first-child,
-  .round .spacer:last-child {
-    flex-grow: .5;
-  }
+.round .spacer{
+  flex-grow: 1;
+}
+
+.round .spacer:first-child,
+.round .spacer:last-child {
+  flex-grow: .5;
+}
 
 .round .game-spacer {
     flex-grow: 1;
   }
 
-/*
- *  General Styles
-*/
+
+
 
 li.game{
   padding-left: 20px;

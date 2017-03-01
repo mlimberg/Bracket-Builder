@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --inline --content-base --history-api-fallback",
-    "test": "mocha -w --compilers js:babel-core/register --require helpers/test-setup.js app/**/*.test.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,7 @@
     "file-loader": "^0.10.1",
     "firebase": "^3.6.9",
     "image-loader": "0.0.1",
+    "jest": "^19.0.2",
     "jsdom": "^9.9.1",
     "mocha": "^3.2.0",
     "node-sass": "^4.3.0",
