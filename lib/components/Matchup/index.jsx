@@ -59,11 +59,11 @@ export class Matchup extends Component {
         <h1>{tournament.name}</h1>
 
         <section className='sub-header-section'>
-          <Link to={`/dashboard/${tournament.name}`}>
+          <Link to={`/dashboard/${tournament.code}`}>
             <button>Dashboard</button>
           </Link>
 
-          <Link to={`/bracket/${tournament.name}`}>
+          <Link to={`/bracket/${tournament.code}`}>
             <button>Bracket</button>
           </Link>
 

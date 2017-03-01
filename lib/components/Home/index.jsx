@@ -70,7 +70,7 @@ export class Home extends Component {
       if(obj.code === this.state.joinCode) {
         tournament = Object.assign({}, obj);
         this.setState({ joinError: false, joinCode: '' })
-        browserHistory.push(`/dashboard/${tournament.name}`)
+        browserHistory.push(`/dashboard/${tournament.code}`)
       }
     })
     return tournament ? this.setCurrent(tournament) : this.setState({ joinError: true });

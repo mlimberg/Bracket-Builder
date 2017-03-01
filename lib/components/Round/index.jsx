@@ -36,11 +36,11 @@ export class Round extends Component {
         <h1 className='page-header'>{tournament.name}</h1>
 
         <section className='sub-header-section'>
-          <Link to={`/dashboard/${tournament.name}`}>
+          <Link to={`/dashboard/${tournament.code}`}>
             <button>Dashboard</button>
           </Link>
 
-          <Link to={`/teams/${tournament}`}>
+          <Link to={`/teams/${tournament.code}`}>
             <button>Teams</button>
           </Link>
 

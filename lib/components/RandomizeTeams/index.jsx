@@ -51,6 +51,29 @@ export class RandomizeTeams extends Component {
     })
   }
 
+  createRounds() {
+    const { tournament, createTournamentRounds } = this.props
+    let tournamentRounds = [];
+    let numOfTeams = tournament.qty;
+    const numOfRounds = Math.log(numOfTeams)/Math.log(2);
+    for(let i = 0; i < numOfRounds; i++) {
+      numOfTeams /= 2
+      let roundArray = [];
+      for(let j = 1; j <= numOfTeams; j++) {
+        roundArray.push({
+          matchupId: j,
+          winner: '',
+          team1: '',
+          team2: ''
+        })
+      }
+      tournamentRounds.push(roundArray)
+    }
+    createTournamentRounds(tournamentRounds)
+    this.setDivisions()
+    // firebase.database().ref().push(Object.assign({}, this.props.tournament, { round1, round2 }))
+  }
+
   setDivisions() {
     const { east, west } = this.state
     const { tournament } = this.props
@@ -83,30 +106,13 @@ export class RandomizeTeams extends Component {
       round1.push(matchup);
     }
     this.props.setFirstRound(round1)
-    this.setNextRound(round1)
   }
-
-  setNextRound(round1) {
-    const round2 = [];
-    for(let i = 1; i <= (round1.length/2); i++) {
-      round2.push(
-        {
-          matchId: i,
-          winner: '',
-          team1: '',
-          team2: '',
-        }
-      )
-    this.props.setSecondRound(round2);
-    }
-    firebase.database().ref().push(Object.assign({}, this.props.tournament, { round1, round2 }))
-  }
-
-
 
   render() {
     const { east, west, count } = this.state;
     const { code, name } = this.props.tournament;
+    const eastDivision = this.division(east, 'eastColor')
+    const westDivision = this.division(west, 'westColor')
 
     return (
       <div>
@@ -114,10 +120,10 @@ export class RandomizeTeams extends Component {
         <h1 className='page-header'>{name}</h1>
         <section className='sub-header-section'>
           <h3>East</h3>
-          {this.division(east, 'eastColor')}
+          {eastDivision}
 
           <h3>West</h3>
-          {this.division(west, 'westColor')}
+          {westDivision}
 
           <button onClick={this.randomizeDivisions.bind(this)}
                   disabled={!count}>
@@ -127,7 +133,7 @@ export class RandomizeTeams extends Component {
           <p>Randomizers Left: {count}</p>
 
           <Link to={`/dashboard/${name}`}>
-            <button onClick={this.setDivisions.bind(this)}>Create Tournament</button>
+            <button onClick={this.createRounds.bind(this)}>Create Tournament</button>
           </Link>
         </section>
       </div>
