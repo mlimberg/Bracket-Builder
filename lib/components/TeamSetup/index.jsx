@@ -57,19 +57,15 @@ export class TeamSetup extends Component {
         <h1 className='page-header'>{this.props.tournament.name}</h1>
 
         <section className='sub-header-section'>
-
           <h3 className='page-title'>Click to edit team names</h3>
-
           <div className='team-list'>
             {teamList}
           </div>
-
           <SetupNavButtons back='/new'
                            backText='Back'
                            next='/randomize'
                            nextText='Next'
                            handleNextClick={this.shuffleTeams.bind(this)}/>
-
         </section>
 
       </div>

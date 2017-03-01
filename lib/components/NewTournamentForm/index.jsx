@@ -37,6 +37,7 @@ export class NewTournamentForm extends Component {
   setNewTournament() {
     const { name, qty, code, teams, eastColor, westColor } = this.state;
       this.props.setTournament({ name, qty, code, teams, eastColor, westColor, champion: '' })
+
   }
 
   setQty(e) {
@@ -89,8 +90,13 @@ export class NewTournamentForm extends Component {
     this.setState({ codeError: status })
   }
 
+  buttonToggle() {
+    const { name, qty, code, codeError} = this.state;
+    return (name && qty && code && !codeError) ? false : true
+  }
 
   render() {
+    const buttonToggle = this.buttonToggle()
     const { name, qty, showEast, showWest, eastColor, westColor, codeError, code } = this.state;
 
     const toggleActive = (selected) => {
@@ -163,7 +169,7 @@ export class NewTournamentForm extends Component {
                              next='/set-teams'
                              nextText='Next'
                              handleNextClick={this.setNewTournament.bind(this)}
-                             nextDisable={!name || !qty || !code}/>
+                             nextDisable={buttonToggle}/>
 
           </section>
       </div>
