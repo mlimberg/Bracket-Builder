@@ -162,7 +162,8 @@ export class NewTournamentForm extends Component {
                              backText='Back'
                              next='/set-teams'
                              nextText='Next'
-                             handleNextClick={this.setNewTournament.bind(this)}/>
+                             handleNextClick={this.setNewTournament.bind(this)}
+                             nextDisable={!name || !qty || !code}/>
 
           </section>
       </div>

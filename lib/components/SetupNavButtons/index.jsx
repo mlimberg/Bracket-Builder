@@ -10,7 +10,8 @@ const SetupNavButtons = (props) => {
 
       <Link to={props.next}>
         <button className='btn next-btn'
-                onClick={props.handleNextClick}>
+                onClick={props.handleNextClick}
+                disabled={props.nextDisable}>
           {props.nextText}
         </button>
       </Link>
