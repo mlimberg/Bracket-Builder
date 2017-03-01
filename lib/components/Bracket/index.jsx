@@ -17,12 +17,12 @@ export class Bracket extends Component {
     const roundNum = parseInt(this.props.params.round_num);
     const { tournament } = this.props;
 
-    const bracket = tournament.rounds.map((round, i) => {
+    const bracket = tournament.rounds.map((round, j) => {
       return (
-        <ul key={i} className={`round round-${i + 1}`}>
+        <ul key={j} className={`round round-${j + 1}`}>
           {round.map((match, i) => {
             return (
-              <div key={i}
+              <span key={i}
                    className='bracket-matchup'
                    onClick={() => this.setCurrentMatchup(match)}>
                 <Link to={`/matchup/${match.matchId}`}>
@@ -32,7 +32,7 @@ export class Bracket extends Component {
                   <li className='game   game-bottom'>{match.team2.name}</li>
                   <li className='spacer'>&nbsp;</li>
                 </Link>
-              </div>
+              </span>
             )
           })}
         </ul>
@@ -53,7 +53,7 @@ export class Bracket extends Component {
             </Link>
           </div>
 
-          <main className='bracket-container'>
+          <main className='bracket-container tournament'>
 
           {bracket}
 
