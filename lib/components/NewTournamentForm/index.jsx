@@ -164,19 +164,6 @@ export class NewTournamentForm extends Component {
                              nextText='Next'
                              handleNextClick={this.setNewTournament.bind(this)}/>
 
-            {/* <section className='setup-nav-buttons'>
-              <Link to='/'>
-                <button className='btn back-btn'>Back</button>
-              </Link>
-
-              <Link to='/set-teams'>
-                <button className='btn next-btn'
-                        onClick={this.setNewTournament.bind(this)}>
-                  Next
-                </button>
-              </Link>
-            </section> */}
-
           </section>
       </div>
     )
