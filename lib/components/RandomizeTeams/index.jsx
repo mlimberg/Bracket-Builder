@@ -71,7 +71,6 @@ export class RandomizeTeams extends Component {
     }
     createTournamentRounds(tournamentRounds)
     this.setDivisions()
-    // firebase.database().ref().push(Object.assign({}, this.props.tournament, { round1, round2 }))
   }
 
   setDivisions() {
@@ -106,6 +105,7 @@ export class RandomizeTeams extends Component {
       round1.push(matchup);
     }
     this.props.setFirstRound(round1)
+    // firebase.database().ref().push(state)
   }
 
   render() {

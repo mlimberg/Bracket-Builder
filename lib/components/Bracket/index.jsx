@@ -2,10 +2,11 @@ import './bracket-styles';
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import TournamentContainer from '../../containers/Tournament';
+import firebase from '../../firebase';
 
 export class Bracket extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
 
   setCurrentMatchup(match) {
@@ -13,23 +14,47 @@ export class Bracket extends Component {
   }
 
   render() {
+    const roundNum = parseInt(this.props.params.round_num);
     const { tournament } = this.props
 
-    const roundOne = tournament.round1.map(match => {
-        return (
-          <div key={match.matchId}
-               className='bracket-matchup'
-               onClick={() => this.setCurrentMatchup(match)}>
-            <Link to={`/matchup/${match.matchId}`}>
-              <li className='spacer'>&nbsp;</li>
-              <li className='game game-top'>{match.team1.name}</li>
-              <li className='game game-spacer'>&nbsp;</li>
-              <li className='game game-bottom'>{match.team2.name}</li>
-              <li className='spacer'>&nbsp;</li>
-            </Link>
-          </div>
-        )
-      })
+    // const roundOne = tournament.rounds[roundNum].map(match => {
+    //     return (
+    //       <div key={match.matchId}
+    //            className='bracket-matchup'
+    //            onClick={() => this.setCurrentMatchup(match)}>
+    //         <Link to={`/matchup/${match.matchId}`}>
+    //           <li className='spacer'>&nbsp;</li>
+    //           <li className='game game-top'>{match.team1.name}</li>
+    //           <li className='game game-spacer'>&nbsp;</li>
+    //           <li className='game game-bottom'>{match.team2.name}</li>
+    //           <li className='spacer'>&nbsp;</li>
+    //         </Link>
+    //       </div>
+    //     )
+    //   })
+
+    const bracket = tournament.rounds.map((round, i) => {
+      // const random = Math.round(Math.random() * 1000)
+      return (
+        <ul key={i} className={`round round-${i + 1}`}>
+          {round.map((match, i) => {
+            return (
+              <div key={i}
+                   className='bracket-matchup'
+                   onClick={() => this.setCurrentMatchup(match)}>
+                <Link to={`/matchup/${match.matchId}`}>
+                  <li className='spacer'>&nbsp;</li>
+                  <li className='game game-top'>{match.team1.name}</li>
+                  <li className='game game-spacer'>&nbsp;</li>
+                  <li className='game   game-bottom'>{match.team2.name}</li>
+                  <li className='spacer'>&nbsp;</li>
+                </Link>
+              </div>
+            )
+          })}
+        </ul>
+      )
+    })
 
     return (
       <div>
@@ -49,9 +74,9 @@ export class Bracket extends Component {
 
           <main className='bracket-container'>
 
-            <ul className='round round-1'>
-              {roundOne}
-            </ul>
+            {/* <ul className='round round-1'> */}
+              {bracket}
+            {/* </ul> */}
 
           </main>
         </section>
