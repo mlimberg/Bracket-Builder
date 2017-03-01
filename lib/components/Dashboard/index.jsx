@@ -9,6 +9,10 @@ export class Dashboard extends Component {
     super();
   }
 
+  componentDidMount() {
+    firebase.database().ref().push(this.props.tournament)
+  }
+
   leaveTournament() {
     this.props.setTournament({})
   }
@@ -30,7 +34,7 @@ export class Dashboard extends Component {
             <button>Teams</button>
           </Link>
 
-          <Link to={`/bracket/${tournament.code}/1`}>
+          <Link to={`/bracket/${tournament.code}`}>
             <button>Bracket</button>
           </Link>
 

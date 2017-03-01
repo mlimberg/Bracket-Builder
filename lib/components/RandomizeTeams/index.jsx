@@ -64,7 +64,8 @@ export class RandomizeTeams extends Component {
           matchupId: j,
           winner: '',
           team1: '',
-          team2: ''
+          team2: '',
+          round: i + 1
         })
       }
       tournamentRounds.push(roundArray)
@@ -88,24 +89,26 @@ export class RandomizeTeams extends Component {
     })
     const updatedTeams = [...eastUpdate, ...westUpdate]
     this.props.updateTeams(updatedTeams)
-    this.createMatchups(updatedTeams)
+    // this.createMatchups(updatedTeams)
   }
 
   createMatchups(updatedTeams) {
     const teamsCopy = updatedTeams.slice();
     const length = this.props.tournament.qty/2;
     const round1 = [];
+    console.log(this.props.tournament.rounds);
     for(let i=1; i<=length; i++) {
       const matchup = Object.assign({}, {
         matchId: i,
         winner: '',
         team1: teamsCopy.splice(0, 1)[0],
-        team2: teamsCopy.splice(0, 1)[0]
+        team2: teamsCopy.splice(0, 1)[0],
+        round: 1
       })
       round1.push(matchup);
     }
     this.props.setFirstRound(round1)
-    // firebase.database().ref().push(state)
+    firebase.database().ref().push(state)
   }
 
   render() {

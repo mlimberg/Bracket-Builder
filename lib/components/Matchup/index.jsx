@@ -21,18 +21,24 @@ export class Matchup extends Component {
     this.setState({ winnerId: parseInt(e.target.value)})
   }
 
-  submitWinner() {
+  matchWinner() {
     const { matchup } = this.props
-    const keys = Object.keys(matchup)
-    const winner = keys.reduce((obj, key) => {
+    const winner = Object.keys(matchup).reduce((obj, key) => {
       if(matchup[key].team_id === this.state.winnerId) {
         obj = matchup[key]
       }
       return obj
     }, {})
+    return winner
+  }
+
+  submitWinner() {
+    const winner = this.matchWinner()
+    const { matchup } = this.props;
     const updatedMatchup = Object.assign({}, matchup, { winner: winner })
-    this.props.submitWinner(updatedMatchup)
-    this.updateNextRound(winner)
+    console.log(updatedMatchup);
+    // this.props.submitWinner(updatedMatchup)
+    // this.updateNextRound(winner)
   }
 
   updateNextRound(winner) {
@@ -63,7 +69,7 @@ export class Matchup extends Component {
             <button>Dashboard</button>
           </Link>
 
-          <Link to={`/bracket/${tournament.code}`}>
+          <Link to={`/bracket/${tournament.code}/`}>
             <button>Bracket</button>
           </Link>
 
