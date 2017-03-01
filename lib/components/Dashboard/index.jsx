@@ -26,21 +26,41 @@ export class Dashboard extends Component {
         <h1 className='page-header'>{tournament.name}</h1>
 
         <section className='sub-header-section'>
-          <h3>{`Total Teams: ${tournament.qty}`}</h3>
-          <h3>{`Teams Remaining: ${teamsLeft}`}</h3>
-          <h3>{`Tournament Code: ${tournament.code}`}</h3>
+          <h3 className='dashboard-info'>
+            <span className='label'>Total Teams: </span>
+            {tournament.qty}
+          </h3>
 
-          <Link to={`/teams/${tournament.code}`}>
-            <button>Teams</button>
-          </Link>
+          <h3 className='dashboard-info'>
+            <span className='label'>Teams Remaining: </span>
+            {teamsLeft}
+          </h3>
 
-          <Link to={`/bracket/${tournament.code}`}>
-            <button>Bracket</button>
-          </Link>
+          <h3 className='dashboard-info'>
+            <span className='label'>Tournament Code: </span>
+            {tournament.code}
+          </h3>
 
-          <Link to='/'>
-            <button onClick={this.leaveTournament.bind(this)}>Leave Tournament</button>
-          </Link>
+          <div className='dash-btn-container'>
+            <Link to={`/teams/${tournament.code}`}>
+              <button className='btn dashboard-btn'>
+                Teams
+              </button>
+            </Link>
+
+            <Link to={`/bracket/${tournament.code}`}>
+              <button className='btn dashboard-btn'>
+                Bracket
+              </button>
+            </Link>
+
+            <Link to='/'>
+              <button onClick={this.leaveTournament.bind(this)}
+                      className='dashboard-btn leave-btn'>
+                Leave Tournament
+              </button>
+            </Link>
+          </div>
         </section>
       </div>
     )
