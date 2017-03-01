@@ -41,11 +41,8 @@ export class Matchup extends Component {
     this.updateNextRound(winner)
   }
 
-
-
-
   updateNextRound(winner) {
-    const { tournament, matchup, updateNextRound } = this.props;
+    const { tournament, matchup } = this.props;
     const round = matchup.round;
     const id = Math.ceil(matchup.matchId/2);
     const team1Id = matchup.team1.team_id;
@@ -60,7 +57,7 @@ export class Matchup extends Component {
       }
     return match
     })
-    updateNextRound(round, updated)
+    this.props.updateNextRound(round, updated)
   }
 
   render() {
