@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import TournamentContainer from '../../containers/Tournament';
 
-export class Round2 extends Component {
+export class Round extends Component {
   constructor() {
     super();
   }
@@ -15,7 +15,7 @@ export class Round2 extends Component {
   render() {
     const { tournament } = this.props
 
-    const roundTwo = tournament.round1.map(match => {
+    const roundTwo = tournament.round2.map(match => {
         return (
           <div key={match.matchId}
                className='bracket-matchup'
@@ -34,25 +34,31 @@ export class Round2 extends Component {
     return (
       <div>
         <h1 className='page-header'>{tournament.name}</h1>
-        <Link to={`/dashboard/${tournament.name}`}>
-          <button>Dashboard</button>
-        </Link>
 
-        <Link to={`/teams/${tournament}`}>
-          <button>Teams</button>
-        </Link>
+        <section className='sub-header-section'>
+          <Link to={`/dashboard/${tournament.code}`}>
+            <button>Dashboard</button>
+          </Link>
 
-        <main className='bracket-container'>
+          <Link to={`/teams/${tournament.code}`}>
+            <button>Teams</button>
+          </Link>
 
-          <ul className='round round-1'>
-            {roundTwo}
-          </ul>
+          <h2>Round 2</h2>
 
-        </main>
+          <main className='bracket-container'>
+
+            <ul className='round round-1'>
+              {roundTwo}
+            </ul>
+
+          </main>
+
+        </section>
 
       </div>
     )
   }
 }
 
-export default TournamentContainer(Round2);
+export default TournamentContainer(Round);

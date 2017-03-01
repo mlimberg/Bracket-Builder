@@ -51,6 +51,29 @@ export class RandomizeTeams extends Component {
     })
   }
 
+  createRounds() {
+    const { tournament, createTournamentRounds } = this.props
+    let tournamentRounds = [];
+    let numOfTeams = tournament.qty;
+    const numOfRounds = Math.log(numOfTeams)/Math.log(2);
+    for(let i = 0; i < numOfRounds; i++) {
+      numOfTeams /= 2
+      let roundArray = [];
+      for(let j = 1; j <= numOfTeams; j++) {
+        roundArray.push({
+          matchId: j,
+          winner: '',
+          team1: '',
+          team2: '',
+          round: i + 1
+        })
+      }
+      tournamentRounds.push(roundArray)
+    }
+    createTournamentRounds(tournamentRounds)
+    this.setDivisions()
+  }
+
   setDivisions() {
     const { east, west } = this.state
     const { tournament } = this.props
@@ -73,27 +96,25 @@ export class RandomizeTeams extends Component {
     const teamsCopy = updatedTeams.slice();
     const length = this.props.tournament.qty/2;
     const round1 = [];
+    console.log(this.props.tournament.rounds);
     for(let i=1; i<=length; i++) {
       const matchup = Object.assign({}, {
         matchId: i,
         winner: '',
         team1: teamsCopy.splice(0, 1)[0],
-        team2: teamsCopy.splice(0, 1)[0]
+        team2: teamsCopy.splice(0, 1)[0],
+        round: 1
       })
       round1.push(matchup);
     }
     this.props.setFirstRound(round1)
-    firebase.database().ref().push(Object.assign({}, this.props.tournament, { round1: round1 }))
-
   }
-
-  // saveToFirebase() {
-  //   firebase.database().ref().push(this.props.tournament)
-  // }
 
   render() {
     const { east, west, count } = this.state;
     const { code, name } = this.props.tournament;
+    const eastDivision = this.division(east, 'eastColor')
+    const westDivision = this.division(west, 'westColor')
 
     return (
       <div>
@@ -101,10 +122,10 @@ export class RandomizeTeams extends Component {
         <h1 className='page-header'>{name}</h1>
         <section className='sub-header-section'>
           <h3>East</h3>
-          {this.division(east, 'eastColor')}
+          {eastDivision}
 
           <h3>West</h3>
-          {this.division(west, 'westColor')}
+          {westDivision}
 
           <button onClick={this.randomizeDivisions.bind(this)}
                   disabled={!count}>
@@ -114,7 +135,7 @@ export class RandomizeTeams extends Component {
           <p>Randomizers Left: {count}</p>
 
           <Link to={`/dashboard/${name}`}>
-            <button onClick={this.setDivisions.bind(this)}>Create Tournament</button>
+            <button onClick={this.createRounds.bind(this)}>Create Tournament</button>
           </Link>
         </section>
       </div>

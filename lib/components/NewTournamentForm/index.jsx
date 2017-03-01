@@ -5,6 +5,7 @@ import TournamentContainer from '../../containers/Tournament';
 import AllTournamentsContainer from '../../containers/AllTournaments';
 import { GithubPicker } from 'react-color';
 import firebase from '../../firebase';
+import SetupNavButtons from '../SetupNavButtons';
 
 export class NewTournamentForm extends Component {
   constructor(props) {
@@ -100,7 +101,7 @@ export class NewTournamentForm extends Component {
       <div className='new-tournament-form-container'>
         <h1 className='page-header'>{name}</h1>
 
-        <section className='sub-header-section'>
+        <section className='sub-header-section-form'>
           <label className='tournament-name'>
             Tournament Name:
             <input className='name-input'
@@ -157,7 +158,13 @@ export class NewTournamentForm extends Component {
           </section>
             <p>{this.colorError()}</p>
 
-            <section className='bottom-nav-buttons'>
+            <SetupNavButtons back='/'
+                             backText='Back'
+                             next='/set-teams'
+                             nextText='Next'
+                             handleNextClick={this.setNewTournament.bind(this)}/>
+
+            {/* <section className='setup-nav-buttons'>
               <Link to='/'>
                 <button className='btn back-btn'>Back</button>
               </Link>
@@ -168,7 +175,8 @@ export class NewTournamentForm extends Component {
                   Next
                 </button>
               </Link>
-            </section>
+            </section> */}
+
           </section>
       </div>
     )

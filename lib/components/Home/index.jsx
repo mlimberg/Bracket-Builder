@@ -28,25 +28,39 @@ export class Home extends Component {
   }
 
   preventSpaces(e) {
-    if(e.keyCode === 32)
-    e.preventDefault()
+    if(e.keyCode === 32) {
+      e.preventDefault()
+    } else if (e.keyCode === 13) {
+      this.joinExisting()
+    }
   }
 
   joinExistingForm() {
     const { showJoin, joinCode } = this.state;
-    if(showJoin)
-    return (
-      <div className='join-existing-container'>
-        <input placeholder='Enter Code'
-               className='join-existing-input'
-               value={joinCode}
-               onChange={(e) => this.setState({ joinCode: e.target.value.toUpperCase() })}
-               onKeyDown={this.preventSpaces.bind(this)}/>
-        <button className='btn home-btn'
-                disabled={!joinCode}
-                onClick={this.joinExisting.bind(this)}>Join</button>
-      </div>
-    )
+    if(showJoin) {
+      return (
+        <div className='join-existing-container'>
+          <input placeholder='Enter Code'
+                 className='join-existing-input'
+                 id='join'
+                 value={joinCode}
+                 onChange={(e) => this.setState({ joinCode: e.target.value.toUpperCase() })}
+                 onKeyDown={this.preventSpaces.bind(this)}/>
+          <button className='btn home-btn'
+                  disabled={!joinCode}
+                  onClick={this.joinExisting.bind(this)}>
+              Join
+          </button>
+        </div>
+      )
+    }
+  }
+
+  toggleJoin() {
+    this.setState({ showJoin: !this.state.showJoin }, () => {
+      if(this.state.showJoin)
+        document.getElementById('join').focus()
+    })
   }
 
   joinExisting() {
@@ -56,7 +70,7 @@ export class Home extends Component {
       if(obj.code === this.state.joinCode) {
         tournament = Object.assign({}, obj);
         this.setState({ joinError: false, joinCode: '' })
-        browserHistory.push(`/dashboard/${tournament.name}`)
+        browserHistory.push(`/dashboard/${tournament.code}`)
       }
     })
     return tournament ? this.setCurrent(tournament) : this.setState({ joinError: true });
@@ -93,7 +107,7 @@ export class Home extends Component {
           </Link>
 
           <button className='home-btn join-existing-btn btn'
-            onClick={() => this.setState({ showJoin: !this.state.showJoin })}>
+            onClick={this.toggleJoin.bind(this)}>
             Join Existing
           </button>
         </div>
