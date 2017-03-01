@@ -14,7 +14,7 @@ export class Matchup extends Component {
   }
 
   updateScore(e) {
-    console.log(e);
+
   }
 
   setWinner(e) {
@@ -35,9 +35,9 @@ export class Matchup extends Component {
   submitWinner() {
     const winner = this.matchWinner()
     const { matchup } = this.props;
+    const round = matchup.round - 1
     const updatedMatchup = Object.assign({}, matchup, { winner: winner })
-    console.log(updatedMatchup);
-    // this.props.submitWinner(updatedMatchup)
+    this.props.submitWinner(round, updatedMatchup)
     // this.updateNextRound(winner)
   }
 

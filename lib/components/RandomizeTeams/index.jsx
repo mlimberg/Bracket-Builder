@@ -89,7 +89,7 @@ export class RandomizeTeams extends Component {
     })
     const updatedTeams = [...eastUpdate, ...westUpdate]
     this.props.updateTeams(updatedTeams)
-    // this.createMatchups(updatedTeams)
+    this.createMatchups(updatedTeams)
   }
 
   createMatchups(updatedTeams) {
@@ -108,7 +108,6 @@ export class RandomizeTeams extends Component {
       round1.push(matchup);
     }
     this.props.setFirstRound(round1)
-    firebase.database().ref().push(state)
   }
 
   render() {
