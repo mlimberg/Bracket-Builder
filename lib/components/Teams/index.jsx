@@ -23,7 +23,7 @@ export class Teams extends Component {
         <div key={team.team_id}>
           <TeamCard team={team.name}
                     style={{backgroundColor: team.color }}
-                    addClass={team.eliminated ? 'eliminated' : ''}/>
+                    addClass={team.eliminated ? 'team-card eliminated' : 'team-card'}/>
         </div>
       )
     })

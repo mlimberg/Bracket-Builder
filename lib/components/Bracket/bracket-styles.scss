@@ -1,81 +1,32 @@
-// $border: 1px solid #aaa;
-//
-// main {
-//   display: flex;
-//   flex-direction: row;
-// }
-//
-// .bracket-container {
-//   margin: 20px 5px;
-// }
-//
-// .round {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   width: 140px;
-//   list-style: none;
-//   padding: 0;
-// }
-//
-// .round .spacer {
-//   flex-grow: 1;
-// }
-//
-// .round .game-spacer {
-//   flex-grow: 1;
-// }
-//
-// .round .spacer:first-child,
-// .round .spacer:last-child{
-//   flex-grow:.5;
-// }
-//
-// li.game {
-//   padding-left: 20px;
-// }
-//
-// li.game-top {
-//   border-bottom: $border;
-// }
-//
-// li.game-spacer {
-//   border-right: $border;
-//   min-height: 30px;
-// }
-//
-// li.game-bottom {
-//   border-top: $border;
-// }
-//
-// .bracket-matchup {
-//   &:hover {
-//     cursor: pointer;
-//   }
-// }
-//
-// li {
-//   list-style: none;
-// }
+.bracket-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
 
-main{
-  display:flex;
-  flex-direction:row;
+main {
+  display: flex;
+  flex-direction: row;
 }
-.round{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  width:200px;
-  list-style:none;
-  padding:0;
+.round {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 200px;
+  list-style: none;
+  padding: 0;
 }
-  .round .spacer{ flex-grow: 1; }
+  .round .spacer{
+    flex-grow: 1;
+  }
+
   .round .spacer:first-child,
-  .round .spacer:last-child{ flex-grow: .5; }
+  .round .spacer:last-child {
+    flex-grow: .5;
+  }
 
-  .round > .game-spacer{
+.round .game-spacer {
     flex-grow: 1;
   }
 
@@ -84,24 +35,23 @@ main{
 */
 
 li.game{
-  padding-left:20px;
+  padding-left: 20px;
 }
 
-  li.game.winner{
-    font-weight:bold;
-  }
-  li.game span{
-    float:right;
-    margin-right:5px;
+li.game span {
+  float: right;
+  margin-right: 5px;
+}
+
+  li.game-top {
+    border-bottom:1px solid #aaa;
   }
 
-  li.game-top{ border-bottom:1px solid #aaa; }
-
-  li.game-spacer{
-    border-right:1px solid #aaa;
-    min-height:40px;
+  li.game-spacer {
+    border-right: 1px solid #aaa;
+    min-height: 40px;
   }
 
   li.game-bottom{
-    border-top:1px solid #aaa;
+    border-top: 1px solid #aaa;
   }
