@@ -61,7 +61,7 @@ export class RandomizeTeams extends Component {
       let roundArray = [];
       for(let j = 1; j <= numOfTeams; j++) {
         roundArray.push({
-          matchupId: j,
+          matchId: j,
           winner: '',
           team1: '',
           team2: '',
