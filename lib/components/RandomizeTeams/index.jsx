@@ -32,8 +32,8 @@ export class RandomizeTeams extends Component {
         <div key={div + i}>
 
           <TeamCard team={team.name}
-                    addClass={evenTeam(i) ? '' : 'odd-team-card'}
-                    style={{backgroundColor: color }} />
+                    // style={{backgroundColor: color }}
+                    addClass={evenTeam(i) ? '' : 'odd-team-card'}/>
 
           <span className='vs-text'>{evenTeam(i) ? 'vs.' : ''}</span>
 
@@ -112,7 +112,7 @@ export class RandomizeTeams extends Component {
 
   render() {
     const { east, west, count } = this.state;
-    const { code, name } = this.props.tournament;
+    const { code, name, eastColor, westColor } = this.props.tournament;
     const eastDivision = this.division(east, 'eastColor')
     const westDivision = this.division(west, 'westColor')
 
@@ -121,21 +121,33 @@ export class RandomizeTeams extends Component {
 
         <h1 className='page-header'>{name}</h1>
         <section className='sub-header-section'>
-          <h3>East</h3>
-          {eastDivision}
 
-          <h3>West</h3>
-          {westDivision}
+          <div className='matchups-container'>
+            <div className='rando-division-container east'>
+              <h3 style={{ backgroundColor: eastColor }}>East</h3>
+              {eastDivision}
+            </div>
 
-          <button onClick={this.randomizeDivisions.bind(this)}
-                  disabled={!count}>
-            Randomize
-          </button>
+            <div className='rando-division-container west'>
+              <h3 style={{ backgroundColor: westColor }}>West</h3>
+              {westDivision}
+            </div>
+          </div>
 
-          <p>Randomizers Left: {count}</p>
+          <div className='randomizer-options'>
+            <button className='btn randomize-btn'
+                    onClick={this.randomizeDivisions.bind(this)}
+                    disabled={!count}>
+              Randomize
+            </button>
+            <p>Randomizers Left: {count}</p>
+          </div>
 
           <Link to={`/dashboard/${name}`}>
-            <button onClick={this.createRounds.bind(this)}>Create Tournament</button>
+            <button className='create-tournament-btn'
+                    onClick={this.createRounds.bind(this)}>
+              Create Tournament
+            </button>
           </Link>
         </section>
       </div>
