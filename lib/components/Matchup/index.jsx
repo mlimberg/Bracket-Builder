@@ -1,6 +1,6 @@
 import './match-styles';
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import TournamentContainer from '../../containers/Tournament';
 import InlineEdit from 'react-edit-inline';
 import Dropdown from 'react-dropdown';
@@ -58,8 +58,24 @@ export class Matchup extends Component {
     this.props.updateNextRound(round, updated)
   }
 
+  handleSubmit() {
+    const winner = this.matchWinner()
+    const { matchup, tournament } = this.props;
+    if(matchup.round !== tournament.rounds.length) {
+      this.submitWinner()
+    } else {
+      this.props.setChampion(winner)
+    }
+  }
+
+  finalRoundCheck() {
+    const { matchup, tournament } = this.props
+    return matchup.round === tournament.rounds.length ? `/champion/${tournament.code}` : `/bracket/${tournament.code}`
+  }
+
   render() {
     const { tournament, matchup } = this.props;
+    const finalRoundCheck = this.finalRoundCheck();
 
     return (
       <div>
@@ -102,8 +118,14 @@ export class Matchup extends Component {
             </select>
           </div>
 
-          <button disabled={!this.state.winnerId}
-                  onClick={this.submitWinner.bind(this)}>Submit</button>
+          {/* <Link to={`/bracket/${tournament.code}`}> */}
+          <Link to={finalRoundCheck}>
+            <button disabled={!this.state.winnerId}
+                    onClick={this.handleSubmit.bind(this)}>
+              Submit
+            </button>
+          </Link>
+
         </section>
       </div>
     )
