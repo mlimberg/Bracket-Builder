@@ -60,22 +60,15 @@ export class TeamSetup extends Component {
 
           <h3 className='page-title'>Click to edit team names</h3>
 
-          {teamList}
+          <div className='team-list'>
+            {teamList}
+          </div>
 
           <SetupNavButtons back='/new'
                            backText='Back'
                            next='/randomize'
                            nextText='Next'
                            handleNextClick={this.shuffleTeams.bind(this)}/>
-
-          {/* <div className='setup-nav-buttons'>
-            <Link to='/new'>
-              <button>Back</button>
-            </Link>
-            <Link to='/randomize'>
-              <button onClick={this.shuffleTeams.bind(this)}>Next</button>
-            </Link>
-          </div> */}
 
         </section>
 
