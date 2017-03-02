@@ -55,13 +55,15 @@ export class Matchup extends Component {
   }
 
   handleSubmit() {
-    const winner = this.matchWinner()
-    const { matchup, tournament } = this.props;
-    if(matchup.round !== tournament.rounds.length) {
-      this.submitWinner()
-      this.updateTeams()
-    } else {
-      this.props.setChampion(winner)
+    if(this.state.winnerId) {
+      const winner = this.matchWinner()
+      const { matchup, tournament } = this.props;
+      if(matchup.round !== tournament.rounds.length) {
+        this.submitWinner()
+        this.updateTeams()
+      } else {
+        this.props.setChampion(winner)
+      }
     }
   }
 
