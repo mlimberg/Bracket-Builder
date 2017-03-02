@@ -16,29 +16,27 @@ export class Bracket extends Component {
   render() {
     const roundNum = parseInt(this.props.params.round_num);
     const { tournament } = this.props;
+    const heightToggle = tournament.qty >= 16 ? '100vh' : '40vh';
+    const widthToggle = tournament.qty >= 16 ? '75%' : '50%'
 
     const bracket = tournament.rounds.map((round, j) => {
       return (
-        <ul key={j} className={`round round-${j + 1}`}>
+        <div key={j} className={`round round-${j + 1}`}>
           {round.map((match, i) => {
             return (
                 <Link to={`/matchup/${match.matchId}`}
                       onClick={() => this.setCurrentMatchup(match)}
-                      className='bracket-matchup'
                       key={i}
-                      className='link-tag'>
-                  <li className='spacer'
-                      >&nbsp;</li>
-                  <li className='game game-top'>{match.team1.name}</li>
-                  <li className='game game-spacer'
-                      style={{ 'minHeight': (j+1.5) * 40 }}>&nbsp;</li>
-                  <li className='game   game-bottom'>{match.team2.name}</li>
-                  <li className='spacer'
-                      >&nbsp;</li>
+                      // style={{backgroundColor: match.team1.color}}
+                      className='matchup'>
+                  <div className='game game-top'
+                       style={{ color: match.team1.color}}
+                       >{match.team1.name}</div>
+                  <div className='game game-bottom'>{match.team2.name}</div>
                 </Link>
             )
           })}
-        </ul>
+        </div>
       )
     })
 
@@ -56,10 +54,9 @@ export class Bracket extends Component {
             </Link>
           </div>
 
-          <main className='bracket-container tournament'>
-
+          <main className='bracket-container tournament'
+                style={{ height: heightToggle, width: widthToggle }}>
           {bracket}
-
           </main>
         </section>
       </div>
