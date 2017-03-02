@@ -97,7 +97,7 @@ export class Matchup extends Component {
         <h1 className='page-header'>{tournament.name}</h1>
 
         <section className='sub-header-section'>
-          <div className='bracket-btn-container'>
+          <div className='matchup-btn-container'>
             <Link to={`/dashboard/${tournament.code}`}>
               <button className='btn'>Dashboard</button>
             </Link>

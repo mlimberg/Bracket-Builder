@@ -4,8 +4,8 @@
 }
 
 @mixin button-hover {
-  background-color: black;
-  color: yellow;
+  transform: scale(1.1);
+  transition: transform .5s;
   cursor: pointer;
 }
 
@@ -43,6 +43,7 @@
   border-radius: 5px;
   border: 1px solid;
   text-align: center;
+  width: 100%;
 }
 
 .randomizer-options {
@@ -77,22 +78,22 @@
   }
 }
 
-@media screen and (min-width: 400px) {
-
-
-.create-tournament-btn {
-  width: 400px;
-}
-
-.rando-division-container h3 {
-  font-size: 22px;
-  font-weight: 500;
-  margin: 15px 5px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid;
-  text-align: center;
-  width: 200px;
-}
-
-}
+// @media screen and (min-width: 400px) {
+//
+//
+// .create-tournament-btn {
+//   width: 400px;
+// }
+//
+// .rando-division-container h3 {
+//   font-size: 22px;
+//   font-weight: 500;
+//   margin: 15px 5px;
+//   padding: 10px;
+//   border-radius: 5px;
+//   border: 1px solid;
+//   text-align: center;
+//   width: 200px;
+// }
+//
+// }

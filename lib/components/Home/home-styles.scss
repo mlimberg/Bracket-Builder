@@ -48,13 +48,10 @@
   background-image: url('../../images/denver_background_desktop.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: cover;
   position: absolute;
   width: 100%;
-  top: 0px;
-  right: 0px;
-  left: 0px;
-  bottom: 0px;
+  height: 100%;
 }
 
 .home-btn {

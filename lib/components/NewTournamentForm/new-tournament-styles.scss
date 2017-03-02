@@ -1,7 +1,6 @@
 @import '../../styles.scss';
 
 .sub-header-section-form {
-  width: 80%;
   margin-top: 70px;
 }
 
@@ -10,7 +9,7 @@
   flex-direction: column;
   align-items: center;
   font-size: 18px;
-  margin: 10px auto;
+  margin: 20px auto;
 }
 
 .tournament-name, .tournament-code, .team-qty-container {
@@ -32,6 +31,7 @@
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .team-qty-option {
@@ -129,27 +129,27 @@
 }
 
 @media screen and (min-width: 400px) {
-  .tournament-name, .tournament-code, .team-qty-container, .new-tournament-form-container, .num-of-teams {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 22px;
-    margin: 10px auto;
-  }
+  // .tournament-name, .tournament-code, .team-qty-container, .new-tournament-form-container, .num-of-teams {
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   font-size: 22px;
+  //   margin: 10px auto;
+  // }
 
-  .qty-options {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 40%;
-    margin: 20px auto;
-  }
+  // .qty-options {
+  //   display: flex;
+  //   flex-direction: row;
+  //   justify-content: space-around;
+  //   width: 40%;
+  //   margin: 20px auto;
+  // }
 
-  .division-color-selectors {
-    display: flex;
-    flex-direction: row;
-    width: 50%;
-    justify-content: space-around;
-    margin: auto;
-  }
+  // .division-color-selectors {
+  //   display: flex;
+  //   flex-direction: row;
+  //   width: 50%;
+  //   justify-content: space-around;
+  //   margin: auto;
+  // }
 }

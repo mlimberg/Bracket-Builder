@@ -143,7 +143,7 @@ export class RandomizeTeams extends Component {
             <p>Randomizers Left: {count}</p>
           </div>
 
-          <Link to={`/dashboard/${name}`}>
+          <Link to={`/dashboard/${code}`}>
             <button className='create-tournament-btn'
                     onClick={this.createRounds.bind(this)}>
               Create Tournament
