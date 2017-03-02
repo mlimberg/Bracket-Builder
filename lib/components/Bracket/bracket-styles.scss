@@ -1,3 +1,37 @@
+  //hard coded shitty ass bracket :(
+//
+// .round-2 .game-spacer, .round-2 .spacer {
+//   min-height: 90px;
+// }
+//
+// .round-2 .spacer {
+//   min-height: 60px;
+// }
+//
+// .round-3 .game-spacer {
+//   min-height: 200px;
+// }
+//
+// .round-3 .spacer {
+//   min-height: 115px;
+// }
+//
+//
+// .round-4 .game-spacer {
+//   min-height: 450px;
+// }
+//
+// .round-4 .spacer {
+//   min-height: 180px;
+// }
+//
+// .round-5 .game-spacer {
+//   min-height: 700px;
+// }
+
+$bracket-line: 1px solid #aaa;
+
+
 .bracket-btn-container {
   display: flex;
   flex-direction: row;
@@ -34,9 +68,6 @@ main {
     flex-grow: 1;
   }
 
-
-
-
 li.game{
   padding-left: 20px;
 }
@@ -47,14 +78,14 @@ li.game span {
 }
 
   li.game-top {
-    border-bottom:1px solid #aaa;
+    border-bottom: $bracket-line;
   }
 
   li.game-spacer {
-    border-right: 1px solid #aaa;
+    border-right: $bracket-line;
     min-height: 40px;
   }
 
-  li.game-bottom{
-    border-top: 1px solid #aaa;
+  li.game-bottom, {
+    border-top: $bracket-line;
   }
