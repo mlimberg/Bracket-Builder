@@ -39,7 +39,7 @@ $bracket-line: 1px solid #aaa;
 }
 
 .link-tag {
-  color: blue;
+  flex-grow: 1;
 }
 
 main {
@@ -55,18 +55,10 @@ main {
   padding: 0;
 }
 
-.round a .spacer{
-  flex-grow: 1;
-}
-
 .round .spacer:first-child,
 .round .spacer:last-child {
   flex-grow: .5;
 }
-
-.round .game-spacer {
-    flex-grow: 1;
-  }
 
 li.game{
   padding-left: 20px;

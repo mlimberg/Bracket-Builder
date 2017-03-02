@@ -94,7 +94,7 @@ export class Matchup extends Component {
 
     return (
       <div>
-        <h1>{tournament.name}</h1>
+        <h1 className='page-header'>{tournament.name}</h1>
 
         <section className='sub-header-section'>
           <div className='bracket-btn-container'>
