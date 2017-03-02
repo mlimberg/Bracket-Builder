@@ -4,6 +4,9 @@
   justify-content: space-around;
 }
 
+.link-tag {
+  color: blue;
+}
 
 main {
   display: flex;
@@ -18,7 +21,7 @@ main {
   padding: 0;
 }
 
-.round .spacer{
+.round a .spacer{
   flex-grow: 1;
 }
 

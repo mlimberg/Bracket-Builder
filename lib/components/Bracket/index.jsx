@@ -22,17 +22,20 @@ export class Bracket extends Component {
         <ul key={j} className={`round round-${j + 1}`}>
           {round.map((match, i) => {
             return (
-              <span key={i}
-                   className='bracket-matchup'
-                   onClick={() => this.setCurrentMatchup(match)}>
-                <Link to={`/matchup/${match.matchId}`}>
+              // <span key={i}
+                  //  className='bracket-matchup'
+                  //  onClick={() => this.setCurrentMatchup(match)}>
+                <Link to={`/matchup/${match.matchId}`}
+                      onClick={() => this.setCurrentMatchup(match)}
+                      key={i}
+                      className='link-tag'>
                   <li className='spacer'>&nbsp;</li>
                   <li className='game game-top'>{match.team1.name}</li>
                   <li className='game game-spacer'>&nbsp;</li>
                   <li className='game   game-bottom'>{match.team2.name}</li>
                   <li className='spacer'>&nbsp;</li>
                 </Link>
-              </span>
+              // </span>
             )
           })}
         </ul>
