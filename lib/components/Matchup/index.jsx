@@ -97,49 +97,52 @@ export class Matchup extends Component {
         <h1>{tournament.name}</h1>
 
         <section className='sub-header-section'>
-          <Link to={`/dashboard/${tournament.code}`}>
-            <button>Dashboard</button>
-          </Link>
+          <div className='bracket-btn-container'>
+            <Link to={`/dashboard/${tournament.code}`}>
+              <button className='btn'>Dashboard</button>
+            </Link>
 
-          <Link to={`/bracket/${tournament.code}/`}>
-            <button>Bracket</button>
-          </Link>
-
+            <Link to={`/bracket/${tournament.code}/`}>
+              <button className='btn'>Bracket</button>
+            </Link>
+          </div>
           <div className='match-details'>
             <div className='teamA-details'>
-              <h3>{matchup.team1.name}</h3>
+              <h3 className='team-title'>{matchup.team1.name}</h3>
               {/* <InlineEdit text={matchup.team1.score}
                           paramName='teamA-score'
                           change={this.updateScore.bind(this)} /> */}
-              <p>{matchup.team1.score}</p>
+              <p className='team-score'>{matchup.team1.score}</p>
 
             </div>
 
             <div className='teamB-details'>
-              <h3>{matchup.team2.name}</h3>
+              <h3 className='team-title'>{matchup.team2.name}</h3>
               {/* <InlineEdit text={matchup.team2.score}
                           paramName='teamB-score'
                           change={this.updateScore.bind(this)} /> */}
-              <p>{matchup.team2.score}</p>
+              <p className='team-score'>{matchup.team2.score}</p>
 
             </div>
           </div>
 
           <div className='dropdown-container'>
-            <select onChange={this.setWinner.bind(this)}>
+            <select onChange={this.setWinner.bind(this)}
+                    className='dropdown'>
               <option value='default'>Select Winner</option>
               <option value={matchup.team1.team_id}>{matchup.team1.name}</option>
               <option value={matchup.team2.team_id}>{matchup.team2.name}</option>
             </select>
-          </div>
 
           {/* <Link to={`/bracket/${tournament.code}`}> */}
           <Link to={finalRoundCheck}>
             <button disabled={!this.state.winnerId}
-                    onClick={this.handleSubmit.bind(this)}>
+                    onClick={this.handleSubmit.bind(this)}
+                    className='btn'>
               Submit
             </button>
           </Link>
+        </div>
 
         </section>
       </div>
