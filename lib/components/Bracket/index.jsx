@@ -29,6 +29,7 @@ export class Bracket extends Component {
           return '80%';
       }
     }
+
     const bracketHeight = () => {
       switch(tournament.qty) {
         case 4:
@@ -42,12 +43,21 @@ export class Bracket extends Component {
       }
     }
 
+    const backgroundColor = (rounds, round, color) => {
+      if (round === rounds.length) {
+        return '#FFF'
+      } else {
+        return color
+      }
+    }
+
     const dimensions = {
       width: bracketWidth(),
       height: bracketHeight()
     }
 
-    const bracket = tournament.rounds.map((round, j) => {
+    const bracket = tournament.rounds.map((round, j, arr) => {
+
       return (
         <div key={j} className={`round round-${j + 1}`}>
           {round.map((match, i) => {
@@ -56,8 +66,14 @@ export class Bracket extends Component {
                       onClick={() => this.setCurrentMatchup(match)}
                       key={i}
                       className='matchup'>
-                  <div className='game game-top'>{match.team1.name}</div>
-                  <div className='game game-bottom'>{match.team2.name}</div>
+                  <div className='game game-top'
+                       style={{backgroundColor: match.team1.color}}
+                      //  style={{ backgroundColor: backgroundColor(arr, j+1, match.team1.color)}}
+                       >{match.team1.name}</div>
+                  <div className='game game-bottom'
+                       style={{backgroundColor: match.team2.color}}
+                      //  style={{ backgroundColor: backgroundColor(arr, j+1, match.team1.color)}}
+                       >{match.team2.name}</div>
                 </Link>
             )
           })}
