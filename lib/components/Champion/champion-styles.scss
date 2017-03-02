@@ -47,12 +47,26 @@
   margin: auto;
 }
 
-.chicken-dinner {
-  width: 400px;
-  height: 340px;
+// .chicken-dinner {
+//   width: 400px;
+//   height: 340px;
   // position: absolute;
   // right: 0px;
   // left:0px;
   // top: 0px;
   // bottom: 0px;
+// }
+
+.social-icons img {
+  transition-duration: 0.3s;
+  &:hover {
+    transform: scale(1.1);
+    transition: transform .5s;
+    cursor: pointer;
+
+  }
+}
+
+.social container h3 {
+  padding: 5px;
 }

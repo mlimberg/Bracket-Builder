@@ -23,7 +23,7 @@ const Champion = (props) => {
              src={require('../../images/chicken_dinner.png')} /> */}
 
         <div className='social-container'>
-          <h3>Rub it in</h3>
+          <h3>Rub it in!</h3>
           <div className='social-icons'>
             <img src={require('../../images/facebook_icon.png')}/>
             <img src={require('../../images/twitter_icon.png')}/>

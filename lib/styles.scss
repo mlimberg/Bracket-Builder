@@ -15,10 +15,14 @@ body {
   border: none;
   border-radius: 10px;
   outline: none;
+  transition-duration: .3s;
   &:hover {
     cursor: pointer;
+    transform: scale(1.1);
+    transition: .5s;
   }
   &:disabled, &:disabled:hover {
+    transform: none;
     cursor: default;
     background-color: gray;
     color: white;
