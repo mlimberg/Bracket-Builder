@@ -1,6 +1,6 @@
 # Bracket-Builder
 
-####Summary
+#### Summary
 Bracket builder is an app that allows anyone to set up a custom tournament, set teams, randomize teams, and playout the tournament until a champion is crowned. 
 
 This is an MVP. Future iterations of this app will include:
@@ -11,7 +11,7 @@ This is an MVP. Future iterations of this app will include:
 * Potential ability to select which type of activity you are doing and customize the interface
 
 
-####Technologies Used
+#### Technologies Used
 * React
 * Redux
 * Sass
