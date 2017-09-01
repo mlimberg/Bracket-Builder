@@ -1,86 +1,53 @@
-  //hard coded shitty ass bracket :(
-
-.round-2 .game-spacer, .round-2 .spacer {
-  min-height: 90px;
-}
-
-.round-2 .spacer {
-  min-height: 60px;
-}
-
-.round-3 .game-spacer {
-  min-height: 200px;
-}
-
-.round-3 .spacer {
-  min-height: 115px;
-}
-
-
-.round-4 .game-spacer {
-  min-height: 450px;
-}
-
-.round-4 .spacer {
-  min-height: 180px;
-}
-
-.round-5 .game-spacer {
-  min-height: 700px;
-}
-
-$bracket-line: 1px solid #aaa;
-
 main {
   display: flex;
-  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.round {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 100%;
+}
+
+.matchup {
+  background-color: #fefefe;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 50px;
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-right: 15px;
+}
+
+.game {
+  text-align: center;
+  width: 100%;
+  height: 50%;
+  color: #000;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.game-top {
+  border-width: 90%;
 }
 
 .bracket-btn-container {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-}
-// .round {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   width: 200px;
-//   list-style: none;
-//   padding: 0;
-// }
-//
-
-.link-tag {
-  flex-grow: 1;
+  width: 16%;
+  margin: 20px auto;
 }
 
-
-.round .spacer:first-child,
-.round .spacer:last-child {
-  flex-grow: .5;
+.sub-header-section-bracket {
+  margin-top: 70px;
 }
-
-li.game{
-  padding-left: 20px;
-  width: 200px;
-  text-align: center;
-}
-
-li.game span {
-  float: right;
-  margin-right: 5px;
-}
-
-  li.game-top {
-    border-bottom: $bracket-line;
-  }
-
-  li.game-spacer {
-    border-right: $bracket-line;
-    min-height: 40px;
-  }
-
-  li.game-bottom, {
-    border-top: $bracket-line;
-  }

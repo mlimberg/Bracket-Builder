@@ -42,19 +42,19 @@ export class Dashboard extends Component {
           </h3>
 
           <div className='dash-btn-container'>
-            <Link to={`/teams/${tournament.code}`}>
+            <Link to={`/teams/${tournament.code}`} className='dashboard-btn'>
               <button className='btn dashboard-btn'>
                 Teams
               </button>
             </Link>
 
-            <Link to={`/bracket/${tournament.code}`}>
+            <Link to={`/bracket/${tournament.code}`} className='dashboard-btn'>
               <button className='btn dashboard-btn'>
                 Bracket
               </button>
             </Link>
 
-            <Link to='/'>
+            <Link to='/' className='dashboard-btn'>
               <button onClick={this.leaveTournament.bind(this)}
                       className='dashboard-btn leave-btn'>
                 Leave Tournament

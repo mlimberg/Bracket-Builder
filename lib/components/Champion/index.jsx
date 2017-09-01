@@ -12,7 +12,8 @@ const Champion = (props) => {
       <h1 className='page-header'>{name}</h1>
 
       <section className='sub-header-section'>
-        <h1 className='winner-h1'>Winner Winner Chicken Dinner!</h1>
+        <h1 className='winner-h1'>Winner Winner</h1>
+        <h1 className='winner-h1'>Chicken Dinner!</h1>
         <h3 className='winner-h3'>The grand champion is:</h3>
         <span className='champ-name'
               style={{ backgroundColor: champion.color }}>
