@@ -17,35 +17,74 @@ export class Bracket extends Component {
     const roundNum = parseInt(this.props.params.round_num);
     const { tournament } = this.props;
 
-    const bracket = tournament.rounds.map((round, j) => {
+    const bracketWidth = () => {
+      switch(tournament.qty) {
+        case 4:
+          return '20%';
+        case 8:
+          return '40%';
+        case 16:
+          return '60%';
+        case 32:
+          return '80%';
+      }
+    }
+
+    const bracketHeight = () => {
+      switch(tournament.qty) {
+        case 4:
+          return '40vh';
+        case 8:
+          return '60vh';
+        case 16:
+          return '80vh';
+        case 32:
+          return '105vh';
+      }
+    }
+
+    const backgroundColor = (rounds, round, color) => {
+      if (round === rounds.length) {
+        return '#FFF'
+      } else {
+        return color
+      }
+    }
+
+    const dimensions = {
+      width: bracketWidth(),
+      height: bracketHeight()
+    }
+
+    const bracket = tournament.rounds.map((round, j, arr) => {
+
       return (
-        <ul key={j} className={`round round-${j + 1}`}>
+        <div key={j} className={`round round-${j + 1}`}>
           {round.map((match, i) => {
             return (
                 <Link to={`/matchup/${match.matchId}`}
                       onClick={() => this.setCurrentMatchup(match)}
-                      className='bracket-matchup'
                       key={i}
-                      className='link-tag'>
-                  <li className='spacer'
-                      >&nbsp;</li>
-                  <li className='game game-top'>{match.team1.name}</li>
-                  <li className='game game-spacer'
-                      style={{ 'minHeight': (j+1.5) * 40 }}>&nbsp;</li>
-                  <li className='game   game-bottom'>{match.team2.name}</li>
-                  <li className='spacer'
-                      >&nbsp;</li>
+                      className='matchup'>
+                  <div className='game game-top'
+                       style={{backgroundColor: match.team1.color}}
+                      //  style={{ backgroundColor: backgroundColor(arr, j+1, match.team1.color)}}
+                       >{match.team1.name}</div>
+                  <div className='game game-bottom'
+                       style={{backgroundColor: match.team2.color}}
+                      //  style={{ backgroundColor: backgroundColor(arr, j+1, match.team1.color)}}
+                       >{match.team2.name}</div>
                 </Link>
             )
           })}
-        </ul>
+        </div>
       )
     })
 
     return (
       <div>
         <h1 className='page-header'>{tournament.name}</h1>
-        <section className='sub-header-section'>
+        <section className='sub-header-section-bracket'>
           <div className='bracket-btn-container'>
             <Link to={`/dashboard/${tournament.code}`}>
               <button className='btn'>Dashboard</button>
@@ -56,10 +95,9 @@ export class Bracket extends Component {
             </Link>
           </div>
 
-          <main className='bracket-container tournament'>
-
+          <main className='bracket-container tournament'
+                style={dimensions}>
           {bracket}
-
           </main>
         </section>
       </div>

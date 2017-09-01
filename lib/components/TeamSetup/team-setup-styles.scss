@@ -21,6 +21,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 95%;
+  margin: auto;
+}
+
+.team-list {
+  margin-top: 20px;
 }
 
 .page-title {
@@ -32,7 +38,7 @@
 
 @media screen and (min-width: 400px ) {
   .teamList-container {
-    width: 500px;
+    width: 95%;
     margin: auto;
   }
 }
