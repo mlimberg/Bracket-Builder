@@ -11,6 +11,7 @@ export class Matchup extends Component {
     this.state={
       winnerId: '',
     }
+  this.updateScore = this.updateScore.bind(this)
   }
 
   setWinner(e) {
@@ -88,6 +89,11 @@ export class Matchup extends Component {
     return matchup.round === tournament.rounds.length ? `/champion/${tournament.code}` : `/bracket/${tournament.code}`
   }
 
+  updateScore(e, id) {
+    const op = e.target.innerHTML
+    this.props.updateTeamScore(op, id)
+  }
+
   render() {
     const { tournament, matchup } = this.props;
     const finalRoundCheck = this.finalRoundCheck();
@@ -107,21 +113,23 @@ export class Matchup extends Component {
             </Link>
           </div>
           <div className='match-details'>
-            <div className='teamA-details'>
+            <div className='teamA-details team-dtls'>
               <h3 className='team-title'>{matchup.team1.name}</h3>
-              {/* <InlineEdit text={matchup.team1.score}
-                          paramName='teamA-score'
-                          change={this.updateScore.bind(this)} /> */}
               <p className='team-score'>{matchup.team1.score}</p>
+              <div className='update-score-btns'>
+              <button className='score-btn' name='p1' onClick={(e) => this.updateScore(e, 'team1')}>+</button>
+              <button className='score-btn' name='p1' onClick={(e) => this.updateScore(e, 'team1')}>-</button>
+            </div>
 
             </div>
 
-            <div className='teamB-details'>
+            <div className='teamB-details team-dtls'>
               <h3 className='team-title'>{matchup.team2.name}</h3>
-              {/* <InlineEdit text={matchup.team2.score}
-                          paramName='teamB-score'
-                          change={this.updateScore.bind(this)} /> */}
               <p className='team-score'>{matchup.team2.score}</p>
+              <div className='update-score-btns'>
+                <button className='score-btn' name='p1' onClick={(e) => this.updateScore(e, 'team2')}>+</button>
+                <button className='score-btn' name='p1' onClick={(e) => this.updateScore(e, 'team2')}>-</button>
+              </div>
 
             </div>
           </div>
@@ -134,7 +142,6 @@ export class Matchup extends Component {
               <option value={matchup.team2.team_id}>{matchup.team2.name}</option>
             </select>
 
-          {/* <Link to={`/bracket/${tournament.code}`}> */}
           <Link to={finalRoundCheck}>
             <button disabled={!this.state.winnerId}
                     onClick={this.handleSubmit.bind(this)}
