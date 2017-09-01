@@ -50,6 +50,7 @@ export class Matchup extends Component {
       } else if(match.matchId === id && match.matchId === (matchup.matchId/2)) {
         match.team2 = winner
       }
+      ['team1', 'team2'].forEach(team => match[team].score = 0)
     return match
     })
     this.props.updateNextRound(round, updated)

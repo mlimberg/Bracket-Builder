@@ -68,11 +68,9 @@ export class Bracket extends Component {
                       className='matchup'>
                   <div className='game game-top'
                        style={{backgroundColor: match.team1.color}}
-                      //  style={{ backgroundColor: backgroundColor(arr, j+1, match.team1.color)}}
                        >{match.team1.name}</div>
                   <div className='game game-bottom'
                        style={{backgroundColor: match.team2.color}}
-                      //  style={{ backgroundColor: backgroundColor(arr, j+1, match.team1.color)}}
                        >{match.team2.name}</div>
                 </Link>
             )
